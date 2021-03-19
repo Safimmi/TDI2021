@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="DESARROLLO FRONTEND"/>
+    <HelloWorld msg="DESARROLLO BACKEND"/>
   </div>
 </template>
 
