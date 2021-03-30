@@ -1,18 +1,20 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="DESARROLLO BACKEND"/>
-  </div>
+     <div class="navbar navbar-light" style="background-color: #fff;">
+        <a class="navbar-brand" href="#"></a>
+        <ul class="nav">
+            <li class="nav-item">
+                <router-link class="nav-link text-black" to="/login">Iniciar Sesión</router-link>
+            </li>
+        </ul>
+    </div>
+    <div class="home">
+        <img alt="Vue logo" src="../assets/logo.png" />
+        <h1>Página de inicio</h1>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+    name: "Home"
+};
 </script>
