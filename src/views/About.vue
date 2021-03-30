@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Cuarto 1</h1>
+    <h1>Habitacion Ciencias Basicas</h1>
     <div id="container"></div>
   </div>
 </template>
@@ -10,8 +10,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-//import { setupModel } from './setupModel.js';
-
 
 let scene, camera, renderer, controls, container;
 
@@ -25,53 +23,39 @@ export default {
     init: function () {
       container = document.getElementById("container");
 
-      renderer = new THREE.WebGLRenderer();
+      renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize( container.clientWidth, container.clientHeight );
       container.appendChild(renderer.domElement);
 
       scene = new THREE.Scene();
       scene.background = new THREE.Color('skyblue');
 
-      camera = new THREE.PerspectiveCamera( 40, container.clientWidth / container.clientHeight, 1, 5000 );
-      camera.rotation.y = 45/180*Math.PI;
-      camera.position.x = 10;
-      camera.position.y = 30;
-      camera.position.z = 10;
+      camera = new THREE.PerspectiveCamera( 40, container.clientWidth / container.clientHeight, 0.00001, 5000 );
+      camera.position.z = 0.15;
+      camera.position.y = 0.1;
+      camera.position.x = 0.15;
 
       controls = new OrbitControls(camera, renderer.domElement);
       controls.screenSpacePanning = true;
 
-      // let geometry = new THREE.BoxGeometry(100,100,100);
-      // let material = new THREE.MeshNormalMaterial();
-      // cubo = new THREE.Mesh(geometry, material);
-      // scene.add(cubo);
-
-      const hlight = new THREE.AmbientLight (0x404040,100);  
-      scene.add(hlight);
-       
-      const directionalLight = new THREE.DirectionalLight(0xffffff,100);
-      directionalLight.position.set(0,1,0);
-      directionalLight.castShadow = true;    
-      scene.add(directionalLight);
-
-      const light = new THREE.PointLight(0xc4c4c4,10);
+      const light = new THREE.PointLight(0x2A2A2A,5);
       light.position.set(0,300,500);    
       scene.add(light);
 
-      const light2 = new THREE.PointLight(0xc4c4c4,10);
+      const light2 = new THREE.PointLight(0x2A2A2A,5);
       light2.position.set(500,100,0);    
       scene.add(light2);
 
-      const light3 = new THREE.PointLight(0xc4c4c4,10);
+      const light3 = new THREE.PointLight(0x2A2A2A,5);
       light3.position.set(0,100,-500);    
       scene.add(light3);
 
-      const light4 = new THREE.PointLight(0xc4c4c4,10);
+      const light4 = new THREE.PointLight(0x2A2A2A,5);
       light4.position.set(-500,300,0);    
       scene.add(light4);
 
       const loader = new GLTFLoader();
-      loader.load( '/Habitaciones/RobotExpressive.glb', function ( gltf ) {
+      loader.load( '/Habitaciones/Habitacion1.glb', function ( gltf ) {
         scene.add( gltf.scene );
       }, undefined, function ( error ) {
         console.error( error );
@@ -80,8 +64,6 @@ export default {
 
     animate: function () {
       requestAnimationFrame(this.animate);
-      // cubo.rotation.x += 0.01
-      // cubo.rotation.y += 0.02
       renderer.render(scene, camera);
     },
   },
@@ -94,7 +76,7 @@ export default {
 <style >
   #container {
     width: 1500px;
-    height: 1000px;
+    height: 800px;
     margin: 0 auto;
   }
 </style>
