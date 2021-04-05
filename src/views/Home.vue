@@ -4,7 +4,7 @@
     <Loader/>
   </div>
   <div class="home">
-    <HomePage msg="Welcome to Your Vue.js App"/>
+    <HomePage/>
   </div>
 </div>
 </template>

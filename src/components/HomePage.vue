@@ -1,13 +1,19 @@
 <template>
+<body>
 <div class="wrapper">
   <div class="header">
-    <LogInB/>
+    <div class="imagen">
+    <img alt="Logo" src="../assets/Logo.png">  
+    </div>
+    <router-link to="/about"><LogInB/></router-link>
   </div>
   <div class="main">
     <Slide/>
   </div>
 </div>
+</body>
 </template>
+
 
 <script>
 import LogInB from '@/components/LogInB.vue'
@@ -22,20 +28,35 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+  background: #e0e4ee;
+}
 .wrapper {
   display: flex;
   align-items: center;
-  background: #FAF6FF;
-  size: 1920px 1080px;
 }
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 0px 20px;
+  /*border: 2px solid yellow;*/
+}
+.imagen {
+  display: flex;
+  width: 175px;
+  height: 104px;
+  margin: 20px 0px;
 }
 .main {
   display: flex;
   justify-content: flex-end;
+  height: 750px;
 }
+
+
+
 
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

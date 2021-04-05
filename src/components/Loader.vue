@@ -1,7 +1,7 @@
 <template>
     <div id="loading-wrapper">
       <div id="loading-content">
-          <img alt="LogoMulti" src="../assets/LogoM.png">
+          <img alt="Logo" src="../assets/Logo.png">
       </div>
     </div>
 </template>
@@ -24,8 +24,8 @@
       #loading-content {
         display: flex;
         position: center;
-        width: 576px;
-        height: 181px;
+        width: 800px;
+        height: 475px;
       }
 
       @keyframes anima {
