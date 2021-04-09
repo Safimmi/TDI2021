@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <h1>Habitacion Ciencias Basicas</h1>
     <div id="container"></div>
   </div>
 </template>
@@ -11,17 +10,20 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-let scene, camera, renderer, controls, container;
+let scene, camera, renderer, controls, container, mixer, clock;
 
 export default {
   name: "about",
   data() {
     return {
+
     };
   },
   methods: {
     init: function () {
       container = document.getElementById("container");
+
+      clock = new THREE.Clock();
 
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize( container.clientWidth, container.clientHeight );
@@ -56,14 +58,23 @@ export default {
 
       const loader = new GLTFLoader();
       loader.load( '/Habitaciones/Habitacion1.glb', function ( gltf ) {
+        mixer = new THREE.AnimationMixer(gltf.scene);
+        mixer.clipAction(gltf.animations[0]).play();
         scene.add( gltf.scene );
+        console.log(mixer);
       }, undefined, function ( error ) {
         console.error( error );
       } );
+      this.animate();
     },
 
     animate: function () {
       requestAnimationFrame(this.animate);
+      const delta = clock.getDelta();
+      if(mixer.length != 0)
+      {
+        mixer.update( delta );
+      }
       renderer.render(scene, camera);
     },
   },
