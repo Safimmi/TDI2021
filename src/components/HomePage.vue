@@ -8,6 +8,7 @@
     <router-link to="/about"><LogInB/></router-link>
   </div>
   <div class="main">
+    <Rozasogordo/>
     <Slide/>
   </div>
 </div>
@@ -18,11 +19,13 @@
 <script>
 import LogInB from '@/components/LogInB.vue'
 import Slide from '@/components/Slide.vue'
+import Rozasogordo from '@/components/Rozasogordo.vue'
 export default {
   name: 'Home',
   components: {
     LogInB,
-    Slide
+    Slide,
+    Rozasogordo
   }
 }
 </script>
@@ -30,7 +33,7 @@ export default {
 <style>
 body {
   margin: 0;
-  background: #e0e4ee;
+  background: #d2dcf5;
 }
 .wrapper {
   display: flex;
@@ -51,7 +54,7 @@ body {
 }
 .main {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   height: 750px;
 }
 
