@@ -1,9 +1,5 @@
 <template>
-    <nav class="navbar fixed-bottom navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Home</a>
-        </div>
-    </nav>
+
     <div class="container py-4">
         <router-view />
     </div>
