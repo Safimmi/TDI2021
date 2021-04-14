@@ -9,11 +9,15 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     "three": "^0.127.0",
 =======
     "firebase": "^8.4.1",
 >>>>>>> Stashed changes
+=======
+    "three": "^0.127.0",
+>>>>>>> 9a9e94ce198f669a930cfedc55e73f3296b403ca
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
