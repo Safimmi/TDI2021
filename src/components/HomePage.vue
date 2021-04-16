@@ -3,12 +3,12 @@
 <div class="wrapper">
   <div class="header">
     <div class="imagen">
-    <img alt="Logo" src="../assets/Logo.png">  
+    <img alt="Logo" src="../assets/logo.png">  
     </div>
     <router-link to="/about"><LogInB/></router-link>
   </div>
   <div class="main">
-    <Rozasogordo/>
+    <!-- <Rozasogordo/> -->
     <Slide/>
   </div>
 </div>
@@ -19,13 +19,13 @@
 <script>
 import LogInB from '@/components/LogInB.vue'
 import Slide from '@/components/Slide.vue'
-import Rozasogordo from '@/components/Rozasogordo.vue'
+// import Rozasogordo from '@/components/Rozasogordo.vue'
 export default {
   name: 'Home',
   components: {
     LogInB,
-    Slide,
-    Rozasogordo
+    Slide
+    // Rozasogordo
   }
 }
 </script>
