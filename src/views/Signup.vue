@@ -21,9 +21,20 @@
                         <label for="password">Contraseña</label>
                         <input type="password" id="password" v-model="password" class="form-control form-control-lg">
                     </div>
-                      <div class="col-sm-12 form-group">
+                    <div class="col-sm-12 form-group">
                         <label for="password2">Confirmar contraseña</label>
                         <input type="password" id="password2" v-model="password2" class="form-control form-control-lg">
+                    </div>
+                    <div>
+                        <form>
+                            <h2>Tipo de usuario</h2>
+                            <label>Usuario
+                                <input type="radio" name="gender" checked value="Usuario" v-on:click="tipoUsuario=true">
+                            </label>
+                            <label>Admin
+                                <input type="radio" name="gender" value="Admin" v-on:click="tipoUsuario=false">
+                            </label>
+                        </form>
                     </div>
                     <div class="col-sm-12 text-center form-group">
                         <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}" class="btn btn-lg btn-primary px-4">
@@ -51,12 +62,14 @@ export default {
             password2: "",
             xhrRequest: false,
             errorMessage: "",
-            successMessage: ""
-        }
+            successMessage: "",
+            tipoUsuario: false ,
+            dominio: "@unimilitar.edu.co"       }
     }, 
     methods: {
         signupRequest() {
-
+            if (this.email.includes(this.dominio)) {
+            console.log("dominio correcto")    
             let v = this;
             v.xhrRequest = true;
             v.errorMessage = "";
@@ -66,14 +79,22 @@ export default {
                 .auth()
                 .createUserWithEmailAndPassword(v.email, v.password,).then(
                     
-                //auth.token.email.matches(/.*@unimilitar.edu.co$/)
+                    //auth.token.email.matches(/.*@unimilitar.edu.co$/)
                 () => {
+                    console.log(v)
                     v.successMessage = "Cuenta creada correctamente";
                     v.xhrRequest = false;
                     
-                    //this.$router.replace('login');
-                    //this.$router.go(5);
-                    //var idx = correo.indexOf('@yahoo.com');
+                    if (this.tipoUsuario==true) {
+                        console.log("true")
+                        this.$router.push({name:"Dashboard"});
+
+                    }
+                    else{
+                        console.log("false")
+                        this.$router.push({name:"Login"});
+                    }
+                    
                 },
                 
                 ( error ) => {
@@ -82,6 +103,12 @@ export default {
                     v.xhrRequest = false;
                 }
             );
+        }
+        else
+        {
+            console.log("dominio incorrecto")   
+            //v.successMessage = "Cuenta no creada correctamente";
+        }
             
         }
     }
