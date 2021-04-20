@@ -5,6 +5,7 @@
   </div>
   <div class="home">
     <HomePage/>
+    <Formulario />
   </div>
 </div>
 </template>
@@ -13,11 +14,13 @@
 // @ is an alias to /src
 import Loader from '@/components/Loader.vue'
 import HomePage from '@/components/HomePage.vue'
+import Formulario from '@/components/Formulario.vue'
 export default {
   name: 'Home',
   components: {
     Loader,
-    HomePage
+    HomePage,
+    Formulario
   }
 }
 </script>

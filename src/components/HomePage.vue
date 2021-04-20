@@ -5,7 +5,7 @@
     <div class="imagen">
     <img alt="Logo" src="../assets/logo.png">  
     </div>
-    <router-link to="/about"><LogInB/></router-link>
+    <router-link to="/login"><LogInB/></router-link>
   </div>
   <div class="main">
     <!-- <Rozasogordo/> -->
