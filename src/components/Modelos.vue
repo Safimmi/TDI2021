@@ -14,10 +14,6 @@
         <img src="../assets/der.png">
         <h5>Camera move</h5>
       </div>
-      <div class="botones"> 
-        <button id="button">Anterior</button>
-        <button id="button2">Siguiente</button>
-      </div>
     </div>
   </div>
 </template>
@@ -100,14 +96,6 @@ export default {
   bottom: 10px;
   color: #999;
 }
-  .botones {
-  display: flex;
-  padding-top: 20px;
-  padding-left: 300px;
-  justify-content: center;
-  bottom: 10px;
-  color: #999;
-}
 
 .ctrls {
   display: flex;
@@ -116,42 +104,6 @@ export default {
   width: 80px;
   height: 60px;
   text-align: center;
-}
-#button{
-  color: #4F4F4F;
-  min-width: 180px;
-  height: 44px;
-  background: #F2E651;
-  border-radius: 50px;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  -ms-border-radius: 50px;
-  -o-border-radius: 50px;
-  text-decoration: none;
-  display: inline-flex;
-  font-weight: bold;
-  font-size: 18px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-}
-#button2{
-  color: #4F4F4F;
-  min-width: 180px;
-  height: 44px;
-  background: #5BD3C7;
-  border-radius: 50px;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  -ms-border-radius: 50px;
-  -o-border-radius: 50px;
-  text-decoration: none;
-  display: inline-flex;
-  font-weight: bold;
-  font-size: 18px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
 }
 h5{font-size: 10px; color: black;}
 </style>
