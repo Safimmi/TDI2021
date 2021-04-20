@@ -54,7 +54,7 @@ body {
 }
 .main {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 750px;
 }
 

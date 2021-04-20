@@ -6,14 +6,15 @@
       <div class="formulario">
         <div class="parte1">
           <div class="izq">
-            <input id="uploadImage1" type="file" accept="image/*" name="images[1]" onchange="previewImage(1);" required />
+            <input id="uploadImage1" type="file" accept="image/*" name="images[1]" onchange="previewImage(1);" @change="uploadImage" required />
             <br>
-            <img id="uploadPreview1"  height="300"  />
+
+            <img id="uploadPreview1" height="300" />
           </div>
           <div class="der">
             <div class="materia">
               <label>Materia</label>
-              <select class="form-select form-select-lg" aria-label="Default select example" required>
+              <select v-model="form.materia" class="form-select form-select-lg" aria-label="Default select example" required>
                 <option selected></option>
                 <option value="Matemáticas básicas">Matemáticas básicas</option>
                 <option value="Calculo diferencia">Calculo diferencial</option>
@@ -32,13 +33,13 @@
             </div>
             <div class="titulo">
               <label>Título</label>
-              <input  class="form-control form-control-lg"  required />
+              <input  v-model="form.titulo" class="form-control form-control-lg"  required />
             </div>
           </div>
       </div>
       <div class="parte2">
         <label>Descripción</label>
-        <textarea class="form-control" rows="4" style = "resize: none" required></textarea>
+        <textarea  v-model="form.descripcion" class="form-control" rows="4" style = "resize: none" required></textarea>
       </div>
       </div>
       <div class="boton">
@@ -47,12 +48,12 @@
     </form>
   </div>
   <div class="salir">
-    <button class="btn btn-primary btn-lg"  type="submit" @click="onUpload" style="background-color: #353755; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" >Salir</button>
+    <router-link to="/"><button class="btn btn-primary btn-lg" style="background-color: #353755; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" >Salir</button></router-link>
   </div>
   </div>
 </template>
 
-<style
+<style>
 .salir {
   display: flex;
   padding-left: 2%;
@@ -64,7 +65,6 @@
   margin-bottom: 0;
   font-size: 50px;
 }
-
 .fondo label {
   font-family: 'Righteous';
   color: #525365;
@@ -78,21 +78,16 @@
   margin: 1% 15%;
   padding: 1.5%;
 }
-.selec{
-  border-color: red solid 2px;
-}
 .parte1 {
   display: flex;
   justify-content: space-between;
 }
-
 .der {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 50%;
 }
-
 .formulario {
   margin: 8% 0 4% 0;
 }
@@ -119,3 +114,50 @@
   width: 100%;
 }
 </style>
+
+<script>
+import firebase from 'firebase'
+import { createUser } from '@/firebase'
+import { reactive } from 'vue'
+export default {
+  setup() {
+    const form = reactive({ materia: '', titulo: '', descripcion:'', imagen:'' })
+    const onSubmit = async () => {
+      await createUser({ ...form })
+      form.materia = ''
+      form.titulo = ''
+      form.descripcion = ''
+      form.imagen=[]
+    }
+    return { form, onSubmit}
+  },
+  data(){
+    return{
+        imageData: null,
+        picture: null,
+        uploadValue: 0
+    }
+  },
+  methods:{
+    previewImage(event) {
+      this.uploadValue=0;
+      this.picture=null;
+      this.imageData = event.target.files[0];
+    },
+    uploadImage(e){
+      if(e.target.files[0]){
+        
+          let file = e.target.files[0];
+    
+          var storageRef = firebase.storage().ref('Proyectos/'+ Math.random()*100 + '_'  + file.name);
+    
+          let uploadTask  = storageRef.put(file);
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+              this.form.images.push(downloadURL);
+              console.log('File available at', downloadURL);
+            });
+      }
+    }
+  }  
+}
+</script>
