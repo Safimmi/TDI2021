@@ -5,6 +5,7 @@
   </div>
   <div class="home">
     <HomePage/>
+    <Rozasogordo/>
     <Formulario />
   </div>
 </div>

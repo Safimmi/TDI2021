@@ -25,8 +25,14 @@ export const getUser = async id => {
   return user.exists ? user.data() : null
 }
 
-export const updateUser = (id, user) => {
-  return usersCollection.doc(id).update(user)
+export const updateUser = (id) => {
+
+  const estadoref = usersCollection.doc(id);
+
+  return estadoref.update({
+      estado:'Publicado'
+  })
+  
 }
 
 export const deleteUser = id => {

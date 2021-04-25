@@ -121,13 +121,13 @@ import { createUser } from '@/firebase'
 import { reactive } from 'vue'
 export default {
   setup() {
-    const form = reactive({ materia: '', titulo: '', descripcion:'', imagen:'' })
+    const form = reactive({ materia: '', titulo: '', descripcion:'', estado:'No-publicado'})
     const onSubmit = async () => {
       await createUser({ ...form })
       form.materia = ''
       form.titulo = ''
       form.descripcion = ''
-      form.imagen=[]
+      form.estado= 'No-publicado'
     }
     return { form, onSubmit}
   },
