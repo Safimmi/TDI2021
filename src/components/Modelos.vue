@@ -3,15 +3,15 @@
     <div id="container"></div>
     <div class="controles">
       <div class="ctrls">
-        <img src="../assets/izq.png">
+        <img src="../assets/izq2.png">
         <h5>Camera rotate</h5>
       </div>
       <div class="ctrls">
-        <img src="../assets/rueda.png">
+        <img src="../assets/rueda2.png">
         <h5>Zoom</h5>
       </div>
       <div class="ctrls">
-        <img src="../assets/der.png">
+        <img src="../assets/der2.png">
         <h5>Camera move</h5>
       </div>
     </div>
@@ -99,11 +99,14 @@ export default {
 
 .ctrls {
   display: flex;
-  padding-top: 15px;
+  padding-top: 5px;
+  width: 82px;
+  height: 82px;
   flex-direction: column;
-  width: 80px;
-  height: 60px;
   text-align: center;
 }
-h5{font-size: 10px; color: black;}
+h5{
+  font-size: 12px;
+  color: black;
+}
 </style>
