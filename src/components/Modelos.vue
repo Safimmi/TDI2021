@@ -44,6 +44,11 @@ export default {
       camera.position.x = 0.15;
       controls = new OrbitControls(camera, renderer.domElement);
       controls.screenSpacePanning = true;
+      controls.maxPolarAngle = Math.PI / 2;
+      controls.rotateSpeed = 0.2;
+      controls.zoomSpeed = 0.2;
+      controls.minDistance = 0.1;
+      controls.maxDistance = 0.2;
       const light = new THREE.PointLight(0x2A2A2A,5);
       light.position.set(0,300,500);    
       scene.add(light);
@@ -108,5 +113,6 @@ export default {
 h5{
   font-size: 12px;
   color: black;
+  opacity: .6;
 }
 </style>
