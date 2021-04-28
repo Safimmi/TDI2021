@@ -5,14 +5,21 @@
   </div>
   <div class="home">
     <HomePage/>
+
   </div>
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Loader from '@/components/Loader.vue'
-import HomePage from '@/components/HomePage.vue'
+
+//
+//import firebase from 'firebase'
+//import { config } from '@/firebase'
+//firebase.initializeApp(config)
+import Loader from '@/components/Home/Loader.vue'
+import HomePage from '@/components/Home/HomePage.vue'
+
 export default {
   name: 'Home',
   components: {

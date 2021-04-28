@@ -7,6 +7,7 @@
 </template>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,3 +29,14 @@
   color: #42b983;
 }
 </style>
+
+<script>
+import {getUser} from '@/firebase'
+
+export default {
+  setup(){
+    //console.log(getUser());
+    getUser();
+  }
+}
+</script>

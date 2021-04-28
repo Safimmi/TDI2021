@@ -11,6 +11,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script>
+      function previewImage(nb) {        
+        var reader = new FileReader();         
+        reader.readAsDataURL(document.getElementById('uploadImage'+nb).files[0]);         
+        reader.onload = function (e) {             
+            document.getElementById('uploadPreview'+nb).src = e.target.result;         
+        };     
+      }
+    </script>
   </head>
   <body>
     <noscript>

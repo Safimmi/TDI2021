@@ -3,29 +3,31 @@
 <div class="wrapper">
   <div class="header">
     <div class="imagen">
-    <img alt="Logo" src="../assets/Logo.png">  
+    <img alt="Logo" src="../../assets/logo.png">  
     </div>
-    <router-link to="/about"><LogInB/></router-link>
+    <router-link to="/login"><LogInB/></router-link>
   </div>
   <div class="main">
-    <Rozasogordo/>
+    <!-- <Rozasogordo/> -->
+    
     <Slide/>
   </div>
+  <Formulario/>
 </div>
 </body>
 </template>
 
 
 <script>
-import LogInB from '@/components/LogInB.vue'
-import Slide from '@/components/Slide.vue'
-import Rozasogordo from '@/components/Rozasogordo.vue'
+import LogInB from '@/components/Home/LogInB.vue'
+import Slide from '@/components/Home/Slide.vue'
+// import Rozasogordo from '@/components/Rozasogordo.vue'
 export default {
   name: 'Home',
   components: {
     LogInB,
-    Slide,
-    Rozasogordo
+    Slide
+    // Rozasogordo
   }
 }
 </script>
@@ -33,7 +35,7 @@ export default {
 <style>
 body {
   margin: 0;
-  background: #d2dcf5;
+  background: #e0e4ee;
 }
 .wrapper {
   display: flex;
@@ -54,7 +56,7 @@ body {
 }
 .main {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 750px;
 }
 
