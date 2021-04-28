@@ -45,10 +45,10 @@ export default {
       controls = new OrbitControls(camera, renderer.domElement);
       controls.screenSpacePanning = true;
       controls.maxPolarAngle = Math.PI / 2;
-      controls.rotateSpeed = 0.2;
+      controls.rotateSpeed = 0.1;
       controls.zoomSpeed = 0.2;
       controls.minDistance = 0.1;
-      controls.maxDistance = 0.2;
+      controls.maxDistance = 0.24;
       const light = new THREE.PointLight(0x2A2A2A,5);
       light.position.set(0,300,500);    
       scene.add(light);
@@ -63,9 +63,11 @@ export default {
       scene.add(light4);
       const loader = new GLTFLoader();
       loader.load( '/Habitaciones/Habitacion1.glb', function ( gltf ) {
-        mixer = new THREE.AnimationMixer(gltf.scene);
+        const modelo = gltf.scene;
+        mixer = new THREE.AnimationMixer(modelo);
         mixer.clipAction(gltf.animations[0]).play();
-        scene.add( gltf.scene );
+        modelo.position.y = -0.015;
+        scene.add( modelo );
       }, undefined, function ( error ) {
         console.error( error );
       } );
