@@ -4,7 +4,7 @@
     <div class="controles">
       <div class="ctrls">
         <img src="../assets/izq2.png">
-        <h5>Camera rotate</h5>
+        <h5>Rotar</h5>
       </div>
       <div class="ctrls">
         <img src="../assets/rueda2.png">
@@ -12,7 +12,7 @@
       </div>
       <div class="ctrls">
         <img src="../assets/der2.png">
-        <h5>Camera move</h5>
+        <h5>Mover</h5>
       </div>
     </div>
   </div>
@@ -73,7 +73,7 @@ export default {
     animate: function () {
       requestAnimationFrame(this.animate);
       const delta = clock.getDelta();
-      if(mixer.length != 0)
+      if(mixer)
       {
         mixer.update( delta );
       }
@@ -101,7 +101,6 @@ export default {
   bottom: 10px;
   color: #999;
 }
-
 .ctrls {
   display: flex;
   padding-top: 5px;
