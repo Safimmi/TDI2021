@@ -1,9 +1,6 @@
 <template>
-    <div class="row">
-        <div class="col-12 text-center mb-4">
-            <h1>Registro</h1>
-        </div>
-        <div class="col-sm-5 m-auto">
+    <div class="wrapper">
+        <div class="izq">
             <div v-if="errorMessage !== ''" class="alert alert-danger" role="alert">
                 {{ errorMessage }}
             </div>
@@ -11,33 +8,26 @@
                 {{ successMessage }}
             </div>
             <form @submit.prevent="signupRequest" id="signup-form">
+                 <h1>Registro</h1>
                 <div class="row text-left">
-                    <div class="col-sm-12 form-group">
+                    <div class="form-group">
 
-                        <label for="exampleFormControlInput1" class="form-label">Correo Electrónico</label>
-                        <input type="email" id="email" placeholder="name@example.com" v-model="email" class="form-control form-control-lg">
+                        <label for="exampleFormControlInput1" class="form-label">Correo Institucional</label>
+                        <input type="email" id="email" v-model="email" class="form-control form-control-lg">
                     </div>
-                    <div class="col-sm-12 form-group">
+                    <div class="form-group">
                         <label for="password">Contraseña</label>
                         <input type="password" id="password" v-model="password" class="form-control form-control-lg">
                     </div>
-                    <div class="col-sm-12 form-group">
+                    <div class="form-group">
                         <label for="password2">Confirmar contraseña</label>
                         <input type="password" id="password2" v-model="password2" class="form-control form-control-lg">
+                    <br>
                     </div>
-                    <div>
-                        <form>
-                            <h2>Tipo de usuario</h2>
-                            <label>Usuario
-                                <input type="radio" name="gender" checked value="Usuario" v-on:click="tipoUsuario=true">
-                            </label>
-                            <label>Admin
-                                <input type="radio" name="gender" value="Admin" v-on:click="tipoUsuario=false">
-                            </label>
-                        </form>
-                    </div>
-                    <div class="col-sm-12 text-center form-group">
-                        <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}" class="btn btn-lg btn-primary px-4">
+                   
+                    <div class="form-group1">
+
+                        <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">
                             <span v-if="! xhrRequest">Regístrate</span>
                             <span v-if="xhrRequest">Por favor espere</span>
                         </button>
@@ -69,7 +59,6 @@ export default {
             xhrRequest: false,
             errorMessage: "",
             successMessage: "",
-            tipoUsuario: false ,
             dominio: "@unimilitar.edu.co"       }
     }, 
     methods: {
@@ -82,23 +71,16 @@ export default {
             v.successMessage = "";
             firebase
                 .auth()
-                .createUserWithEmailAndPassword(v.email, v.password, v.tipoUsuario).then(
+                .createUserWithEmailAndPassword(v.email, v.password).then(
                     
                     //auth.token.email.matches(/.*@unimilitar.edu.co$/)
                 () => {
                     console.log(v)
                     v.successMessage = "Cuenta creada correctamente";
                     v.xhrRequest = false;
-                    
-                    if (this.tipoUsuario==true) {
-                        console.log("true")
-                        this.$router.push({name:"Dashboard"});
-                    }
-                    else{
-                        console.log("false")
-                        this.$router.push({name:"Login"});
-                    }
-                    
+
+                    this.$router.push({name:"Login"});
+                   
                 },
                 
                 ( error ) => {
@@ -124,5 +106,42 @@ export default {
     position:relative;
     top:6px;
     left:10px;
+}
+.izq{
+    width: 40%;
+    height: 100%;
+    padding:30px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 20px;
+    background: white;
+}
+.izq h1{
+    
+  font-family: 'Righteous';
+  color: #353755;
+  margin-bottom: 30px;
+  font-size: 35px;
+}
+
+.izq label {
+  font-family: 'Righteous';
+  color: #525365;
+  font-size: 20px;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin:10px 0px;
+}
+.wrapper{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5% 0;
+
 }
 </style>

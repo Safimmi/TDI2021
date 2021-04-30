@@ -30,6 +30,14 @@ const routes = [
     path: '/formulario',
     name: 'Formulario',
     component: () => import('../components/DashMiembro/Formulario.vue')
+  },
+  {
+    path: '/dashboardM',
+    name: 'DashboardM',
+    component: () => import('../views/DashboardM.vue'),
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 

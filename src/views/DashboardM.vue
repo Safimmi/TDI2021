@@ -1,9 +1,9 @@
 <template>
    <div class="cont">
-        <List />
-        <List2 />
+        <Formulario/> 
     </div>
-    <div class="footer">
+
+     <div class="footer">
         <HomeB/>
     </div>
     
@@ -15,11 +15,10 @@
     }
 </style>
 <script>
-    import List from '@/components/DashAdmin/List.vue'
-    import List2 from '@/components/DashAdmin/List2.vue'
+    import Formulario from '@/components/DashMiembro/Formulario.vue'
     import HomeB from '@/components/Registro/HomeB.vue'
     export default {
     name: 'Dashboard',
-    components: { List, List2,HomeB}
+    components: { Formulario,HomeB}
     }
 </script>
