@@ -9,7 +9,7 @@
             <input id="uploadImage1" type="file" accept="image/*" name="images[1]" onchange="previewImage(1);" @change="uploadImage" required />
             <br>
 
-            <img id="uploadPreview1" height="300" />
+            <img id="uploadPreview1"  height="180"/>
           </div>
           <div class="der">
             <div class="materia">
@@ -46,9 +46,6 @@
         <button class="btn btn-primary btn-lg"  type="submit" @click="onUpload" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" > Enviar </button>
       </div>
     </form>
-  </div>
-  <div class="salir">
-    <router-link to="/"><button class="btn btn-primary btn-lg" style="background-color: #353755; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" >Salir</button></router-link>
   </div>
   </div>
 </template>

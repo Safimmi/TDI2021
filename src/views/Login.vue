@@ -34,9 +34,9 @@
         <p>¿No tienes una cuenta?</p>
         <router-link to="/signup"><button type="button" class="btn btn-primary" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">Regístrate</button></router-link>
     </div>
-    </div>
-        <HomeB/>
+    </div>     
 </div>
+<HomeB/>   
 </template>
 <script>
 import firebase from "firebase";
@@ -63,7 +63,14 @@ export default {
             v.successMessage = "";
             firebase.auth().signInWithEmailAndPassword(v.email, v.password).then(
                 () => {
-                    this.$router.replace('dashboard')
+                    if (v.email == 'admin@unimilitar.edu.co') {
+                        this.$router.replace('dashboard')
+                    }
+                    else{
+                         this.$router.replace('dashboardM')
+                    }
+
+                   
                     v.xhrRequest = false;
                 }, 
                 (error) => {
@@ -102,8 +109,8 @@ form{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 8%;
-    margin-bottom: 4%;
+    margin: 8% 0;
+
 }
 .text-left{
     display: flex;
