@@ -54,7 +54,7 @@ export default {
     animate: function () {
       requestAnimationFrame(this.animate);
       const delta = clock.getDelta();
-      if(mixer.length != 0)
+      if(mixer)
       {
         mixer.update( delta );
       }
