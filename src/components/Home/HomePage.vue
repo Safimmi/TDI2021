@@ -8,7 +8,7 @@
     <LogInB/>
   </div>
   <div class="main">
-    <!-- <Rozasogordo/> -->
+    <Rozasogordo/>
     
     <Slide/>
   </div>
@@ -21,13 +21,13 @@
 <script>
 import LogInB from '@/components/Home/LogInB.vue'
 import Slide from '@/components/Home/Slide.vue'
-// import Rozasogordo from '@/components/Rozasogordo.vue'
+import Rozasogordo from '@/components/3D/Rozasogordo.vue'
 export default {
   name: 'Home',
   components: {
     LogInB,
-    Slide
-    // Rozasogordo
+    Slide,
+    Rozasogordo
   }
 }
 </script>

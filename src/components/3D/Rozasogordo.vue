@@ -1,6 +1,20 @@
 <template>
   <div class="about">
     <div id="container"></div>
+    <div class="controles">
+      <div class="ctrls">
+        <img src="../../assets/izq2.png">
+        <h5>Rotar</h5>
+      </div>
+      <div class="ctrls">
+        <img src="../../assets/rueda2.png">
+        <h5>Zoom</h5>
+      </div>
+      <div class="ctrls">
+        <img src="../../assets/der2.png">
+        <h5>Mover</h5>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,13 +37,18 @@ export default {
       renderer.setSize( container.clientWidth, container.clientHeight );
       container.appendChild(renderer.domElement);
       scene = new THREE.Scene();
-      scene.background = new THREE.Color('#d2dcf5');
+      scene.background = new THREE.Color('#e0e4ee');
       camera = new THREE.PerspectiveCamera( 30, container.clientWidth / container.clientHeight, 0.00001, 5000 );
       camera.position.z = 0.15;
       camera.position.y = 0.1;
       camera.position.x = 0.15;
       controls = new OrbitControls(camera, renderer.domElement);
       controls.screenSpacePanning = true;
+      controls.maxPolarAngle = Math.PI / 2;
+      controls.rotateSpeed = 0.1;
+      controls.zoomSpeed = 0.2;
+      controls.minDistance = 0.1;
+      controls.maxDistance = 0.24;
       const light = new THREE.PointLight(0x2A2A2A,5);
       light.position.set(0,300,500);    
       scene.add(light);
@@ -44,9 +63,11 @@ export default {
       scene.add(light4);
       const loader = new GLTFLoader();
       loader.load( '/Habitaciones/Habitacion1.glb', function ( gltf ) {
-        mixer = new THREE.AnimationMixer(gltf.scene);
+        const modelo = gltf.scene;
+        mixer = new THREE.AnimationMixer(modelo);
         mixer.clipAction(gltf.animations[0]).play();
-        scene.add( gltf.scene );
+        modelo.position.y = -0.015;
+        scene.add( modelo );
       }, undefined, function ( error ) {
         console.error( error );
       } );
@@ -54,7 +75,7 @@ export default {
     animate: function () {
       requestAnimationFrame(this.animate);
       const delta = clock.getDelta();
-      if(mixer.length != 0)
+      if(mixer)
       {
         mixer.update( delta );
       }
@@ -68,8 +89,32 @@ export default {
 };
 </script>
 <style >
-  #container {
-    width: 1400px;
-    height: 750px;
-  }
+#container {
+  width: 1400px;
+  height: 750px;
+}
+.controles {
+  display: flex;
+  padding-left: 30px;
+  padding-bottom: 100px;
+  justify-content: space-between;
+  flex-direction: flex-start;
+  width: 40px;
+  height: 70px;
+  bottom: 10px;
+  color: #999;
+}
+.ctrls {
+  display: flex;
+  padding-top: 5px;
+  width: 82px;
+  height: 82px;
+  flex-direction: column;
+  text-align: center;
+}
+h5{
+  font-size: 12px;
+  color: black;
+  opacity: .6;
+}
 </style>
