@@ -31,12 +31,12 @@
 </style>
 
 <script>
-import {getUser} from '@/firebase'
+import {getproyecto} from '@/firebase'
 
 export default {
   setup(){
-    //console.log(getUser());
-    getUser();
+    //console.log(getproyecto());
+    getproyecto();
   }
 }
 </script>

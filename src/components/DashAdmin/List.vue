@@ -1,20 +1,25 @@
 <template>
-  <div v-for="{ id, materia, titulo, descripcion, estado} in users" :key="id">
+  <div v-for="{ id, materia, titulo, descripcion, estado, nombre, categoria,imagen} in proyectos" :key="id">
     <div v-if="estado == 'No-publicado'" >
       <div class="body">
         <div class="item">
+          <div class="image">
+            <img :src=imagen >
+          </div>
           <div class="inf">
-            <h2> {{materia}} </h2>
+            <h2> {{materia}} </h2> <br>
             <h3> {{titulo}} </h3>
-            <p> {{descripcion}} </p>
+            <p> {{descripcion}} </p> <br>
+            <p> {{nombre}} </p>
+            <p> {{categoria}} </p>
           </div>
           <div class="botones">
               <button class="btn btn-dark" style="background-color: #353755; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" 
-              type="submit" @click="updateUser(id)">
+              type="submit" @click="updateproyecto(id)">
               Publicar
               </button>
               <button class="btn btn-dark" style="background-color: #353755; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" 
-              type="submit" @click="deleteUser(id)">
+              type="submit" @click="deleteproyecto(id)">
               Rechazar 
               </button> 
           </div>
@@ -44,7 +49,6 @@
     display: flex;
     flex-direction: column;
     align-items:flex-start;
-    margin: 10px;
 
   }
   .botones{
@@ -72,13 +76,17 @@
   font-size: 20px;
   text-align: left;
 }
+.image img{
+  height:200px;
+  width:200px ;
+}
 </style>
 <script>
-import { useLoadUsers, deleteUser, updateUser } from '@/firebase'
+import { useLoadproyectos, deleteproyecto, updateproyecto } from '@/firebase'
 export default {
   setup() {
-    const users = useLoadUsers()
-    return { users, deleteUser,updateUser }
+    const proyectos = useLoadproyectos()
+    return { proyectos, deleteproyecto,updateproyecto }
   }
 }
 </script>

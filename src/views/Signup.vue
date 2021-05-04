@@ -10,34 +10,46 @@
             <form @submit.prevent="signupRequest" id="signup-form">
                  <h1>Registro</h1>
                 <div class="row text-left">
+                     <div class="form-group">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre:</label>
+                        <input type="nombre" id="nombre" v-model="name" class="form-control form-control-lg">
+                    </div>
                     <div class="form-group">
-
-                        <label for="exampleFormControlInput1" class="form-label">Correo Institucional</label>
+                        <label for="exampleFormControlInput1" class="form-label">Correo Institucional:</label>
                         <input type="email" id="email" v-model="email" class="form-control form-control-lg">
                     </div>
                     <div class="form-group">
-                        <label for="password">Contraseña</label>
+                        <label for="exampleFormControlInput1" class="form-label">Categoría:</label>
+                        <select v-model="categoria" class="form-select form-select-lg" aria-label="Default select example" required>
+                            <option selected></option>
+                            <option value="Estudiante">Estudiante</option>
+                            <option value="Egresado">Egresado</option>
+                            <option value="Docente">Docente</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
                         <input type="password" id="password" v-model="password" class="form-control form-control-lg">
                     </div>
                     <div class="form-group">
-                        <label for="password2">Confirmar contraseña</label>
+                        <label for="password2">Confirmar contraseña:</label>
                         <input type="password" id="password2" v-model="password2" class="form-control form-control-lg">
                     <br>
                     </div>
                    
-                    <div class="form-group1">
-
-                        <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">
-                            <span v-if="! xhrRequest">Regístrate</span>
-                            <span v-if="xhrRequest">Por favor espere</span>
-                        </button>
-                        <div v-if="xhrRequest" class="spinner-border text-secondary _loader" role="status">
-                            <span class="sr-only"></span>
-                        </div>
-                    </div>
 
                 </div>
             </form>
+            <div class="form-group1">
+
+                <button @click="signupRequest()" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">
+                    <span v-if="! xhrRequest">Regístrate</span>
+                </button>
+                <div v-if="xhrRequest" class="spinner-border text-secondary _loader" role="status">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
         </div>
     </div>
     <HomeB/>
@@ -53,6 +65,8 @@ export default {
   },
     data() {
         return {
+            name: "",
+            categoria: "",
             email: "",
             password: "",
             password2: "",
@@ -63,38 +77,31 @@ export default {
     }, 
     methods: {
         signupRequest() {
-            if (this.email.includes(this.dominio)) {
-            console.log("dominio correcto")    
-            let v = this;
-            v.xhrRequest = true;
-            v.errorMessage = "";
-            v.successMessage = "";
-            firebase
-                .auth()
-                .createUserWithEmailAndPassword(v.email, v.password).then(
-                    
-                    //auth.token.email.matches(/.*@unimilitar.edu.co$/)
-                () => {
-                    console.log(v)
-                    v.successMessage = "Cuenta creada correctamente";
-                    v.xhrRequest = false;
-
-                    this.$router.push({name:"Login"});
-                   
-                },
-                
-                ( error ) => {
-                    let errorResponse = JSON.parse(error.message);
-                    v.errorMessage = errorResponse.error.message;
-                    v.xhrRequest = false;
-                }
-            );
-        }
-        else
-        {
-            console.log("dominio incorrecto")   
-            //v.successMessage = "Cuenta no creada correctamente";
-        }
+                let v = this;
+                if (this.email.includes(this.dominio)) {
+                console.log("dominio correcto")    
+                v.xhrRequest = true;
+                v.errorMessage = "";
+                v.successMessage = "";
+                firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(this.email, this.password)
+                    .then(() => {
+                        this.displayName = this.name;
+                        this.photoURL = this.categoria;
+                        const user = firebase.auth().currentUser;
+                        return user.updateProfile({
+                            displayName: this.displayName,
+                            photoURL: this.photoURL
+                        })
+                    })
+                v.successMessage = "Cuenta creada correctamente";    
+            }
+            else
+            {
+                console.log("dominio incorrecto")   
+                v.errorMessage = "Ingrese un correo de la Universidad Militar";
+            }
             
         }
     }

@@ -1,6 +1,6 @@
 <template>
 <h1> Publicados </h1>
-  <div v-for="{ id, materia, titulo, descripcion, estado} in users" :key="id">
+  <div v-for="{ id, materia, titulo, descripcion, estado} in proyectos" :key="id">
     <div v-if="estado == 'Publicado'" >
       <div class="body">
         <div class="item">
@@ -33,11 +33,11 @@
 
 </style>
 <script>
-import { useLoadUsers} from '@/firebase'
+import { useLoadproyectos} from '@/firebase'
 export default {
   setup() {
-    const users = useLoadUsers()
-    return { users}
+    const proyectos = useLoadproyectos()
+    return { proyectos}
   }
 }
 </script>

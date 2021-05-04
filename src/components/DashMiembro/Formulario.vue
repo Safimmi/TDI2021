@@ -2,19 +2,18 @@
 <div class="wrapper">
   <div class="fondo">
     <h1>Envía tu propuesta</h1>
-    <form @submit.prevent="onSubmit">
+    <form >
       <div class="formulario">
         <div class="parte1">
           <div class="izq">
-            <input id="uploadImage1" type="file" accept="image/*" name="images[1]" onchange="previewImage(1);" @change="uploadImage" required />
+            <input id="uploadImage1" type="file" accept="image/*" name="images[1]" onchange="previewImage(1);" @change="onFileSelected" required />
             <br>
-
             <img id="uploadPreview1"  height="180"/>
           </div>
           <div class="der">
             <div class="materia">
               <label>Materia</label>
-              <select v-model="form.materia" class="form-select form-select-lg" aria-label="Default select example" required>
+              <select v-model="materia" class="form-select form-select-lg" aria-label="Default select example" required>
                 <option selected></option>
                 <option value="Matemáticas básicas">Matemáticas básicas</option>
                 <option value="Calculo diferencia">Calculo diferencial</option>
@@ -33,19 +32,22 @@
             </div>
             <div class="titulo">
               <label>Título</label>
-              <input  v-model="form.titulo" class="form-control form-control-lg"  required />
+              <input  v-model="titulo" class="form-control form-control-lg"  required />
             </div>
           </div>
       </div>
       <div class="parte2">
         <label>Descripción</label>
-        <textarea  v-model="form.descripcion" class="form-control" rows="4" style = "resize: none" required></textarea>
+        <textarea  v-model="descripcion" class="form-control" rows="4" style = "resize: none" required></textarea>
       </div>
-      </div>
-      <div class="boton">
-        <button class="btn btn-primary btn-lg"  type="submit" @click="onUpload" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" > Enviar </button>
       </div>
     </form>
+      <div class="boton">
+        <button class="btn btn-primary btn-lg" @click="setUp()" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" > Enviar </button>
+      <!-- <a @click="setUp()"> ENVIAR </a> -->
+      </div>
+      <a :href=picture > link </a>
+      <img :src=picture > 
   </div>
   </div>
 </template>
@@ -114,47 +116,63 @@
 
 <script>
 import firebase from 'firebase'
-import { createUser } from '@/firebase'
-import { reactive } from 'vue'
+import { db } from '@/firebase'
+
 export default {
-  setup() {
-    const form = reactive({ materia: '', titulo: '', descripcion:'', estado:'No-publicado'})
-    const onSubmit = async () => {
-      await createUser({ ...form })
-      form.materia = ''
-      form.titulo = ''
-      form.descripcion = ''
-      form.estado= 'No-publicado'
-    }
-    return { form, onSubmit}
-  },
+  
   data(){
     return{
         imageData: null,
         picture: null,
-        uploadValue: 0
+        uploadValue: 0,        
+        materia: null,
+        titulo: null,
+        descripcion: null,
+        estado:"No-publicado",
+        nombre: "",
+        categoria: "",
+        usuario:"",
+        imagen:null
     }
   },
   methods:{
-    previewImage(event) {
-      this.uploadValue=0;
-      this.picture=null;
-      this.imageData = event.target.files[0];
-    },
-    uploadImage(e){
-      if(e.target.files[0]){
-        
-          let file = e.target.files[0];
-    
-          var storageRef = firebase.storage().ref('Proyectos/'+ Math.random()*100 + '_'  + file.name);
-    
-          let uploadTask  = storageRef.put(file);
-            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-              this.form.images.push(downloadURL);
-              console.log('File available at', downloadURL);
-            });
+      onFileSelected(event){
+        this.slectedFile = event.target.files[0];
+      },
+      setUp(){
+        //IMAGEN
+        const sotorageref=firebase.storage().ref(`/ProyectImages/${this.slectedFile.name}`);
+        const task=sotorageref.put(this.slectedFile);
+        task.on('state_changed',snapshot =>{
+          let percentage = (snapshot.bytesTransfered/snapshot.totalBytes)*100;
+          this.uploadValue = percentage;
+        }, error=>{console.log(error.message)},
+          ()=>{this.uploadValue=100;
+          task.snapshot.ref.getDownloadURL().then((url)=>{
+          this.picture = url;
+                //DATOS
+                var user = firebase.auth().currentUser;
+
+                db.collection("proyectos").add({
+                    titulo: this.titulo,
+                    materia: this.materia,
+                    descripcion: this.descripcion,
+                    estado: this.estado,
+                    imagen: this.picture,
+                    nombre: user.displayName,
+                    usuario: user.email,
+                    categoria: user.photoURL
+
+                })
+                .then((docRef) => {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                }); 
+          });
+        });
       }
-    }
-  }  
+  }      
 }
 </script>
