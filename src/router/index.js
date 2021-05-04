@@ -38,8 +38,19 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/dashadministrador',
+    name: 'DashAdministrador',
+    component: () => import('../components/DashAdmin/DashAdministrador.vue')
+  },
+  {
+    path: '/dashmiembro',
+    name: 'DashMiembro',
+    component: () => import('../components/DashMiembro/Dashmiembro.vue')
   }
 ]
+
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
