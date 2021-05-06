@@ -35,7 +35,6 @@ import {getproyecto} from '@/firebase'
 
 export default {
   setup(){
-    //console.log(getproyecto());
     getproyecto();
   }
 }

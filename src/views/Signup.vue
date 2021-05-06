@@ -45,6 +45,7 @@
 
                 <button @click="signupRequest()" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">
                     <span v-if="! xhrRequest">Regístrate</span>
+                    <span v-if="xhrRequest">Regístrate</span>
                 </button>
                 <div v-if="xhrRequest" class="spinner-border text-secondary _loader" role="status">
                     <span class="sr-only"></span>
@@ -56,7 +57,8 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from "firebase"
+import { db } from '@/firebase'
 import HomeB from '@/components/Registro/HomeB.vue'
 export default {
     name: "Signup",
@@ -87,13 +89,26 @@ export default {
                     .auth()
                     .createUserWithEmailAndPassword(this.email, this.password)
                     .then(() => {
-                        this.displayName = this.name;
-                        this.photoURL = this.categoria;
                         const user = firebase.auth().currentUser;
                         return user.updateProfile({
-                            displayName: this.displayName,
-                            photoURL: this.photoURL
+                            displayName: this.name,
+                            photoURL: this.categoria
+                        }),
+                        db.collection("usuarios").add({
+                            id: user.uid,
+                            nombre: this.name,
+                            usuario: user.email,
+                            categoria: this.categoria,
+                            ocupacion:'',
+                            foto:'https://firebasestorage.googleapis.com/v0/b/multirush-b945a.appspot.com/o/FotosUsuarios%2Fusuario.png?alt=media&token=882444d0-c8c2-4c7b-99c5-84c74574a3de'
+
                         })
+                        .then((docRef) => {
+                            console.log("Document written with ID: ", docRef.id);
+                        })
+                        .catch((error) => {
+                            console.error("Error adding document: ", error);
+                        }); 
                     })
                 v.successMessage = "Cuenta creada correctamente";    
             }

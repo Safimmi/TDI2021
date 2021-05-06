@@ -46,7 +46,7 @@
         <button class="btn btn-primary btn-lg" @click="setUp()" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" > Enviar </button>
       <!-- <a @click="setUp()"> ENVIAR </a> -->
       </div>
-      <a :href=picture > link </a>
+      <a :href=picture > :nombre </a>
       <img :src=picture > 
   </div>
   </div>
@@ -141,7 +141,7 @@ export default {
       },
       setUp(){
         //IMAGEN
-        const sotorageref=firebase.storage().ref(`/ProyectImages/${this.slectedFile.name}`);
+        const sotorageref=firebase.storage().ref(`/Proyectos/${this.slectedFile.name}`);
         const task=sotorageref.put(this.slectedFile);
         task.on('state_changed',snapshot =>{
           let percentage = (snapshot.bytesTransfered/snapshot.totalBytes)*100;

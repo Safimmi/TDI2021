@@ -22,7 +22,7 @@
                     <div class="form-group1">
                         <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">
                             <span v-if="! xhrRequest">Ingresar</span>
-                            <span v-if="xhrRequest">Por favor espere</span>
+                            <span v-if="xhrRequest">Ingresar</span>
                         </button>
                         <div v-if="xhrRequest" class="spinner-border text-secondary loader" role="status">
                             <span class="sr-only"></span>

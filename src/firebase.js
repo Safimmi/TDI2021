@@ -15,6 +15,7 @@ const firebaseApp = firebase.initializeApp(config)
 
 const db = firebaseApp.firestore()
 const proyectosCollection = db.collection('proyectos')
+const usuariosCollection = db.collection('usuarios')
 
 export{
   db
@@ -50,4 +51,13 @@ export const useLoadproyectos = () => {
   })
   onUnmounted(close)
   return proyectos
+}
+
+export const useLoadusuarios = () => {
+  const usuarios = ref([])
+  const close = usuariosCollection.onSnapshot(snapshot => {
+    usuarios.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+  })
+  onUnmounted(close)
+  return usuarios
 }

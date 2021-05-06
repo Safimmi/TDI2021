@@ -24,40 +24,13 @@
 </template>
 <script>
 import HomeB from '@/components/Registro/HomeB.vue'
-import firebase from 'firebase'
-
-
-import { useLoadproyectos} from '@/firebase'
+import { useLoadusuarios} from '@/firebase'
 export default {
     name: 'DashAdministrador',
     components: {HomeB},
-    
-    data(){
-    return{
-        imageData: null,
-        picture: null,
-        uploadValue: 0,        
-        materia: null,
-        titulo: null,
-        descripcion: null,
-        estado:"No-publicado",
-        nombre: "",
-        categoria: "",
-        usuario:"",
-        imagen:null
-    }
-    },
-    methods:{
-        getdatos(){
-            var user = firebase.auth().currentUser;
-            this.nombre= user.displayName,
-            this.usuario= user.email,
-            this.categoria= user.photoURL
-        }
-    },
     setup() {
-    const proyectos = useLoadproyectos()
-    return { proyectos }
+    const usuarios = useLoadusuarios()
+    return { usuarios }
     }
 }
 </script>
