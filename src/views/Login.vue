@@ -1,35 +1,34 @@
 <template>
 <div class="wrapper">
     <div class="main">
-        <div class="izq">
-            <h1>Iniciar Sesión</h1>
-            <div v-if="errorMessage !== ''" class="alert alert-danger" role="alert">
+        <div class="form">
+            <div v-if="errorMessage !== ''" class="alert-danger" role="alert">
                 {{ errorMessage }}
             </div>
-            <div v-if="successMessage !== ''" class="alert alert-success" role="alert">
-                {{ successMessage }}
-            </div>
-            <form @submit.prevent="loginRequest" id="login-form">
-                    <div class="form-group">
-                        <label for="email">Correo Institucional:</label>
-                        <input type="email" v-model="email" id="email" class="form-control form-control-lg">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Contraseña:</label>
-                        <input type="password" v-model="password" id="password" class="form-control form-control-lg">
-                    </div>
-                    <br>
-                    <div class="form-group1">
-                        <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">
-                            <span v-if="! xhrRequest">Ingresar</span>
-                            <span v-if="xhrRequest">Ingresar</span>
-                        </button>
-                        <div v-if="xhrRequest" class="spinner-border text-secondary loader" role="status">
-                            <span class="sr-only"></span>
+            <div class="izq">
+                <h1>Iniciar Sesión</h1>
+                <form @submit.prevent="loginRequest" id="login-form">
+                        <div class="form-group">
+                            <label for="email">Correo Institucional:</label>
+                            <input type="email" v-model="email" id="email" class="form-control form-control-lg">
                         </div>
-                    </div>
-            </form>
-    </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña:</label>
+                            <input type="password" v-model="password" id="password" class="form-control form-control-lg">
+                        </div>
+                        <br>
+                        <div class="form-group1">
+                            <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">
+                                <span v-if="! xhrRequest">Ingresar</span>
+                                <span v-if="xhrRequest">Ingresar</span>
+                            </button>
+                            <div v-if="xhrRequest" class="spinner-border text-secondary loader" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
     <div class="der">
         <p>¿No tienes una cuenta?</p>
         <router-link to="/signup"><button type="button" class="btn btn-primary" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">Regístrate</button></router-link>
@@ -51,8 +50,7 @@ export default {
             email: "",
             password: "",
             xhrRequest: false,
-            errorMessage: "",
-            successMessage: ""
+            errorMessage: ""
         }
     },
     methods: {
@@ -60,7 +58,7 @@ export default {
             let v = this;
             v.xhrRequest = true;
             v.errorMessage = "";
-            v.successMessage = "";
+
             firebase.auth().signInWithEmailAndPassword(v.email, v.password).then(
                 () => {
                     if (v.email == 'admin@unimilitar.edu.co') {
@@ -72,10 +70,12 @@ export default {
 
                    
                     v.xhrRequest = false;
+                    
                 }, 
                 (error) => {
                     v.errorMessage = error.message;
                     v.xhrRequest = false;
+                    v.errorMessage = "Correo o contraseña incorrecta";
                 }
                 
             )
@@ -90,7 +90,7 @@ form{
     flex-direction: column;
     justify-content: space-around;
     margin-top: 50px;
-    
+    width: 100%;
 }
 .form-group{
     display: flex;
@@ -118,14 +118,14 @@ form{
     justify-content: space-between;
 }
 .izq{
-    width: 70%;
-    height: 100%;
+
     padding:30px;
     display:flex;
     flex-direction: column;
-    justify-content: space-around;
     border-radius: 20px;
     background: white;
+    height: 500px;
+    width: 600px;
 }
 .der{
     display:flex;
@@ -159,5 +159,24 @@ form{
 .der p {
     font-family: 'Montserrat';
     font-size: 40px;
+}
+
+.alert-danger{
+    background:rgba(206, 99, 99, 0.445);
+    margin: 10px;
+    padding: 5px 20px;
+
+    font-family: 'Montserrat';
+    color: #fff;
+    font-size: 20px;
+    width: 50%;
+
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 </style>

@@ -5,7 +5,7 @@
     </router-link>
 </div>    
 </template>
-<style>
+<style scoped>
 .boton{
     display: flex;
     justify-content: flex-start;

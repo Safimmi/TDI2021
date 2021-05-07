@@ -1,22 +1,22 @@
 <template>
     <div class="wrapper">
-        <div class="izq">
-            <div v-if="errorMessage !== ''" class="alert alert-danger" role="alert">
+            <div v-if="errorMessage !== ''" class="alert-danger"  role="alert">
                 {{ errorMessage }}
             </div>
-            <div v-if="successMessage !== ''" class="alert alert-success" role="alert">
+            <div v-if="successMessage !== ''" class="alert-success"  role="alert">
                 {{ successMessage }}
             </div>
+        <div class="izq">
             <form @submit.prevent="signupRequest" id="signup-form">
                  <h1>Registro</h1>
                 <div class="row text-left">
                      <div class="form-group">
                         <label for="exampleFormControlInput1" class="form-label">Nombre:</label>
-                        <input type="nombre" id="nombre" v-model="name" class="form-control form-control-lg">
+                        <input type="nombre" id="nombre" v-model="name" class="form-control form-control-lg" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1" class="form-label">Correo Institucional:</label>
-                        <input type="email" id="email" v-model="email" class="form-control form-control-lg">
+                        <input type="email" id="email" v-model="email" class="form-control form-control-lg" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1" class="form-label">Categoría:</label>
@@ -30,11 +30,11 @@
 
                     <div class="form-group">
                         <label for="password">Contraseña:</label>
-                        <input type="password" id="password" v-model="password" class="form-control form-control-lg">
+                        <input type="password" id="password" v-model="password" class="form-control form-control-lg" required>
                     </div>
                     <div class="form-group">
                         <label for="password2">Confirmar contraseña:</label>
-                        <input type="password" id="password2" v-model="password2" class="form-control form-control-lg">
+                        <input type="password" id="password2" v-model="password2" class="form-control form-control-lg" required>
                     <br>
                     </div>
                    
@@ -42,7 +42,6 @@
                 </div>
             </form>
             <div class="form-group1">
-
                 <button @click="signupRequest()" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">
                     <span v-if="! xhrRequest">Regístrate</span>
                     <span v-if="xhrRequest">Regístrate</span>
@@ -50,6 +49,7 @@
                 <div v-if="xhrRequest" class="spinner-border text-secondary _loader" role="status">
                     <span class="sr-only"></span>
                 </div>
+
             </div>
         </div>
     </div>
@@ -110,12 +110,14 @@ export default {
                             console.error("Error adding document: ", error);
                         }); 
                     })
-                v.successMessage = "Cuenta creada correctamente";    
+                v.successMessage = "Cuenta creada correctamente"; 
+                v.xhrRequest = false;   
             }
             else
             {
                 console.log("dominio incorrecto")   
                 v.errorMessage = "Ingrese un correo de la Universidad Militar";
+                v.xhrRequest = false;
             }
             
         }
@@ -161,9 +163,28 @@ export default {
 .wrapper{
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 5% 0;
 
+}
+.alert-success{
+    background: #5bd3c744;
+    margin: 10px;
+    padding: 5px 20px;
+
+    font-family: 'Montserrat';
+    color: #353755;
+    font-size: 20px;
+}
+.alert-danger{
+    background:rgba(206, 99, 99, 0.445);
+    margin: 10px;
+    padding: 5px 20px;
+
+    font-family: 'Montserrat';
+    color: #fff;
+    font-size: 20px;
 }
 </style>

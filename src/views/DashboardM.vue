@@ -1,30 +1,55 @@
 <template>
-   <div class="cont">
-        <Formulario/> 
+    <div class="todo">
+        <div class="menu">
+            <Menu />
+        </div>
+        <div class="der">
+            <div class="formulario">
+                <Formulario />
+            </div>
+        </div>
     </div>
-
-     <div class="footer">
-        <HomeB/>
-    </div>
-    
 </template>
-<style scoped>
-    .footer{
-        display: flex;
-        align-items: flex-start;
-    }
-</style>
 <script>
+    import Menu from '@/components/DashMiembro/Menu.vue'
     import Formulario from '@/components/DashMiembro/Formulario.vue'
-    import HomeB from '@/components/Registro/HomeB.vue'
-    import { useLoadproyectos} from '@/firebase'
+
     export default {
-    name: 'Dashboard',
-    components: { Formulario,HomeB},
-        setup() {
-            const proyectos = useLoadproyectos()
-            return { proyectos}
-        }
+    name: 'DashAdministrador',
+    components: { Menu,Formulario},
+
+    }  
+</script>
+<style scoped>
+
+
+    .menu{
+        background:#353755;
+        padding: 20px;
+        height: 100vh;
+        width: 25%
+    }
+    .todo{
+        background:  #d1d2f3;
+        display: flex ;
+        flex-direction: row;
+    }
+    .logo{
+        text-align: right;
+        margin: 40px;
     }
 
-</script>
+    .formulario{
+
+        display: flex;
+        height: 100%;
+        width: 100%;
+
+        flex-direction: column;
+        align-items: center;
+
+    }
+   .der{
+     width:100%;
+   }
+</style>
