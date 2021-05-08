@@ -43,7 +43,7 @@
           </div>
       </div>
       <div class="parte2">
-        <label>Descripción</label>
+        <label>Descripción:</label>
         <textarea  v-model="descripcion" class="form-control" rows="4" style = "resize: none" required></textarea>
       </div>
     </form>

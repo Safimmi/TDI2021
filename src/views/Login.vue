@@ -190,6 +190,7 @@ export default {
     background: none;
     display:flex;
     align-items:center;
+    justify-content: space-around;
 
     position: relative;
     width: 100%;
@@ -205,10 +206,9 @@ export default {
     border-radius: 20px;
     background: white;
     
-    width: 55%;
-    height: 70%;
-    margin: 0 10%;
-    /* padding: 0 10%; */ 
+    width: 35%;
+    height: 75%;
+    margin: 0 10% 0 15%; 
     z-index: 1;
 }
 .formTitle{
@@ -233,6 +233,7 @@ export default {
     margin:1.5rem 0px;
 }
 .formContent{
+     /* border: 5px solid blueviolet; */
     padding:  10%;
 }
 
@@ -244,6 +245,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    padding-right: 8%;
     z-index: 1;
 }
 .registroLink p {
@@ -266,6 +268,9 @@ export default {
 
     max-height: 100%;
 }
+.btn-primary:hover{
+    background-color: #62e2d5;
+}
 /* .btn-primary:hover{
     background-color: #767DDD;
 } */
@@ -280,7 +285,7 @@ export default {
     max-height: 100%;
 }
 .btn-secondary:hover {
-    background-color: #767DDD;
+    background-color: #5d5f88;
 }
 
 /* Alertas */
