@@ -6,7 +6,7 @@
   <router-view/>
 </template>
 
-<style>
+<style >
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -31,12 +31,11 @@
 </style>
 
 <script>
-import {getUser} from '@/firebase'
+import {getproyecto} from '@/firebase'
 
 export default {
   setup(){
-    //console.log(getUser());
-    getUser();
+    getproyecto();
   }
 }
 </script>

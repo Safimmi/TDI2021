@@ -1,24 +1,23 @@
 <template>
-<body>
-<div class="wrapper">
-  <div class="header">
-    <div class="imagen">
-    <img alt="Logo" src="../../assets/logo.png">  
-    </div>
-    <router-link to="/login"><LogInB/></router-link>
-  </div>
-  <div class="main">
-    <Rozasogordo/>
+  <div class="wrapper">
     
-    <Slide/>
+    <div class="header">
+      <div class="imagen">
+        <img alt="Logo" src="../../assets/Brand/LogoHeaderX2.png">  
+      </div>
+      <LogInB/>
+    </div>
+
+    <div class="main">
+      <Rozasogordo/>
+      <Slide/>
+    </div>
+    
   </div>
-  <Formulario/>
-</div>
-</body>
 </template>
 
 
-<script>
+<script >
 import LogInB from '@/components/Home/LogInB.vue'
 import Slide from '@/components/Home/Slide.vue'
 import Rozasogordo from '@/components/3D/Rozasogordo.vue'
@@ -32,36 +31,46 @@ export default {
 }
 </script>
 
-<style>
-body {
-  margin: 0;
-  background: #e0e4ee;
-}
+<style scoped>
+
 .wrapper {
-  display: flex;
-  align-items: center;
+  /* border: 5px solid green; */
+  margin: 0;
+  background: #D1D2F3;
+  height: 99.9vh;
+  width: 99.9vw;
+  position: relative;
 }
+
 .header {
+  /* border: 5px solid yellow; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 20px;
-  /*border: 2px solid yellow;*/
+  padding: 10px 3%;
+  
+  position: relative;
+  height: 15%;
 }
 .imagen {
+  /* border: 5px solid blue; */
   display: flex;
-  width: 175px;
-  height: 104px;
-  margin: 20px 0px;
+  padding: 0;
+  margin:0;
+  height: 100%;
+  width: 50%;
 }
+.imagen img{
+  height: 100%;
+}
+
+
 .main {
+  /* border: 5px solid red; */
   display: flex;
-  justify-content: flex-end;
-  height: 750px;
+  position: relative;
+  height: 85%;
 }
-
-
-
 
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

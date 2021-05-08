@@ -4,7 +4,7 @@
         <List2 />
     </div>
     <div class="footer">
-        <HomeB/>
+        <HomeB2/>
     </div>
     
 </template>
@@ -17,9 +17,9 @@
 <script>
     import List from '@/components/DashAdmin/List.vue'
     import List2 from '@/components/DashAdmin/List2.vue'
-    import HomeB from '@/components/Registro/HomeB.vue'
+    import HomeB2 from '@/components/Registro/HomeB2.vue'
     export default {
     name: 'Dashboard',
-    components: { List, List2,HomeB}
+    components: { List, List2,HomeB2}
     }
 </script>

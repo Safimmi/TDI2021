@@ -14,20 +14,25 @@ const config = {
 const firebaseApp = firebase.initializeApp(config)
 
 const db = firebaseApp.firestore()
-const usersCollection = db.collection('users')
+const proyectosCollection = db.collection('proyectos')
+const usuariosCollection = db.collection('usuarios')
 
-export const createUser = user => {
-  return usersCollection.add(user)
+export{
+  db
 }
 
-export const getUser = async id => {
-  const user = await usersCollection.doc(id).get()
-  return user.exists ? user.data() : null
+export const createproyecto = proyecto => {
+  return proyectosCollection.add(proyecto)
 }
 
-export const updateUser = (id) => {
+export const getproyecto = async id => {
+  const proyecto = await proyectosCollection.doc(id).get()
+  return proyecto.exists ? proyecto.data() : null
+}
 
-  const estadoref = usersCollection.doc(id);
+export const updateproyecto = (id) => {
+
+  const estadoref = proyectosCollection.doc(id);
 
   return estadoref.update({
       estado:'Publicado'
@@ -35,15 +40,24 @@ export const updateUser = (id) => {
   
 }
 
-export const deleteUser = id => {
-  return usersCollection.doc(id).delete()
+export const deleteproyecto = id => {
+  return proyectosCollection.doc(id).delete()
 }
 
-export const useLoadUsers = () => {
-  const users = ref([])
-  const close = usersCollection.onSnapshot(snapshot => {
-    users.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+export const useLoadproyectos = () => {
+  const proyectos = ref([])
+  const close = proyectosCollection.onSnapshot(snapshot => {
+    proyectos.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
   })
   onUnmounted(close)
-  return users
+  return proyectos
+}
+
+export const useLoadusuarios = () => {
+  const usuarios = ref([])
+  const close = usuariosCollection.onSnapshot(snapshot => {
+    usuarios.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+  })
+  onUnmounted(close)
+  return usuarios
 }
