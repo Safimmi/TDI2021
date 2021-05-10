@@ -5,11 +5,22 @@
       <div class="imagen">
         <img alt="Logo" src="../../assets/Brand/LogoHeaderX2.png">  
       </div>
+      <button
+      type="button"
+      class="btn"
+      @click="showModal"
+    >
+      Abrir Carrusel
+    </button>
       <LogInB/>
     </div>
 
     <div class="main">
       <Rozasogordo/>
+      <Carrusel
+        v-show="isModalVisible"
+        @close="closeModal"
+      />
       <Slide/>
     </div>
     
@@ -18,6 +29,7 @@
 
 
 <script >
+import Carrusel from '@/components/Home/Carrusel.vue';
 import LogInB from '@/components/Home/LogInB.vue'
 import Slide from '@/components/Home/Slide.vue'
 import Rozasogordo from '@/components/3D/Rozasogordo.vue'
@@ -26,8 +38,22 @@ export default {
   components: {
     LogInB,
     Slide,
+    Carrusel,
     Rozasogordo
-  }
+  },
+  data() {
+      return {
+        isModalVisible: false,
+      };
+    },
+    methods: {
+      showModal() {
+        this.isModalVisible = true;
+      },
+      closeModal() {
+        this.isModalVisible = false;
+      }
+    } 
 }
 </script>
 
