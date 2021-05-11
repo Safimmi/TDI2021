@@ -1,50 +1,46 @@
-<script>
-  export default {
-    name: 'Carrusel',
-    methods: {
-      close() {
-        this.$emit('close');
-      },
-    },
-  };
-</script>
-
 <template>
+
   <div class="modal-backdrop">
-    <div class="modal">
-      <div class="izq">
-        <div class="imagen">
-          <img alt="Logo" src="../../assets/img1.png">
-        </div>
-      </div>
-      <div class="der">
-        <div class="top">
-        <div class="materia"><p3>Render</p3></div>
-        <div class="boton">
-        <button
-          type="button"
-          class="btn-close"
-          @click="close"
-        >
-        </button>
-        </div>
-        </div>
-        <div class="main">
-          <h2>The haunting of Hill house</h2>
-          <div class="texto">
-          <div class="texto1">
-          <p>Hice créditos de apertura en 3D inspirados en la serie de Netflix The heunting of hill house. Muestra la recreación de diferentes estancias de la propia casa.</p>
+    <div v-for="{ id, materia, titulo, descripcion, estado,imagen, nombre,categoria, fecha} in proyectos" :key="id">
+        <div v-if="estado == 'Publicado'" >
+          <div class="modal">
+            <div class="izq">
+              <div class="imagen">
+                <img alt="Logo" :src=imagen>
+              </div>
+            </div>
+            <div class="der">
+              <div class="top">
+              <div class="materia"><p3>{{materia}}</p3></div>
+              <div class="boton">
+              <button
+                type="button"
+                class="btn-close"
+                @click="close"
+              >
+              </button>
+              </div>
+              </div>
+              <div class="main">
+                <h2>{{titulo}}</h2>
+                <div class="texto">
+                <div class="texto1">
+                <p>{{descripcion}}</p>
+                </div>
+                <div class="texto2">
+                <p1>{{nombre}}</p1>
+                <p1>{{categoria}}</p1>
+                <p1>{{fecha}}</p1>
+                </div>
+                </div>
+              </div>
+              <div class="bottom">
+                  <img alt="prev" src="../../assets/Icons/AnteriorIcon.png">
+                  <img alt="next" src="../../assets/Icons/SiguienteIcon.png">
+              </div>
+            </div>
           </div>
-          <div class="texto2">
-          <p1>Sofía Zamora</p1>
-          <p1>Estudiante</p1>
-          <p1>2021</p1>
-          </div>
-          </div>
-        </div>
-        <div class="bottom">
-        </div>
-      </div>
+        </div> 
     </div>
   </div>
   
@@ -146,6 +142,12 @@
 
   .bottom{
     height: 20%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+  }
+   .bottom img{ 
+    height: 35%;
   }
 
   .texto{
@@ -159,6 +161,7 @@
     margin-top: 40px;
     display: flex;
     justify-content: flex-start;
+    text-align: left;
   }
 
   .texto2{
@@ -180,3 +183,31 @@
     border-radius:10px
   }
 </style>
+
+<script>
+  // import firebase from 'firebase'
+  import { db } from '@/firebase'
+  import { useLoadproyectos} from '@/firebase'
+  export default {
+    name: 'Carrusel',
+    data() {
+      return {
+        proyectosL: []
+      };
+    },
+    created(){
+      var proyectosRef = db.collection("proyectos");
+      var proyectoslist = proyectosRef.where("materia", "==", "Algebra lienal");
+      this.proyectosL = proyectoslist;
+    },
+    methods: {
+      close() {
+        this.$emit('close');
+      },
+    },
+    setup() {
+      const proyectos = useLoadproyectos()
+      return {proyectos}
+    }
+  };
+</script>

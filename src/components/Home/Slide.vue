@@ -9,7 +9,7 @@
             <p>Cálculo integral</p>
             <p>Cálculo vectorial</p>
             <p>Ecuaciones diferenciales</p>
-            <p>Álgebra lineal</p>
+            <p @click="showModal"  >Álgebra lineal</p>
             <p>Probabilidad y estadística</p>
             <p>Métodos numéricos</p>
             <p>Física mecánica</p>
@@ -17,6 +17,13 @@
             <p>Física óptica y acústica</p>
             <p>Química</p>
         </div>
+    </div>
+    <div class="main">
+
+      <Carrusel
+        v-show="isModalVisible"
+        @close="closeModal"
+      />
     </div>
 </template>
 
@@ -43,10 +50,7 @@
 
     position: relative;
     width: 30%;
-    height: 96%;
-    overflow: scroll;
-    overflow-x: hidden; 
-    
+    height: 96%;    
     
 }
 
@@ -56,10 +60,13 @@
     color: #EEEEEE;
     margin-bottom: 10%;
     text-align: start;
+    cursor: default;
 }
 
 .slide .content {
     padding: 0 10%;
+    overflow: scroll;
+    overflow-x: hidden; 
 }
 .slide .content p {
     font-family: 'Montserrat', sans-serif;
@@ -67,6 +74,7 @@
     font-size: 24px;
     color: #EEEEEE;
     text-align: start;
+    cursor: pointer;
 }
 .slide p:hover{
     color: #5BD3C7;
@@ -80,15 +88,15 @@ li {
 
 /*Scrollbar Style*/
 
-.slide::-webkit-scrollbar {
+.content::-webkit-scrollbar {
     width: 0.5em;
 }
-.slide::-webkit-scrollbar-track {
+.content::-webkit-scrollbar-track {
     background-color: #2B2D45;
     border-radius: 10px;
     margin: 20px;
 }
-.slide::-webkit-scrollbar-thumb {
+.content::-webkit-scrollbar-thumb {
     background-color: #484A6D;
     outline: none;
     border-radius: 10px;
@@ -96,9 +104,25 @@ li {
 
 </style>
 
-<script>
-
-/*function hacerClick(color){
-    document.bgColor = color;
-}*/
+<script >
+import Carrusel from '@/components/Home/Carrusel.vue'
+export default {
+  name: 'Home',
+  components: {
+    Carrusel
+  },
+  data() {
+    return {
+      isModalVisible: false
+    };
+  },
+  methods: {
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    }
+  }
+}
 </script>
