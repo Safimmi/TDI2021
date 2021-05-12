@@ -99,6 +99,14 @@ export default {
     .usuario{
         text-align: center;
     }
+    .cuerpo{
+        background-color: white;
+        border-radius: 50px;
+        margin-right: 120px;
+        margin-left: 120px;
+        padding-top:20px ;
+        padding-bottom:20px ;
+    }
    
 
 </style>

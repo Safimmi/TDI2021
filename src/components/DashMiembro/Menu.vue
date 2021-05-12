@@ -11,22 +11,29 @@
         </div>
 
         <div class="botones">
-            <div class="boton1" v-if="user.displayName!='Marlon Pinto'">
-                <router-link to="/perfilmiembro">
-                    <button class="btn btn-dark" style="background-color: #1e1f30; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 30px; link-hover-color:#000" 
-                    type="submit" >
-                        Editar Perfil
-                    </button>
-                </router-link>
+            <div class="boton3" v-if="user.displayName!='Marlon Pinto'">
+                <button class="btn btn-dark" style="background-color: #1e1f30; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 30px; link-hover-color:#000" 
+                type="submit" @click="mostrarlista3()">
+                        Mis Proyectos
+                </button>
             </div>
-
-            <div class="boton1" v-else>
-                <router-link to="/perfiladmin">
+             <div class="boton3" v-else>
+                <button class="btn btn-dark" style="background-color: #1e1f30; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 30px; link-hover-color:#000" 
+                type="submit" @click="mostrarlista()">
+                        Proyectos
+                </button>
+            </div>
+            <div class="boton1" v-if="user.displayName!='Marlon Pinto'">
                     <button class="btn btn-dark" style="background-color: #1e1f30; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 30px; link-hover-color:#000" 
-                    type="submit" >
+                    type="submit" @click="mostrarperfilm()">
                         Editar Perfil
                     </button>
-                </router-link>
+            </div>
+            <div class="boton1" v-else>
+                    <button class="btn btn-dark" style="background-color: #1e1f30; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 30px; link-hover-color:#000" 
+                    type="submit" @click="mostrarperfila()">
+                        Editar Perfil
+                    </button>
             </div>
 
             <div class="boton2">
@@ -35,17 +42,18 @@
                     Cerrar sesión
                 </button>
             </div>
-            <button @click="mostrarlista()">Lista</button>
-            <button @click="mostrarformulario()">Formulario</button>
+            
             
         </div>
 
         <div class="funciones">
             <div class='mas' v-if="user.displayName!='Marlon Pinto'">
-                <img alt="Formulario" style="width:50px ; height:50px" src="../../assets/Icons/PlusIcon.png">
+                <button  @click="mostrarformulario()" style="background-color: rgba(255, 255, 255, 0) ; border:none;">
+                    <img alt="Formulario" style="width:70px ; height:70px" src="../../assets/Icons/PlusIcon.png">
+                </button>
             </div>
 
-            <div class="footer">
+            <div class="footer"  >
                 <HomeB2/>
             </div>
         </div>
@@ -76,17 +84,44 @@ export default {
         },
         mostrarlista:function() {
 
+            var x = document.getElementById("ListaID");
+            var z = document.getElementById("PerfilID");
+            x.style.display = "block";
+            z.style.display = "none";
+        },
+        mostrarlista3:function() {
+
             var x = document.getElementById("Lista3ID");
             var y = document.getElementById("formularioMiembroID");
+            var z = document.getElementById("PerfilID");
             x.style.display = "block";
             y.style.display = "none";
+            z.style.display = "none";
         },
         mostrarformulario:function() {
 
             var x = document.getElementById("Lista3ID");
             var y = document.getElementById("formularioMiembroID");
+            var z = document.getElementById("PerfilID");
             y.style.display = "block";
             x.style.display = "none";
+            z.style.display = "none";
+        },
+        mostrarperfilm:function() {
+
+            var x = document.getElementById("Lista3ID");
+            var y = document.getElementById("formularioMiembroID");
+            var z = document.getElementById("PerfilID");
+            y.style.display = "none";
+            x.style.display = "none";
+            z.style.display = "block";
+        },
+        mostrarperfila:function() {
+
+            var x = document.getElementById("ListaID");
+            var z = document.getElementById("PerfilID");
+            x.style.display = "none";
+            z.style.display = "block";
         },
     },
     data(){
@@ -116,17 +151,21 @@ export default {
 
 <style scoped>
     .wrapper{
+        
         background:#353755;
         height: 100%;
         width: 20%;
         position: fixed;
+        padding: 1%;
     }
     .footer{
         text-align: right;
     }
     .boton1{
        margin: 5px; 
-
+    }
+    .boton3{
+       margin: 5px; 
     }
     .boton2{
        margin: 5px; 
@@ -151,6 +190,7 @@ export default {
     }
     .mas{
         margin-bottom: 20px;
+        background-color: rgba(255, 255, 255, 0);
     }
 
 </style>
