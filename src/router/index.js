@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: () => import('../components/DashAdmin/DashAdministrador.vue'),
+    component: () => import('../views/Dashboard.vue'),
     meta: {
       requiresAuth: true
     }
@@ -44,11 +44,8 @@ const routes = [
     name: 'DashAdministrador',
     component: () => import('../components/DashAdmin/DashAdministrador.vue')
   },
-  {
-    path:'/perfiladmin',
-    name: 'PerfilAdmin',
-    component: () => import('../components/DashAdmin/PerfilAdmin.vue')
-  }
+  
+  
 ]
 
 

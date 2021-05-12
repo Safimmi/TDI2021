@@ -13,16 +13,10 @@
                 <div class="Formulario" id="formularioMiembroID">
                     <Formulario/>
                 </div>
+                <div class="Perfil" id="PerfilID">
+                    <Perfil/>
+                </div>
             </div>
-            <!--<div class="contenido">
-                <div class="Lista">
-                    <List3 />
-                </div>
-                
-                <div class="formulario" >
-                    <Formulario />
-                </div>
-            </div> -->
         </div>
     </div>
 </template>
@@ -30,12 +24,14 @@
     import Menu from '@/components/DashMiembro/Menu.vue'
     import Formulario from '@/components/DashMiembro/Formulario.vue'
     import List3 from '@/components/DashMiembro/List3.vue'
+    import Perfil from '@/components/DashAdmin/Perfil.vue'
     export default {
-    name: 'DashAdministrador',
+    name: 'DashMiembro',
     components: { 
         Menu,
         List3,
-        Formulario
+        Formulario,
+        Perfil
     },
 
     }  
@@ -71,6 +67,8 @@
         display:block;
     }
     .List3{
+        display:none;
+    }.Perfil{
         display:none;
     }
 
