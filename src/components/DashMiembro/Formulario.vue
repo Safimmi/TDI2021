@@ -83,9 +83,9 @@
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  margin: 1% 15%;
+  margin: 5% ;
   padding: 60px;
-  width: 1300px
+  width: 80%;
   
 }
 .parte1 {
