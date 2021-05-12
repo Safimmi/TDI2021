@@ -39,9 +39,9 @@
         
         //Camera
         camera = new THREE.PerspectiveCamera( 30, container.clientWidth / container.clientHeight, 0.00001, 5000 );
-        camera.position.z = 0.15;
+        camera.position.z = 0.12;
         camera.position.y = 0.1;
-        camera.position.x = 0.15;
+        camera.position.x = 0.12;
         
         //Controls
         controls = new OrbitControls(camera, renderer.domElement);
@@ -71,7 +71,7 @@
         
         //Loader
         const loader = new GLTFLoader();
-        loader.load( '/Habitaciones/Habitacion1.glb', function ( gltf ) {
+        loader.load( '/Habitaciones/Habitacion2.glb', function ( gltf ) {
           const modelo = gltf.scene;
           mixer = new THREE.AnimationMixer(modelo);
           mixer.clipAction(gltf.animations[0]).play();
