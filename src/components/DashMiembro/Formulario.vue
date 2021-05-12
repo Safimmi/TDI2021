@@ -11,7 +11,7 @@
           <div class="izq">
             <input id="uploadImage1" type="file" accept="image/*" name="images[1]" class="form-control form-control-lg" onchange="previewImage(1);" @change="onFileSelected" required />
             <br>
-            <img id="uploadPreview1"  height="180"/>
+            <img id="uploadPreview1" />
           </div>
           <div class="der">
             <div class="titulo">
@@ -91,6 +91,10 @@
 .parte1 {
   display: flex;
   justify-content: space-between;
+}
+.izq img{
+  max-height: 180px;
+  max-width: 500px;
 }
 .der {
   display: flex;
