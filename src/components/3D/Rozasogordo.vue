@@ -71,7 +71,7 @@
         
         //Loader
         const loader = new GLTFLoader();
-        loader.load( '/Habitaciones/Habitacion1.glb', function ( gltf ) {
+        loader.load( '/Habitaciones/Habitacion2.glb', function ( gltf ) {
           const modelo = gltf.scene;
           mixer = new THREE.AnimationMixer(modelo);
           mixer.clipAction(gltf.animations[0]).play();
