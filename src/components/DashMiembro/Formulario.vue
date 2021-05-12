@@ -11,7 +11,7 @@
           <div class="izq">
             <input id="uploadImage1" type="file" accept="image/*" name="images[1]" class="form-control form-control-lg" onchange="previewImage(1);" @change="onFileSelected" required />
             <br>
-            <img id="uploadPreview1"  height="180"/>
+            <img id="uploadPreview1" />
           </div>
           <div class="der">
             <div class="titulo">
@@ -43,7 +43,7 @@
           </div>
       </div>
       <div class="parte2">
-        <label>Descripción</label>
+        <label>Descripción:</label>
         <textarea  v-model="descripcion" class="form-control" rows="4" style = "resize: none" required></textarea>
       </div>
     </form>
@@ -83,14 +83,18 @@
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  margin: 1% 15%;
+  margin: 5% ;
   padding: 60px;
-  width: 1300px
+  width: 80%;
   
 }
 .parte1 {
   display: flex;
   justify-content: space-between;
+}
+.izq img{
+  max-height: 180px;
+  max-width: 500px;
 }
 .der {
   display: flex;

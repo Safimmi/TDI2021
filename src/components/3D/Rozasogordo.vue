@@ -39,9 +39,9 @@
         
         //Camera
         camera = new THREE.PerspectiveCamera( 30, container.clientWidth / container.clientHeight, 0.00001, 5000 );
-        camera.position.z = 0.15;
+        camera.position.z = 0.12;
         camera.position.y = 0.1;
-        camera.position.x = 0.15;
+        camera.position.x = 0.12;
         
         //Controls
         controls = new OrbitControls(camera, renderer.domElement);

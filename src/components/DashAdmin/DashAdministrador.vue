@@ -1,11 +1,12 @@
 <template>
+<body>
     <div class="todo">
         <div class="menu">
             <Menu />
         </div>
         <div class="cont">
             <div class="logo">
-                <img alt="Logo" style="width:150px; height:100px;" src="../../assets/Brand/LogoHeader.png"> 
+                <img alt="Logo" style="width:150px" src="../../assets/Brand/LogoHeader.png"> 
             </div>
             <div class="lista1">
                 <List />
@@ -13,6 +14,7 @@
         </div>
 
     </div>
+</body>
 </template>
 <script>
     import List from '@/components/DashAdmin/List.vue'
@@ -25,18 +27,23 @@
 </script>
 
 <style scoped>
-    *{
-        background: #d1d2f3;
-        background-size: 100%,100%;
+    body{
+        
+        background: #D1D2F3;
+        height:100vh;
+        margin: 0;
+      
     }
     .cont{
-        margin-left: 350px;
+        margin-left: 23%;
+        width: 70%;
     }
     .menu{
         background:#353755;
         padding: 20px;
         position: fixed;
         height: 100vh;
+        width: 20%;
     }
     .todo{
         display: flex;

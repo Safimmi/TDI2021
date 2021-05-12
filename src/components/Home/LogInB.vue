@@ -32,7 +32,7 @@
     max-height: 100%;
 }
 .btn-primary:hover{
-    background-color: #767DDD;
+    background-color: #62e2d5;
 }
 
 </style>

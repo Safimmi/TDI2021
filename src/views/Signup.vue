@@ -140,12 +140,14 @@ export default {
                         }); 
                     })
                 v.successMessage = "Cuenta creada correctamente"; 
+                v.errorMessage = "";
                 v.xhrRequest = false;   
             }
             else
             {
                 console.log("dominio incorrecto")   
                 v.errorMessage = "Ingrese un correo de la Universidad Militar";
+                v.successMessage = "";
                 v.xhrRequest = false;
             }
             
@@ -189,6 +191,7 @@ export default {
     background: none;
     display:flex;
     align-items:center;
+    justify-content: space-around;
 
     position: relative;
     width: 100%;
@@ -202,6 +205,7 @@ export default {
     justify-content: space-around;
     border-radius: 20px;
     background: white;
+    width: 40%;
     margin: 0 28%;
     padding: 3% 3%;
     z-index: 1;
@@ -231,6 +235,7 @@ export default {
     font-size: 20px;
 }  
 .form-group{
+    
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -259,6 +264,9 @@ export default {
     padding: 15px 60px;
 
     max-height: 100%;
+}
+.btn-primary:hover{
+    background-color: #62e2d5;
 }
 /* .btn-primary:hover{
     background-color: #767DDD;

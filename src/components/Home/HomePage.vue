@@ -5,7 +5,16 @@
       <div class="imagen">
         <img alt="Logo" src="../../assets/Brand/LogoHeaderX2.png">  
       </div>
-      <LogInB/>
+    
+      <div class="boton">
+        <div v-if="usuario == false" >
+          <LogInB/>
+        </div>
+        <div v-else>
+          <miembroB/>
+        </div>
+      </div>
+    
     </div>
 
     <div class="main">
@@ -19,14 +28,32 @@
 
 <script >
 import LogInB from '@/components/Home/LogInB.vue'
+import miembroB from '@/components/Home/miembroB'
 import Slide from '@/components/Home/Slide.vue'
+import firebase from 'firebase'
 import Rozasogordo from '@/components/3D/Rozasogordo.vue'
 export default {
   name: 'Home',
   components: {
     LogInB,
+    miembroB,
     Slide,
     Rozasogordo
+  },
+  data() {
+    return {
+      usuario: false,
+    };
+  },
+  created() {
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+      this.usuario = true;
+    }
+    else{
+      this.usuario = false;
+    }
   }
 }
 </script>
@@ -72,5 +99,9 @@ export default {
   height: 85%;
 }
 
+.boton{
+  /* border: 5px solid blueviolet; */
+  width: 100%;
+}
 </style>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
