@@ -7,7 +7,7 @@
                 <h5>Rotar</h5>
             </div>
             <div class="ctrls">
-                <img src="../../assets/Controls/Zoom.png">
+                <img class="ctrls2" src="../../assets/Controls/Zoom.png">
                 <h5>Zoom</h5>
             </div>
             <div class="ctrls">
@@ -23,8 +23,8 @@
     .containerCtrl {
         /* border: 5px solid yellow; */
         position: absolute;
-        width: 16%;
-        height: 15%;
+        width: 22%;
+        height: 18%;
         display: flex;
         align-items: flex-end;
         margin: 1% 3%;
@@ -50,7 +50,10 @@
         text-align: center;
     }
     .ctrls img {
-        max-height: 50px;
+        max-height: 48px;
+    }
+    .ctrls2 {
+        padding-top: 5px;
     }
     .ctrls h5{
         font-family: 'Montserrat', sans-serif;

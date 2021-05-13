@@ -190,13 +190,14 @@ export default {
     /* border: 5px solid red; */
     background: none;
     display:flex;
-    align-items:center;
-    justify-content: space-around;
+    align-items:flex-start;
+    justify-content: center;
 
     position: relative;
     width: 100%;
     height: 85%;
     padding-bottom: 3%;
+    padding-top: 1%;
 }
 .formRegistro{
     /* border: 5px solid blue; */
@@ -205,41 +206,42 @@ export default {
     justify-content: space-around;
     border-radius: 20px;
     background: white;
-    width: 40%;
-    margin: 0 28%;
-    padding: 3% 3%;
+    min-height: 100%;
+    width: 50%;
+    margin: 0;
+    padding: 2% 2%;
     z-index: 1;
 }
 .formTitle{
     display: flex;
-    margin-bottom: 10%;
-    margin-top: 5%;
+    margin-bottom: 3%;
+    margin-top: 1%;
 }
 .formTitle img{
-    max-height: 40px;
+    max-height: 35px;
 }
 .formRegistro h2{
     font-family: 'Righteous';
     color: #353755;
     font-size: 42px;
-    padding-right: 80px;
+    padding-right: 3%;
     margin: 0;
     width: 100%;
 }
 .formContent{
-    padding: 0 10%;
+    padding: 0 8%;
 }
 .formRegistro label {
     font-family: 'Righteous';
     color: #353755;
-    font-size: 20px;
+    font-size: 15px;
 }  
 .form-group{
     
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin:0.5rem 0px;
+    margin:0.3rem 0px;
 }
 
 /* Boton Registro */
@@ -261,7 +263,7 @@ export default {
     font-family: 'Montserrat', sans-serif; 
     font-size: 20px;
     font-weight: 600;
-    padding: 15px 60px;
+    padding: 10px 60px;
 
     max-height: 100%;
 }
@@ -280,23 +282,23 @@ export default {
 }
 .alert-success{
     background: #5bd3c744;
-    margin: 10px;
-    padding: 5px 20px;
+    margin: 1% 10%;
+    padding: 5px 40px;
     border-radius: 20px;
 
     font-family: 'Montserrat';
     color: #353755;
-    font-size: 20px;
+    font-size: 15px;
 }
 .alert-danger{
     background:rgba(206, 99, 99, 0.445);
-    margin: 10px;
-    padding: 5px 20px;
+    margin: 1% 10%;
+    padding: 5px 40px;
     border-radius: 20px;
 
     font-family: 'Montserrat';
     color: #fff;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 </style>
