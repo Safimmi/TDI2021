@@ -60,51 +60,6 @@
 
     </div>
 
-    <!-- <div class="wrapper">
-        <div class="ovl">
-            <img  src="../assets/Wave/WaveSplash.png" alt="Overlay">
-        </div>
-        
-        <div class="main">
-            <div class="form">
-                <div v-if="errorMessage !== ''" class="alert-danger" role="alert">
-                    {{ errorMessage }}
-                </div>
-                <div class="izq">
-                    <h1>Iniciar Sesión</h1>
-                    <form @submit.prevent="loginRequest" id="login-form">
-                            <div class="form-group">
-                                <label for="email">Correo Institucional:</label>
-                                <input type="email" v-model="email" id="email" class="form-control form-control-lg">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Contraseña:</label>
-                                <input type="password" v-model="password" id="password" class="form-control form-control-lg">
-                            </div>
-                            <br>
-                            <div class="form-group1">
-                                <button v-bind:disabled="xhrRequest" v-bind:class="{disabled: xhrRequest}" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">
-                                    <span v-if="! xhrRequest">Ingresar</span>
-                                    <span v-if="xhrRequest">Ingresar</span>
-                                </button>
-                                <div v-if="xhrRequest" class="spinner-border text-secondary loader" role="status">
-                                    <span class="sr-only"></span>
-                                </div>
-                            </div>
-                    </form>
-                </div>
-            </div>
-            <div class="der">
-                <p>¿No tienes una cuenta?</p>
-                <router-link to="/signup"><button type="button" class="btn btn-primary" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 5px 25px; link-hover-color:#000">Regístrate</button></router-link>
-            </div>
-        </div>  
-
-        <div class="buttonHome">
-            <HomeB/>
-        </div>    
-
-    </div>   -->
 </template>
 
 <script>
@@ -206,9 +161,9 @@ export default {
     border-radius: 20px;
     background: white;
     
-    width: 35%;
+    width: 50%;
     height: 75%;
-    margin: 0 10% 0 15%; 
+    margin: 0 10%; 
     z-index: 1;
 }
 .formTitle{
@@ -252,7 +207,7 @@ export default {
     font-family: 'Montserrat';
     color: #353755;
     margin-bottom: 2rem;
-    font-size: 50px;
+    font-size: 36px;
     font-weight: normal;
 }
 
