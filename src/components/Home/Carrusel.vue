@@ -1,12 +1,22 @@
 <template>
 
   <div class="modal-backdrop">
-    <div v-for="{ id, materia, titulo, descripcion, estado,imagen, nombre,categoria, fecha} in proyectos" :key="id">
-        <div v-if="estado == 'Publicado'" >
           <div class="modal">
             <div class="izq">
               <div class="imagen">
-                <img alt="Logo" :src=imagen>
+                <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel" data-bs-interval="none">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="@/assets/img1.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="@/assets/spider-man-triste.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="@/assets/usuario.png" class="d-block w-100" alt="...">
+                    </div>
+                  </div>
+                  </div>
               </div>
             </div>
             <div class="der">
@@ -35,13 +45,15 @@
                 </div>
               </div>
               <div class="bottom">
-                  <img alt="prev" src="../../assets/Icons/AnteriorIcon.png">
-                  <img alt="next" src="../../assets/Icons/SiguienteIcon.png">
+                <div class="prev" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <img src="@/assets/Icons/AnteriorIconX2.png">
+                </div>
+                <div class="next" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <img src="@/assets/Icons/SiguienteIconX2.png">
+                </div>
               </div>
             </div>
           </div>
-        </div> 
-    </div>
   </div>
   
 </template>
@@ -83,9 +95,7 @@
     width: 95%;
   }
 
-  .imagen img{
-    width: 700px;
-  }
+
 
   .der{
     background: #353755;
@@ -181,6 +191,46 @@
     align-items: center;
     background: #5BD3C7;
     border-radius:10px
+  }
+  .bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 30px;
+  }
+  .bottom img{
+    width: 100%;
+    height: 100%;
+  }
+  .next{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  .next:hover{
+    background: rgba(0, 0, 0, 0.1);
+  }
+  .next:active{
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .prev{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  .prev:hover{
+    background: rgba(0, 0, 0, 0.1);
+  }
+  .prev:active{
+    background: rgba(0, 0, 0, 0.2);
   }
 </style>
 
