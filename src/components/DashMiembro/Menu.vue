@@ -132,10 +132,11 @@ export default {
     },
     created(){
         this.user = firebase.auth().currentUser;
-            console.log(this.user.displayName,);
-            this.usuario=[]
-            db.collection("usuarios")
-            .get()
+        console.log(this.user.displayName);
+        console.log(this.user)
+        this.usuario=[]
+        db.collection("usuarios")
+        .get()
             .then((r) => {
                 r.docs.map((item) => {
                 this.usuario.push({
@@ -186,7 +187,7 @@ export default {
     }
     .funciones{
         text-align: right;
-        margin-top:200px;
+        margin-top:50%;
     }
     .mas{
         margin-bottom: 20px;
