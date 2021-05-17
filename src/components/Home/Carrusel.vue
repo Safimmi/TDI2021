@@ -1,17 +1,18 @@
 <template>
-
   <div class="modal-backdrop">
-    <div v-for="{ id, materia, titulo, descripcion, estado,imagen, nombre,categoria, fecha} in proyectos" :key="id">
-        <div v-if="estado == 'Publicado'" >
-          <div class="modal">
+    <div class="modal">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="none">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="item">
             <div class="izq">
               <div class="imagen">
-                <img alt="Logo" :src=imagen>
+                  <img src="@/assets/spider-man-triste.png"  alt="...">
               </div>
             </div>
             <div class="der">
               <div class="top">
-              <div class="materia"><p3>{{materia}}</p3></div>
+              <div class="materia"><p3>Modelado 3D</p3></div>
               <div class="boton">
               <button
                 type="button"
@@ -22,28 +23,76 @@
               </div>
               </div>
               <div class="main">
-                <h2>{{titulo}}</h2>
+                <h2>Modelado bien maestro</h2>
                 <div class="texto">
                 <div class="texto1">
-                <p>{{descripcion}}</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni voluptates consequatur corporis? Quis optio maxime dignissimos expedita quibusdam eius quasi fugiat voluptatibus, vel aliquid officiis perspiciatis. Dolore aliquid odit earum.</p>
                 </div>
                 <div class="texto2">
-                <p1>{{nombre}}</p1>
-                <p1>{{categoria}}</p1>
-                <p1>{{fecha}}</p1>
+                <p1>Rochita</p1>
+                <p1>Profesor</p1>
+                <p1>2011</p1>
                 </div>
                 </div>
               </div>
-              <div class="bottom">
-                  <img alt="prev" src="../../assets/Icons/AnteriorIcon.png">
-                  <img alt="next" src="../../assets/Icons/SiguienteIcon.png">
-              </div>
+                <div class="bottom">
+                  <div class="prev" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <img src="@/assets/Icons/AnteriorIconX2.png">
+                  </div>
+                  <div class="next" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <img src="@/assets/Icons/SiguienteIconX2.png">
+                  </div>
+                </div>
+            </div>
             </div>
           </div>
-        </div> 
+          <div class="carousel-item">
+            <div class="item">
+            <div class="izq">
+              <div class="imagen">
+                <img src="@/assets/img1.png" class="" alt="...">
+              </div>
+            </div>
+            <div class="der">
+              <div class="top">
+              <div class="materia"><p3>Render</p3></div>
+              <div class="boton">
+              <button
+                type="button"
+                class="btn-close"
+                @click="close"
+              >
+              </button>
+              </div>
+              </div>
+              <div class="main">
+                <h2>Increíble render de la casa de mi papá</h2>
+                <div class="texto">
+                <div class="texto1">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum accusamus odio id eum! Repellendus, quo vel blanditiis sit impedit, fugiat facere labore aspernatur eius laudantium exercitationem quia rerum cupiditate debitis.</p>
+                </div>
+                <div class="texto2">
+                <p1>Juan Pablo</p1>
+                <p1>Estudiante</p1>
+                <p1>2021</p1>
+                </div>
+                </div>
+              </div>
+                <div class="bottom">
+                  <div class="prev" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <img src="@/assets/Icons/AnteriorIconX2.png">
+                  </div>
+                  <div class="next" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <img src="@/assets/Icons/SiguienteIconX2.png">
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
   </div>
-  
 </template>
 
 <style scoped>
@@ -65,7 +114,28 @@
     width: 80%;
     height: 80%;
     display: flex;
+    flex-direction: column;
     border-radius: 60px;
+  }
+
+  .carousel{
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-inner{
+    width: 100%;
+    height: 100%;
+  }
+  .carousel-item{
+    width: 100%;
+    height: 100%;
+  }
+
+  .item{
+    display: flex;
+    width: 100%;
+    height: 100%;
   }
 
   .izq{
@@ -83,9 +153,7 @@
     width: 95%;
   }
 
-  .imagen img{
-    width: 700px;
-  }
+
 
   .der{
     background: #353755;
@@ -181,6 +249,46 @@
     align-items: center;
     background: #5BD3C7;
     border-radius:10px
+  }
+  .bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 30px;
+  }
+  .bottom img{
+    width: 100%;
+    height: 100%;
+  }
+  .next{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  .next:hover{
+    background: rgba(0, 0, 0, 0.1);
+  }
+  .next:active{
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .prev{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  .prev:hover{
+    background: rgba(0, 0, 0, 0.1);
+  }
+  .prev:active{
+    background: rgba(0, 0, 0, 0.2);
   }
 </style>
 

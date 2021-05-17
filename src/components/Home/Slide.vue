@@ -56,7 +56,7 @@
 
 .slide .area h2 {
     font-family: 'Righteous';
-    font-size: 48px;
+    font-size: 43px;
     color: #EEEEEE;
     margin-bottom: 10%;
     text-align: start;
