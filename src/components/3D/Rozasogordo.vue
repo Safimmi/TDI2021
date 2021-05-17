@@ -2,7 +2,10 @@
   <div class="modelo">
     <div id="container"></div>
     <ControlesIconos/>
-    <input type="button" id="btn1" name="btn1" value="Subir" @click="subida" /> 
+    <div class="btncambios">
+    <input type="button" id="btn1" name="btn1" value="Anterior" @click="ant" />
+    <input type="button" id="btn1" name="btn1" value="Siguiente" @click="sig" /> 
+    </div>
   </div>
 </template>
 
@@ -15,7 +18,7 @@
   import { InteractionManager } from "three.interactive";
   //import func from 'vue-editor-bridge';
 
-  let scene, camera, renderer, container, mixer, clock, interactionManager, coords, cambio, controls;
+  let scene, camera, renderer, container, mixer, clock, interactionManager, coords, cambio, controls, modelo;
   
   export default {
   
@@ -31,10 +34,16 @@
   
   methods: {
 
-      subida() {
-        console.log('entro');
-        coords = new THREE.Vector3( 0,0,0 );
-        cambio = new TWEEN.Tween(camera.position)
+      sig() {
+        coords = new THREE.Vector3( -0.12,0.1,-0.12 );
+        cambio = new TWEEN.Tween(modelo.position)
+          .to( coords , 1000); 
+        cambio.start();
+      },
+
+      ant() {
+        coords = new THREE.Vector3( 0,-0.012,0 );
+        cambio = new TWEEN.Tween(modelo.position)
           .to( coords , 1000); 
         cambio.start();
       },
@@ -52,9 +61,9 @@
         
         //Camera
         camera = new THREE.PerspectiveCamera( 30, container.clientWidth / container.clientHeight, 0.001, 5000 );
-        camera.position.z = 0.18;
+        camera.position.z = 0.12;
         camera.position.y = 0.1;
-        camera.position.x = 0.15;
+        camera.position.x = 0.12;
         
         //Controls
         controls = new OrbitControls(camera, renderer.domElement);
@@ -107,11 +116,11 @@
         //Loader
         const loader = new GLTFLoader();
         loader.load( '/Habitaciones/Union.glb', function ( gltf ) {
-          const modelo = gltf.scene;
+          modelo = gltf.scene;
           mixer = new THREE.AnimationMixer(modelo);
           mixer.clipAction(gltf.animations[0]).play();
           scene.add( modelo );
-          //modelo.position.y = -0.04;
+          modelo.position.y = -0.012;
         }, undefined, function ( error ) {
           console.error( error );
         } );
@@ -162,6 +171,12 @@
     height: 100%;
     position: relative;
     z-index: 1;
+  }
+
+  .btncambios{
+    display: flex;
+        align-content: center;
+        align-items: flex-end;
   }
 
 </style>
