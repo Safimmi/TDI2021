@@ -1,9 +1,15 @@
 <template>
+  
   <div class="wrapper">
-    
     <div class="header">
+      <div class="informacion" id="informacionID" style=" z-index=100">
+          <Informacion/>
+      </div>
       <div class="imagen">
-        <img alt="Logo" src="../../assets/Brand/LogoHeaderX2.png">  
+        
+        <button style="border:none; background-color: #D1D2F3" @click="mostrarinformacion()"  >
+          <img alt="Logo" src="../../assets/Brand/LogoHeaderX2.png">  
+        </button>
       </div>
     
       <div class="boton">
@@ -39,6 +45,7 @@ import LogInB from '@/components/Home/LogInB.vue'
 import miembroB from '@/components/Home/miembroB'
 import Slide from '@/components/Home/Slide.vue'
 import Slide2 from '@/components/Home/Slide2.vue'
+import Informacion from '@/components/Home/Informacion.vue'
 import firebase from 'firebase'
 // import Rozasogordo from '@/components/3D/Rozasogordo.vue'
  import * as THREE from "three";
@@ -58,6 +65,7 @@ export default {
     miembroB,
     Slide2,
     Slide,
+    Informacion,
     // Rozasogordo
     ControlesIconos
   },
@@ -78,8 +86,14 @@ export default {
     }
   }, 
   
+  
   methods: {
-
+      mostrarinformacion(){
+        var x = document.getElementById("informacionID");
+        x.style.display="block";
+        x.style.zIndex=100;
+        console.log("funciona");
+      },
       sig() {
         if (this.cont < 1){
         this.cont += 1;}
@@ -223,6 +237,13 @@ export default {
   padding: 10px 3%;
   z-index: 2;
   height: 15%;
+}
+.informacion{
+  
+  position: absolute;
+  left:30%;
+  top:20%;
+  display: none;
 }
 .imagen {
   /* border: 5px solid blue; */

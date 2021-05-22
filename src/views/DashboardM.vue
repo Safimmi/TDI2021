@@ -4,7 +4,7 @@
         <Menu />
         <div class="contenido">
             <div class="logo">
-                <img alt="Logo" style="width:150px; height:100px;" src="../../src/assets/Brand/LogoHeader.png"> 
+                <img alt="Logo" style="width:150px;" src="../../src/assets/Brand/LogoHeader.png"> 
             </div>
             <div class="componentes">
                 <div class="List3" id="Lista3ID">

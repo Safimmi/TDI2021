@@ -2,7 +2,7 @@
     <div class="wrapper">
 
         <div class="usuario">
-            <img alt="usuario" style="width:100px; height:100px;" src="../../assets/usuario.png"> 
+            <img alt="usuario" style="width:30%; height:10%;" src="../../assets/usuario.png"> 
         </div>
 
         <div class="informacion" >
@@ -12,32 +12,32 @@
 
         <div class="botones">
             <div class="boton3" v-if="user.displayName!='Marlon Pinto'">
-                <button class="btn btn-dark" style="background-color: #1e1f30; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 30px; link-hover-color:#000" 
+                <button class="btn-dark2" 
                 type="submit" @click="mostrarlista3()">
                         Mis Proyectos
                 </button>
             </div>
              <div class="boton3" v-else>
-                <button class="btn btn-dark" style="background-color: #1e1f30; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 30px; link-hover-color:#000" 
+                <button class="btn-dark2" 
                 type="submit" @click="mostrarlista()">
                         Proyectos
                 </button>
             </div>
             <div class="boton1" v-if="user.displayName!='Marlon Pinto'">
-                    <button class="btn btn-dark" style="background-color: #1e1f30; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 30px; link-hover-color:#000" 
+                    <button class="btn-dark2"  
                     type="submit" @click="mostrarperfilm()">
                         Editar Perfil
                     </button>
             </div>
             <div class="boton1" v-else>
-                    <button class="btn btn-dark" style="background-color: #1e1f30; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 30px; link-hover-color:#000" 
+                    <button class="btn-dark2"  
                     type="submit" @click="mostrarperfila()">
                         Editar Perfil
                     </button>
             </div>
 
             <div class="boton2">
-                <button class="btn btn-dark" @click="salir()" style="background-color: #1e1f30; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 30px; link-hover-color:#000" 
+                <button class="btn-dark3" @click="salir()"  
                 type="submit" >
                     Cerrar sesión
                 </button>
@@ -48,12 +48,12 @@
 
         <div class="funciones">
             <div class='mas' v-if="user.displayName!='Marlon Pinto'">
-                <button  @click="mostrarformulario()" style="background-color: rgba(255, 255, 255, 0) ; border:none;">
-                    <img alt="Formulario" style="width:70px ; height:70px" src="../../assets/Icons/PlusIcon.png">
+                <button class="btn-dark4" @click="mostrarformulario()" >
+                    <img  alt="Formulario" style="width:70px " src="../../assets/Icons/PlusIcon.png">
                 </button>
             </div>
 
-            <div class="footer"  >
+            <div  class="btn-dark5" style="align=right" >
                 <HomeB2/>
             </div>
         </div>
@@ -159,38 +159,71 @@ export default {
         position: fixed;
         padding: 1%;
     }
-    .footer{
-        text-align: right;
-    }
-    .boton1{
-       margin: 5px; 
-    }
-    .boton3{
-       margin: 5px; 
-    }
-    .boton2{
-       margin: 5px; 
+    .usuario{
+        margin-top: 4%;
+        margin-bottom: 3%;
     }
     .botones{
         text-align: left;
     }
-    .usuario{
-        margin-bottom: 30px;
-        margin-bottom: 50px;
+    .btn-dark2{
+       margin: 1%; 
+       background-color: #1e1f30; 
+       border: none; 
+       border-radius: 30px;
+       font-family: 'Montserrat', sans-serif; 
+       padding: 6%;
+       color: white;
     }
+    .btn-dark2:hover{
+        background-color: #78ccac;
+        color: white;
+    }
+    .btn-dark3{
+       margin: 1%; 
+       background-color: #1e1f30; 
+       border: none; 
+       border-radius: 30px;
+       font-family: 'Montserrat', sans-serif; 
+       padding: 6%;
+       color: white;
+    }
+    .btn-dark3:hover{
+        background-color: #BA605D;
+        color: white;
+    }
+    .btn-dark4{
+      background-color: rgba(255, 255, 255, 0) ;
+       border:none;
+        margin-top:10%;
+    }
+    /* .btn-dark4:hover{
+        background-color: #78ccac;
+        color: white;
+    } */
+    .btn-dark5{
+        background-color: rgba(255, 255, 255, 0) ;
+        border:none;
+        margin-top:20%;
+        padding-right: 3%;
+      
+    }
+    /* .btn-dark5:hover{
+        background-color: #b4b34f;
+        color: white;
+    } */
     .informacion{
         font-family: 'Righteous';
         color:white;
         text-align: left;
-        padding: 20px;
-        padding-right:5px;
+        padding: 10%;
+       
     }
     .funciones{
         text-align: right;
-        margin-top:50%;
+        margin-top:20%;
     }
     .mas{
-        margin-bottom: 20px;
         background-color: rgba(255, 255, 255, 0);
     }
 
