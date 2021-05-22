@@ -1,21 +1,17 @@
 <template>
     <div class="slide">
         <div class="area">
-            <h2 value="Verde">Ciencias Básicas </h2>
+            <h2 value="Verde">3D y Diseño digital</h2>
         </div>
         <div class="content">
-            <p>Matemáticas básicas</p>
-            <p>Cálculo diferencial</p>
-            <p>Cálculo integral</p>
-            <p>Cálculo vectorial</p>
-            <p>Ecuaciones diferenciales</p>
-            <p @click="showModal"  >Álgebra lineal</p>
-            <p>Probabilidad y estadística</p>
-            <p>Métodos numéricos</p>
-            <p>Física mecánica</p>
-            <p>Física electricidad y magnetismo</p>
-            <p>Física óptica y acústica</p>
-            <p>Química</p>
+            <p>Taller digital de diseño</p>
+            <p>Animación 2D</p>
+            <p>Modelado 3D</p>
+            <p>Render</p>
+            <p>Animación 3D y dinámicas</p>
+            <p @click="showModal"  >Introducción a la computación gráfica</p>
+            <p>Computación gráfica</p>
+            <p>Audio y video</p>
         </div>
     </div>
     <div class="main">

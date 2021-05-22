@@ -1,95 +1,107 @@
 <template>
   <div class="modal-backdrop">
     <div class="modal">
-      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="none">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="9999999999999">
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="item">
-            <div class="izq">
-              <div class="imagen">
-                  <img src="@/assets/spider-man-triste.png"  alt="...">
-              </div>
-            </div>
-            <div class="der">
-              <div class="top">
-              <div class="materia"><p3>Modelado 3D</p3></div>
-              <div class="boton">
-              <button
-                type="button"
-                class="btn-close"
-                @click="close"
-              >
-              </button>
-              </div>
-              </div>
-              <div class="main">
-                <h2>Modelado bien maestro</h2>
-                <div class="texto">
-                <div class="texto1">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni voluptates consequatur corporis? Quis optio maxime dignissimos expedita quibusdam eius quasi fugiat voluptatibus, vel aliquid officiis perspiciatis. Dolore aliquid odit earum.</p>
-                </div>
-                <div class="texto2">
-                <p1>Rochita</p1>
-                <p1>Profesor</p1>
-                <p1>2011</p1>
-                </div>
-                </div>
-              </div>
-                <div class="bottom">
-                  <div class="prev" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <img src="@/assets/Icons/AnteriorIconX2.png">
-                  </div>
-                  <div class="next" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <img src="@/assets/Icons/SiguienteIconX2.png">
+              <div class="carousel-item active">       
+                <div class="item">
+                <div class="izq">
+                  <div class="imagen">
+                    <img src="@/assets/img1.png" class="" alt="...">
                   </div>
                 </div>
-            </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="item">
-            <div class="izq">
-              <div class="imagen">
-                <img src="@/assets/img1.png" class="" alt="...">
-              </div>
-            </div>
-            <div class="der">
-              <div class="top">
-              <div class="materia"><p3>Render</p3></div>
-              <div class="boton">
-              <button
-                type="button"
-                class="btn-close"
-                @click="close"
-              >
-              </button>
-              </div>
-              </div>
-              <div class="main">
-                <h2>Increíble render de la casa de mi papá</h2>
-                <div class="texto">
-                <div class="texto1">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum accusamus odio id eum! Repellendus, quo vel blanditiis sit impedit, fugiat facere labore aspernatur eius laudantium exercitationem quia rerum cupiditate debitis.</p>
-                </div>
-                <div class="texto2">
-                <p1>Juan Pablo</p1>
-                <p1>Estudiante</p1>
-                <p1>2021</p1>
-                </div>
-                </div>
-              </div>
-                <div class="bottom">
-                  <div class="prev" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <img src="@/assets/Icons/AnteriorIconX2.png">
+                <div class="der">
+                  <div class="top">
+                  <div class="materia"><p3>Render</p3></div>
+                  <div class="boton">
+                  <button
+                    type="button"
+                    class="btn-close"
+                    @click="close"
+                  >
+                  </button>
                   </div>
-                  <div class="next" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <img src="@/assets/Icons/SiguienteIconX2.png">
                   </div>
+                  <div class="main">
+                    <h2>Render de la casa</h2>
+                    <div class="texto">
+                    <div class="texto1">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum accusamus odio id eum! Repellendus, quo vel blanditiis sit impedit, fugiat facere labore aspernatur eius laudantium exercitationem quia rerum cupiditate debitis.</p>
+                    </div>
+                    <div class="texto2">
+                    <p1>Juan Pablo</p1>
+                    <p1>Estudiante</p1>
+                    <p1>2021</p1>
+                    </div>
+                    </div>
+                  </div>
+                    <div class="bottom">
+                      <div class="prev" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <img src="@/assets/Icons/AnteriorIconX2.png">
+                      </div>
+                      <div class="next" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <img src="@/assets/Icons/SiguienteIconX2.png">
+                      </div>
+                    </div>
                 </div>
-            </div>
-          </div>
+              </div>
+              </div>
+              
+              <div class="carousel-item" v-for="{ id, materia, titulo, descripcion,fecha, nombre, categoria,imagen} in proyectos" :key="id">
+                
+
+                  <div class="item">
+
+                
+                      <div class="izq" >
+                        <div class="imagen">
+                            <img :src=imagen  alt="...">
+                        </div>
+                      </div>
+
+                      <div class="der">
+                        <div class="top">
+                        <div class="materia"><p3>{{materia}}</p3></div>
+                        <div class="boton">
+                        <button
+                          type="button"
+                          class="btn-close"
+                          @click="close"
+                        >
+                        </button>
+                        </div>
+                        </div>
+                        <div class="main">
+                          <h2>{{titulo}}</h2>
+                          <div class="texto">
+                          <div class="texto1">
+                          <p>{{descripcion}}</p>
+                          </div>
+                          <div class="texto2">
+                          <p1>{{nombre}}</p1>
+                          <p1>{{categoria}}</p1>
+                          <p1>{{fecha}}</p1>
+                          </div>
+                          </div>
+                        </div>
+                          <div class="bottom">
+                            <div class="prev" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                              <img src="@/assets/Icons/AnteriorIconX2.png">
+                            </div>
+                            <div class="next" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                              <img src="@/assets/Icons/SiguienteIconX2.png">
+                            </div>
+                          </div>
+                      </div>
+
+
+
+                  </div>
+
+
+              </div>
+
         </div>
-      </div>
       </div>
     </div>
   </div>
@@ -150,10 +162,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 95%;
+    width: 85%;
+    height: 85%;
+    border-radius: 10%;
+    /* border: solid 5px yellowgreen; */
+    background-color: rgba(255, 255, 255, 0.445);
   }
 
+  .imagen img{
 
+    max-height: 100%;
+    max-width: 100%;
+  }
 
   .der{
     background: #353755;
@@ -294,20 +314,10 @@
 
 <script>
   // import firebase from 'firebase'
-  import { db } from '@/firebase'
-  import { useLoadproyectos} from '@/firebase'
+  // import { db } from '@/firebase'
+  import { useLoadproyectos } from '@/firebase'
   export default {
     name: 'Carrusel',
-    data() {
-      return {
-        proyectosL: []
-      };
-    },
-    created(){
-      var proyectosRef = db.collection("proyectos");
-      var proyectoslist = proyectosRef.where("materia", "==", "Algebra lienal");
-      this.proyectosL = proyectoslist;
-    },
     methods: {
       close() {
         this.$emit('close');

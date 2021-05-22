@@ -175,8 +175,8 @@
 
   .btncambios{
     display: flex;
-        align-content: center;
-        align-items: flex-end;
+    align-content: center;
+    align-items: flex-end;
   }
 
 </style>
