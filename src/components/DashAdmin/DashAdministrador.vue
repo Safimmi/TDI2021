@@ -10,6 +10,7 @@
             <div class="componentes">
                 <div class="lista1" id="ListaID">
                     <List />
+                    
                 </div>
                 <div class="Perfil" id="PerfilID">
                     <Perfil/>

@@ -45,11 +45,11 @@
     -ms-border-end-start-radius: 20px;
     -o-border-end-start-radius: 20px;
     
-    padding: 60px 3%;
+    padding: 60px ;
     background: #353755;
 
     position: relative;
-    width: 30%;
+    width: 100%;
     height: 96%;    
     
 }

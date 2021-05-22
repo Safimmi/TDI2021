@@ -44,6 +44,11 @@ const routes = [
     name: 'DashAdministrador',
     component: () => import('../components/DashAdmin/DashAdministrador.vue')
   },
+  {
+    path: '/informacion',
+    name: 'Informacion',
+    component: () => import('../components/Home/Informacion.vue')
+  }
   
   
 ]
