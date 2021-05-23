@@ -1,7 +1,7 @@
 <template>
     <div class="slide">
         <div class="area">
-            <h2 value="Verde">3D y Diseño digital</h2>
+            <h2 value="Verde">3D y Diseño Digital</h2>
         </div>
         <div class="content">
             <p>Taller digital de diseño</p>
