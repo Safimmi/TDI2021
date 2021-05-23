@@ -26,14 +26,21 @@
     <div class="main">
       <div class="modelo">
         <div id="container"></div>
+        <div class="controles">
         <ControlesIconos/>
         <div class="btncambios">
-        <input type="button" id="btn1" name="btn1" value="Anterior" @click="ant" />
-        <input type="button" id="btn1" name="btn1" value="Siguiente" @click="sig" /> 
+        <div class="prev" data-bs-target="#carouselExampleControls" data-bs-slide="prev" @click="ant">
+          <img src="@/assets/Icons/AnteriorIconX2.png">
+        </div>
+        <div class="next" data-bs-target="#carouselExampleControls" data-bs-slide="next" @click="sig">
+          <img src="@/assets/Icons/SiguienteIconX2.png">
+        </div>
+        </div>
         </div>
       </div>
       <div v-show="cont==0" class="slide"><Slide/></div>
       <div v-show="cont==1" class="slide"><Slide2/></div>
+      <div v-show="cont==2" class="slide"><Slide3/></div>
     </div>
     
   </div>
@@ -45,17 +52,18 @@ import LogInB from '@/components/Home/LogInB.vue'
 import miembroB from '@/components/Home/miembroB'
 import Slide from '@/components/Home/Slide.vue'
 import Slide2 from '@/components/Home/Slide2.vue'
+import Slide3 from '@/components/Home/Slide3.vue'
 import Informacion from '@/components/Home/Informacion.vue'
 import firebase from 'firebase'
 // import Rozasogordo from '@/components/3D/Rozasogordo.vue'
- import * as THREE from "three";
+  import * as THREE from "three";
   import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
   import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
   import { TWEEN } from "three/examples/jsm/libs/tween.module.min.js";
   import ControlesIconos from '@/components/3D/ControlesIconos.vue'
   import { InteractionManager } from "three.interactive";
 
-let scene, camera, renderer, container, mixer, clock, interactionManager, coords, cambio, controls, modelo;
+let scene, camera, renderer, container, mixer, clock, interactionManager, coords, cambio, controls, modelo, cambiocam;
 
 
 export default {
@@ -63,6 +71,7 @@ export default {
   components: {
     LogInB,
     miembroB,
+    Slide3,
     Slide2,
     Slide,
     Informacion,
@@ -95,21 +104,29 @@ export default {
         console.log("funciona");
       },
       sig() {
-        if (this.cont < 1){
-        this.cont += 1;}
-        coords = new THREE.Vector3( -0.12,0.1,-0.12 );
+        if (this.cont < 2){
+        this.cont += 1;
         cambio = new TWEEN.Tween(modelo.position)
-          .to( coords , 1000); 
+          .to( {x: modelo.position.x-0.125, z: modelo.position.z+0.14} , 1000); 
         cambio.start();
+        coords = new THREE.Vector3(0.12,0.1,0.12);
+        cambiocam = new TWEEN.Tween(camera.position)
+          .to( coords , 1000); 
+        cambiocam.start();
+        }
       },
 
       ant() {
         if (this.cont > 0){
-        this.cont += -1;}
-        coords = new THREE.Vector3( 0,-0.012,0 );
+        this.cont += -1;
         cambio = new TWEEN.Tween(modelo.position)
-          .to( coords , 1000); 
+          .to( {x: modelo.position.x+0.125 , z: modelo.position.z-0.14} , 1000); 
         cambio.start();
+        coords = new THREE.Vector3(0.12,0.1,0.12);
+        cambiocam = new TWEEN.Tween(camera.position)
+          .to( coords , 1000); 
+        cambiocam.start();
+        }
       },
 
       init: function () {
@@ -134,9 +151,11 @@ export default {
         controls.screenSpacePanning = true;
         controls.maxPolarAngle = Math.PI / 2;
         controls.rotateSpeed = 0.1;
-        controls.zoomSpeed = 0.2;
+        controls.zoomSpeed = 0.3;
         controls.minDistance = 0.1;
-        controls.maxDistance = 0.24;
+        controls.maxDistance = 0.21;
+        controls.minAzimuthAngle = Math.PI * 0.15;
+        controls.maxAzimuthAngle = Math.PI * 0.4;
 
         //cubos
         // const geometry = new THREE.BoxGeometry( 0.004, 0.004, 0.004 );
@@ -179,7 +198,7 @@ export default {
 
         //Loader
         const loader = new GLTFLoader();
-        loader.load( '/Habitaciones/Union.glb', function ( gltf ) {
+        loader.load( '/Habitaciones/Tunion.glb', function ( gltf ) {
           modelo = gltf.scene;
           mixer = new THREE.AnimationMixer(modelo);
           mixer.clipAction(gltf.animations[0]).play();
@@ -289,14 +308,68 @@ export default {
 
   .btncambios{
     display: flex;
-    align-content: center;
-    align-items: flex-end;
-    position: absolute;
     z-index: 1;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .btncambios img{
+    height: 80%;
   }
 
   .slide{
     width: 30%;
-    
   }
+  .next{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 62px;
+    padding-left: 88px;
+    border-start-end-radius: 50px;
+    border-end-end-radius: 50px;
+    cursor: pointer;
+  }
+  .next:hover{
+    background: rgba(0, 0, 0, 0.075);
+  }
+  .next:active{
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .prev{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 88px;
+    padding-left: 62px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-start-start-radius: 50px;
+    border-end-start-radius: 50px;
+    cursor: pointer;
+  }
+  .prev:hover{
+    background: rgba(0, 0, 0, 0.075);
+  }
+  .prev:active{
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .controles{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    margin-left: 0px;
+    padding-right: 40px;
+  }
+
+  
 </style>

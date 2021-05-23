@@ -22,7 +22,6 @@
 <style >
     .containerCtrl {
         /* border: 5px solid yellow; */
-        position: absolute;
         width: 22%;
         height: 18%;
         display: flex;
