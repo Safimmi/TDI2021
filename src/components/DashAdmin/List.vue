@@ -72,6 +72,10 @@
                       <p1>{{item.categoria}}</p1>
                       <p1>{{item.fecha}}</p1>
                       </div>
+                      <button class="btn btn-dark1" 
+                      type="submit" @click="showModal2()">
+                      editar
+                      </button>
                       </div>
                     </div>
                   </div>
@@ -88,6 +92,80 @@
   </div>
 
 
+  <div class="edit" v-if="isModalVisible2">
+    <div class="modal-backdrop" >
+      <div class="modal">  
+
+        <div class="wrapper">
+        <div v-if="successMessage !== ''" class="alert-success"  role="alert">
+          {{ successMessage }}
+        </div>
+        <div class="fondo">
+        <h1>Envía tu propuesta</h1>
+         <button
+                      type="button"
+                      class="btn-close"
+                      @click="closeModal2()"
+        >
+         </button>
+        <div class="formulario" id="myForm">
+        <form>
+          <div class="parte1">
+            <div class="izq">
+              <input id="uploadImage1" type="file" accept="image/*" name="images[1]" class="form-control form-control-lg" onchange="previewImage(1);" @change="onFileSelected" required />
+              <br>
+              <img id="uploadPreview1" />
+            </div>
+            <div class="der">
+              <div class="titulo">
+                <label>Título:</label>
+                <input  v-model="titulo" class="form-control form-control-lg"  required />
+              </div>
+              <div class="titulo">
+                <label>Fecha de realización:</label>
+                <input  v-model="fecha" class="form-control form-control-lg"  required />
+              </div>
+              <div class="titulo">
+                <label>Materia:</label>
+                <select v-model="materia" class="form-select form-select-lg " aria-label="Default select example" required>
+                  <option selected></option>
+                  <option value="Matemáticas básicas">Matemáticas básicas</option>
+                  <option value="Calculo diferencial">Calculo diferencial</option>
+                  <option value="Cálculo integral">Cálculo integral</option>
+                  <option value="Calculo vectorial">Calculo vectorial</option>
+                  <option value="Ecuaciones diferenciales">Ecuaciones diferenciales</option>
+                  <option value="Algebra lineal">Algebra lineal</option>
+                  <option value="Probabilidad y estadística">Probabilidad y estadística</option>
+                  <option value="Métodos numéricos">Métodos numéricos</option>
+                  <option value="Física Mecánica">Cálculo integral</option>
+                  <option value="Física electricidad y magnetismo">Física electricidad y magnetismo</option>
+                  <option value="Física óptica y acústica">Física óptica y acústica</option>
+                  <option value="Química">Química</option>
+                </select>
+              </div>
+            </div>
+        </div>
+        <div class="parte2">
+          <label>Descripción:</label>
+          <textarea  v-model="descripcion" class="form-control" rows="4" style = "resize: none" required></textarea>
+        </div>
+        </form>
+        </div>
+        <div class="boton">
+          <div v-if="xhrRequest" class="spinner-border text-secondary _loader" role="status">
+              <span class="sr-only"></span>
+          </div>
+          <button @click="setUp()" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 15px 30px; link-hover-color:#000">
+              <span v-if="! xhrRequest">Enviar</span>
+              <span v-if="xhrRequest">Enviar</span>
+          </button>
+        </div>
+        </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -391,6 +469,86 @@
   .prev:active{
     background: rgba(0, 0, 0, 0.2);
   }
+
+  /* ---------------------------------- EDITAR -------------------------------------------- */
+  .salir {
+  display: flex;
+  padding-left: 2%;
+  padding-top: 1%;
+}
+.fondo h1 {
+  font-family: 'Righteous';
+  color: #353755;
+  margin-bottom: 0;
+  font-size: 50px;
+}
+.fondo label {
+  font-family: 'Righteous';
+  color: #525365;
+  font-size: 20px;
+}
+.fondo {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  margin: 5% ;
+  padding: 60px;
+  width: 80%;
+  
+}
+.parte1 {
+  display: flex;
+  justify-content: space-between;
+}
+.izq img{
+  max-height: 180px;
+  max-width: 500px;
+}
+.der {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+}
+.formulario {
+  margin: 8% 0 4% 0;
+}
+.parte2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2%;
+}
+.boton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.boton button{
+  margin-left: 10px;
+}
+.titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+.alert-success{
+    background: #fff;
+    opacity: 0.7;
+    margin: 10px;
+    padding: 5px 20px;
+
+    font-family: 'Montserrat';
+    color: #353755;
+    font-size: 20px;
+}
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>
 
 <script>
@@ -414,20 +572,29 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     },
+    showModal2() {
+      this.isModalVisible = false;
+      this.isModalVisible2 = true;
+    },
+    closeModal2() {
+      this.isModalVisible2 = false;
+       this.isModalVisible2 = true;
+    },
     veritem(id){
-      this.item = {};
+      // this.item = {};
       var docRef = db.collection("proyectos").doc(id);
       docRef.get().then((doc) => {
           if (doc.exists) {
               console.log("Document data:", doc.data());
               this.item = doc.data();
+               this.showModal();
           } else {
               console.log("No such document!");
           }
       }).catch((error) => {
           console.log("Error getting document:", error);
       });
-      this.showModal();
+     
     }
   },
 }

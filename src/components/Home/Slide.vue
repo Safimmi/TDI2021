@@ -46,7 +46,7 @@
                         </div>
                         </div>
                         <div class="main">
-                          <h2>Render de la casa</h2>
+                          <h2>{{asign}}</h2>
                           <div class="texto">
                           <div class="texto1">
                           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum accusamus odio id eum! Repellendus, quo vel blanditiis sit impedit, fugiat facere labore aspernatur eius laudantium exercitationem quia rerum cupiditate debitis.</p>
@@ -447,19 +447,15 @@ export default {
 
       docRef.get().then((doc) => {
           if (doc.exists) {
-              console.log("Document data:", doc.data());
-              this.matedata = doc.data();
+              // console.log("Document data:", doc.data());
+              this.matedata = doc.data(); 
+              this.showModal();
           } else {
               console.log("No such document!");
           }
       }).catch((error) => {
           console.log("Error getting document:", error);
       });
-
-
-
-
-      this.showModal();
     },
     cmate(){
        this.asign='Matemáticas básicas'; 
