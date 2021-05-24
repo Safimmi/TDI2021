@@ -35,7 +35,7 @@
                       </div>
                       <div class="der">
                         <div class="top">
-                        <div class="materia"><p3>Render</p3></div>
+                        <div class="materia"><p3>{{asign}}</p3></div>
                         <div class="boton">
                         <button
                           type="button"
@@ -52,9 +52,8 @@
                           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum accusamus odio id eum! Repellendus, quo vel blanditiis sit impedit, fugiat facere labore aspernatur eius laudantium exercitationem quia rerum cupiditate debitis.</p>
                           </div>
                           <div class="texto2">
-                          <p1>Juan Pablo</p1>
-                          <p1>Estudiante</p1>
-                          <p1>2021</p1>
+                          <p1>Semestre: {{matedata.semestre}}</p1>
+                          <p1>Creditos: {{matedata.creditos}}</p1>
                           </div>
                           </div>
                         </div>
@@ -423,7 +422,8 @@ export default {
     return {
       isModalVisible: false,
       asign:'',
-      lista: []
+      lista: [],
+      matedata: {}
     };
   },
   methods: {
@@ -442,10 +442,27 @@ export default {
                 this.lista.push({id: doc.id, data: doc.data()});              
             });
         });
+
+      var docRef = db.collection("materias").doc(this.asign);
+
+      docRef.get().then((doc) => {
+          if (doc.exists) {
+              console.log("Document data:", doc.data());
+              this.matedata = doc.data();
+          } else {
+              console.log("No such document!");
+          }
+      }).catch((error) => {
+          console.log("Error getting document:", error);
+      });
+
+
+
+
       this.showModal();
     },
     cmate(){
-       this.asign='>Matemáticas básicas'; 
+       this.asign='Matemáticas básicas'; 
        this.clista();
     },
     cdifer(){

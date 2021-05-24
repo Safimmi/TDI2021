@@ -31,7 +31,7 @@
                       </div>
                       <div class="der">
                         <div class="top">
-                        <div class="materia"><p3>Render</p3></div>
+                        <div class="materia"><p3>{{asign}}</p3></div>
                         <div class="boton">
                         <button
                           type="button"
@@ -55,6 +55,9 @@
                           </div>
                         </div>
                           <div class="bottom">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                              Tooltip on top
+                            </button>>                            
                             <div class="prev" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                               <img src="@/assets/Icons/AnteriorIconX2.png">
                             </div>
@@ -127,7 +130,7 @@
         </div>
     
     </div>
-
+  
 </template>
 
 <style scoped>
@@ -419,7 +422,8 @@ export default {
     return {
       isModalVisible: false,
       asign:'',
-      lista: []
+      lista: [],
+      matedata: {}
     };
   },
   methods: {
@@ -438,38 +442,53 @@ export default {
                 this.lista.push({id: doc.id, data: doc.data()});              
             });
         });
+
+      var docRef = db.collection("materias").doc(this.asign);
+      docRef.get().then((doc) => {
+          if (doc.exists) {
+              console.log("Document data:", doc.data());
+              this.matedata = doc.data();
+          } else {
+              console.log("No such document!");
+          }
+      }).catch((error) => {
+          console.log("Error getting document:", error);
+      });
+
+
       this.showModal();
     },
+
     cmate(){
-       this.asign='>Matemáticas básicas'; 
+       this.asign='>Programación I'; 
        this.clista();
     },
     cdifer(){
-       this.asign='Cálculo diferencial'; 
+       this.asign='Programación II'; 
        this.clista();
     },
     cintegral(){
-       this.asign='Cálculo integral'; 
+       this.asign='Programación III'; 
        this.clista();
     },
     cvectorial(){
-       this.asign='Cálculo vectorial'; 
+       this.asign='Expresión gráfica'; 
        this.clista();
     },
     cecuaciones(){
-       this.asign='Ecuaciones diferenciales'; 
+       this.asign='Dibujo'; 
        this.clista();
     },
     calgebra(){
-       this.asign='Álgebra lineal'; 
+       this.asign='Introducción a la ingeniería'; 
        this.clista();
     },
     cprob(){
-       this.asign='Probabilidad y estadística'; 
+       this.asign='Metodología de la investigación'; 
        this.clista();
     },
     cmetod(){
-       this.asign='Métodos numéricos'; 
+       this.asign='Seminario de investigación'; 
        this.clista();
     }
   }
