@@ -31,6 +31,8 @@
       </div>
     </div>
   </div>
+
+
   <div class="ver" v-if="isModalVisible">
 
       <div class="modal-backdrop" >
@@ -94,40 +96,38 @@
 
   <div class="edit" v-if="isModalVisible2">
     <div class="modal-backdrop" >
-      <div class="modal">  
+      <div class="modal2">  
 
-        <div class="wrapper">
-        <div v-if="successMessage !== ''" class="alert-success"  role="alert">
-          {{ successMessage }}
-        </div>
         <div class="fondo">
-        <h1>Envía tu propuesta</h1>
-         <button
+           <button
                       type="button"
                       class="btn-close"
                       @click="closeModal2()"
         >
          </button>
+        <h1>Envía tu propuesta</h1>
         <div class="formulario" id="myForm">
         <form>
           <div class="parte1">
-            <div class="izq">
-              <input id="uploadImage1" type="file" accept="image/*" name="images[1]" class="form-control form-control-lg" onchange="previewImage(1);" @change="onFileSelected" required />
+            <div class="izq2">
+              <!-- <input id="uploadImage1" type="file" accept="image/*" name="images[1]" class="form-control form-control-lg" onchange="previewImage(1);" @change="onFileSelected" required />
               <br>
-              <img id="uploadPreview1" />
+              <img id="uploadPreview1" /> -->
+
+              <img :src=item.imagen >
             </div>
-            <div class="der">
+            <div class="der2">
               <div class="titulo">
                 <label>Título:</label>
-                <input  v-model="titulo" class="form-control form-control-lg"  required />
+                <input  v-model="titulo" class="form-control form-control-lg"   />
               </div>
               <div class="titulo">
                 <label>Fecha de realización:</label>
-                <input  v-model="fecha" class="form-control form-control-lg"  required />
+                <input  v-model="fecha" class="form-control form-control-lg"  />
               </div>
               <div class="titulo">
                 <label>Materia:</label>
-                <select v-model="materia" class="form-select form-select-lg " aria-label="Default select example" required>
+                <select v-model="materia" class="form-select form-select-lg " aria-label="Default select example"  >
                   <option selected></option>
                   <option value="Matemáticas básicas">Matemáticas básicas</option>
                   <option value="Calculo diferencial">Calculo diferencial</option>
@@ -137,7 +137,7 @@
                   <option value="Algebra lineal">Algebra lineal</option>
                   <option value="Probabilidad y estadística">Probabilidad y estadística</option>
                   <option value="Métodos numéricos">Métodos numéricos</option>
-                  <option value="Física Mecánica">Cálculo integral</option>
+                  <option value="Física Mecánica">Física mecánica</option>
                   <option value="Física electricidad y magnetismo">Física electricidad y magnetismo</option>
                   <option value="Física óptica y acústica">Física óptica y acústica</option>
                   <option value="Química">Química</option>
@@ -147,7 +147,7 @@
         </div>
         <div class="parte2">
           <label>Descripción:</label>
-          <textarea  v-model="descripcion" class="form-control" rows="4" style = "resize: none" required></textarea>
+          <textarea  v-model="descripcion" class="form-control" rows="4" style = "resize: none" ></textarea>
         </div>
         </form>
         </div>
@@ -155,11 +155,10 @@
           <div v-if="xhrRequest" class="spinner-border text-secondary _loader" role="status">
               <span class="sr-only"></span>
           </div>
-          <button @click="setUp()" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 15px 30px; link-hover-color:#000">
+          <button @click="update()" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 15px 30px; link-hover-color:#000">
               <span v-if="! xhrRequest">Enviar</span>
               <span v-if="xhrRequest">Enviar</span>
           </button>
-        </div>
         </div>
         </div>
 
@@ -501,11 +500,11 @@
   display: flex;
   justify-content: space-between;
 }
-.izq img{
+.izq2 img{
   max-height: 180px;
   max-width: 500px;
 }
-.der {
+.der2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -544,7 +543,7 @@
     color: #353755;
     font-size: 20px;
 }
-.wrapper{
+.modal2{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -561,8 +560,14 @@ export default {
   },
   data() {
     return {
-       isModalVisible: false,
-       item: {}
+        isModalVisible: false,
+        isModalVisible2: false,
+        item: {},
+        proyectoid: '',
+        materia: '',
+        titulo: '',
+        fecha: '',
+        descripcion: '',
     }
   },
   methods: {
@@ -573,12 +578,18 @@ export default {
       this.isModalVisible = false;
     },
     showModal2() {
+
+      this.titulo = this.item.titulo;
+      this.materia = this.item.materia;
+      this.fecha = this.item.fecha;
+      this.descripcion = this.item.descripcion;
+      
       this.isModalVisible = false;
       this.isModalVisible2 = true;
     },
     closeModal2() {
       this.isModalVisible2 = false;
-       this.isModalVisible2 = true;
+      this.isModalVisible = true;
     },
     veritem(id){
       // this.item = {};
@@ -594,7 +605,26 @@ export default {
       }).catch((error) => {
           console.log("Error getting document:", error);
       });
-     
+      this.proyectoid=id;
+    },
+    update(){
+
+      db.collection("proyectos").doc(this.proyectoid).set({
+          titulo: this.titulo,
+          materia: this.materia,
+          fecha: this.fecha,
+          descripcion: this.descripcion,
+          imagen: this.item.imagen,
+          estado: this.item.estado,
+          categoria: this.item.categoria,
+          nombre: this.item.nombre,
+          usuario: this.item.usuario
+      })
+      .then(() => {
+         this.veritem(this.proyectoid);
+         this.closeModal2();
+      })
+      
     }
   },
 }
