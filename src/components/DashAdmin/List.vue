@@ -110,11 +110,12 @@
         <form>
           <div class="parte1">
             <div class="izq2">
-              <!-- <input id="uploadImage1" type="file" accept="image/*" name="images[1]" class="form-control form-control-lg" onchange="previewImage(1);" @change="onFileSelected" required />
+              <input id="uploadImage1" type="file" accept="image/*" name="images[1]" class="form-control form-control-lg" onchange="previewImage(1);" @change="onFileSelected"  />
               <br>
-              <img id="uploadPreview1" /> -->
 
-              <img :src=item.imagen >
+              <img v-if="!upimg" :src=item.imagen >
+              <img v-else id="uploadPreview1" />
+
             </div>
             <div class="der2">
               <div class="titulo">
@@ -551,6 +552,7 @@
 </style>
 
 <script>
+import firebase from 'firebase'
 import { db } from '@/firebase'
 import { useLoadproyectos, deleteproyecto, updateproyecto } from '@/firebase'
 export default {
@@ -562,12 +564,18 @@ export default {
     return {
         isModalVisible: false,
         isModalVisible2: false,
+        xhrRequest: false,
         item: {},
+        imageData: null,
+        picture: null,
+        upimg: false,
+        uploadValue: 0, 
         proyectoid: '',
         materia: '',
         titulo: '',
         fecha: '',
         descripcion: '',
+
     }
   },
   methods: {
@@ -590,9 +598,9 @@ export default {
     closeModal2() {
       this.isModalVisible2 = false;
       this.isModalVisible = true;
+      this.upimg=false;
     },
     veritem(id){
-      // this.item = {};
       var docRef = db.collection("proyectos").doc(id);
       docRef.get().then((doc) => {
           if (doc.exists) {
@@ -607,23 +615,48 @@ export default {
       });
       this.proyectoid=id;
     },
+    onFileSelected(event){
+        this.slectedFile = event.target.files[0];
+        this.upimg = true;
+    },
     update(){
+      
+      this.xhrRequest = true;
+     
+      const sotorageref=firebase.storage().ref(`/Proyectos/${this.slectedFile.name}`);
+        const task=sotorageref.put(this.slectedFile);
+        task.on('state_changed',snapshot =>{
+          let percentage = (snapshot.bytesTransfered/snapshot.totalBytes)*100;
+          this.uploadValue = percentage;
+        }, error=>{console.log(error.message)},
+          ()=>{this.uploadValue=100;
+          task.snapshot.ref.getDownloadURL().then((url)=>{
+            if(url){
+              this.item.imagen = url;
+            }
+                
+            db.collection("proyectos").doc(this.proyectoid).set({
+                titulo: this.titulo,
+                materia: this.materia,
+                fecha: this.fecha,
+                descripcion: this.descripcion,
+                imagen: this.item.imagen,
+                estado: this.item.estado,
+                categoria: this.item.categoria,
+                nombre: this.item.nombre,
+                usuario: this.item.usuario
+            })
+            .then(() => {
+              this.xhrRequest = false;
+              this.veritem(this.proyectoid);
+              this.closeModal2();
+              this.upimg = false;
+            })
 
-      db.collection("proyectos").doc(this.proyectoid).set({
-          titulo: this.titulo,
-          materia: this.materia,
-          fecha: this.fecha,
-          descripcion: this.descripcion,
-          imagen: this.item.imagen,
-          estado: this.item.estado,
-          categoria: this.item.categoria,
-          nombre: this.item.nombre,
-          usuario: this.item.usuario
-      })
-      .then(() => {
-         this.veritem(this.proyectoid);
-         this.closeModal2();
-      })
+          });
+        });
+   
+     
       
     }
   },
