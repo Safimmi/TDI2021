@@ -6,8 +6,8 @@
         </div>
 
         <div class="informacion" >
-            <h3>{{user.displayName}}</h3>
-            <h4>{{user.photoURL}}</h4>
+            <h3 id="infonombre">{{user.displayName}}</h3>
+            <h4 id="infocategoria">{{user.photoURL}}</h4>
         </div>
 
         <div class="botones">
@@ -49,11 +49,11 @@
         <div class="funciones">
             <div class='mas' v-if="user.displayName!='Marlon Pinto'">
                 <button class="btn-dark4" @click="mostrarformulario()" >
-                    <img  alt="Formulario" style="width:70px " src="../../assets/Icons/PlusIcon.png">
+                    <img  alt="Formulario" style="width:70px ; margin-right:3%" src="../../assets/Icons/PlusIcon.png">
                 </button>
             </div>
 
-            <div  class="btn-dark5" style="align=right" >
+            <div  class="btn-dark5" style="align=right ; margin-right:0.5%" >
                 <HomeB2/>
             </div>
         </div>

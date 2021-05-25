@@ -43,9 +43,9 @@
                             <label for="exampleFormControlInput1" class="form-label">Categoría:</label>
                             <select v-model="categoria" class="form-select form-select-lg" aria-label="Default select example" required>
                                 <option selected></option>
-                                <option value="Estudiante">Estudiante</option>
-                                <option value="Egresado">Egresado</option>
-                                <option value="Docente">Docente</option>
+                                <option id="categoria" value="Estudiante">Estudiante</option>
+                                <option id="categoria" value="Egresado">Egresado</option>
+                                <option id="categoria" value="Docente">Docente</option>
                             </select>
                         </div>
 

@@ -1,8 +1,8 @@
 <template>
   <div v-for="{ id, materia, titulo, descripcion, estado, nombre, categoria,imagen} in proyectos" :key="id">
     <div v-if="user.displayName==nombre">
-      <div class="body">
-        <div class="item">
+      <div class="body" >
+        <div class="item" style="margin-left:30% ; margin-right:30%">
           <div class="image">
             <img :src=imagen >
           </div>
