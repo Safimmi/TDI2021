@@ -38,6 +38,24 @@
                 <option value="Física electricidad y magnetismo">Física electricidad y magnetismo</option>
                 <option value="Física óptica y acústica">Física óptica y acústica</option>
                 <option value="Química">Química</option>
+
+                <option value="Taller digital de diseño">Taller digital de diseño</option>
+                <option value="Animación 2D">Animación 2D</option>
+                <option value="Modelado 3D">Modelado 3D</option>
+                <option value="Render">Render</option>
+                <option value="Animación 3D y dinámicas">Animación 3D y dinámicas</option>
+                <option value="Introducción a la computación gráfica">Introducción a la computación gráfica</option>
+                <option value="Computación gráfica">Computación gráfica</option>
+                <option value="Audio y video">Audio y video</option>
+
+                <option value="Programación 1">Programación 1</option>
+                <option value="Programación 2">Programación 2</option>
+                <option value="Programación 3">Programación 3</option>
+                <option value="Expresión gráfica">Expresión gráfica</option>
+                <option value="Dibujo">Dibujo</option>
+                <option value="Introducción a la ingeniería">Introducción a la ingeniería</option>
+                <option value="Metodología de la investigación">Metodología de la investigación</option>
+                <option value="Seminario de investigación">Seminario de investigación</option>
               </select>
             </div>
           </div>

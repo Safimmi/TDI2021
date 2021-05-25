@@ -1,8 +1,13 @@
 <template>
     <div class="todo">
         <header class="header">
-            <div class="logos" style="padding-left:35% ;padding-bottom:10%">
+            <div class="logos" style="padding-left:23% ;padding-bottom:10%">
                     <img alt="Logo" style="width:150px" src="../../assets/Brand/LogoHeader.png"> 
+            </div>
+            <div class="logos" style="padding-bottom:10%">
+                <a href="https://www.umng.edu.co/inicio">
+                    <img alt="Logo" style="width:150px" src="../../assets/Brand/Logo20.png"> 
+                </a>
             </div>
             <div class="cerrar" style="padding-left:10%">
                 <button @click="cerrarinformacion()" style="border:none; background-color: #D1D2F3">
@@ -32,6 +37,7 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
     methods:{
@@ -55,7 +61,7 @@ export default {
         padding: 33px;
         min-height: 250px;
         border-radius: 50px;
-        
+        box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.219);
     }
     .header{
         display: flex;
