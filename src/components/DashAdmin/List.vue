@@ -132,6 +132,24 @@
                   <option value="Física electricidad y magnetismo">Física electricidad y magnetismo</option>
                   <option value="Física óptica y acústica">Física óptica y acústica</option>
                   <option value="Química">Química</option>
+
+                  <option value="Taller digital de diseño">Taller digital de diseño</option>
+                  <option value="Animación 2D">Animación 2D</option>
+                  <option value="Modelado 3D">Modelado 3D</option>
+                  <option value="Render">Render</option>
+                  <option value="Animación 3D y dinámicas">Animación 3D y dinámicas</option>
+                  <option value="Introducción a la computación gráfica">Introducción a la computación gráfica</option>
+                  <option value="Computación gráfica">Computación gráfica</option>
+                  <option value="Audio y video">Audio y video</option>
+
+                  <option value="Programación 1">Programación 1</option>
+                  <option value="Programación 2">Programación 2</option>
+                  <option value="Programación 3">Programación 3</option>
+                  <option value="Expresión gráfica">Expresión gráfica</option>
+                  <option value="Dibujo">Dibujo</option>
+                  <option value="Introducción a la ingeniería">Introducción a la ingeniería</option>
+                  <option value="Metodología de la investigación">Metodología de la investigación</option>
+                  <option value="Seminario de investigación">Seminario de investigación</option>
                 </select>
               </div>
             </div>
@@ -338,8 +356,8 @@
   }
 
   .imagen img{
-    max-height: 100%;
-    max-width: 100%;
+    max-height: 99%;
+    max-width: 99%;
   }
 
   .der{
@@ -462,6 +480,14 @@
 .parte1 {
   display: flex;
   justify-content: space-between;
+  
+}
+.izq2{
+  /* border: 2px solid yellowgreen; */
+  width: 50%;
+}
+.izq2 input{
+  width: 480px;
 }
 .izq2 img{
   max-height: 180px;
@@ -474,7 +500,9 @@
   width: 50%;
 }
 .formulario {
-  margin: 8% 0 2% 0;
+  margin: 5% 0 4% 0;
+  padding: 0% 5% 0% 5%;
+  
 }
 .parte2 {
   display: flex;
@@ -516,6 +544,7 @@
   box-shadow: 2px 2px 20px 1px;
   width: 80%;
   height: 80%;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   border-radius: 60px;
@@ -596,7 +625,8 @@ export default {
       
       this.xhrRequest = true;
      
-      const sotorageref=firebase.storage().ref(`/Proyectos/${this.slectedFile.name}`);
+      if(this.upimg == true){
+        const sotorageref=firebase.storage().ref(`/Proyectos/${this.slectedFile.name}`);
         const task=sotorageref.put(this.slectedFile);
         task.on('state_changed',snapshot =>{
           let percentage = (snapshot.bytesTransfered/snapshot.totalBytes)*100;
@@ -604,16 +634,13 @@ export default {
         }, error=>{console.log(error.message)},
           ()=>{this.uploadValue=100;
           task.snapshot.ref.getDownloadURL().then((url)=>{
-            if(url){
-              this.item.imagen = url;
-            }
-                
+               
             db.collection("proyectos").doc(this.proyectoid).set({
                 titulo: this.titulo,
                 materia: this.materia,
                 fecha: this.fecha,
                 descripcion: this.descripcion,
-                imagen: this.item.imagen,
+                imagen: url,
                 estado: this.item.estado,
                 categoria: this.item.categoria,
                 nombre: this.item.nombre,
@@ -629,7 +656,28 @@ export default {
           });
         });
    
-     
+
+      }
+      else{
+
+            db.collection("proyectos").doc(this.proyectoid).set({
+                titulo: this.titulo,
+                materia: this.materia,
+                fecha: this.fecha,
+                descripcion: this.descripcion,
+                imagen: this.item.imagen,
+                estado: this.item.estado,
+                categoria: this.item.categoria,
+                nombre: this.item.nombre,
+                usuario: this.item.usuario
+            })
+            .then(() => {
+              this.xhrRequest = false;
+              this.veritem(this.proyectoid);
+              this.closeModal2();
+            })
+      }
+             
       
     }
   },
