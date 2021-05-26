@@ -26,7 +26,7 @@
                       <div class="item">
                       <div class="izq">
                         <div class="imagen">
-                          <img src="@/assets/img1.png" class="" alt="...">
+                          <img src="@/assets/Brand/LogoCubo.png" class="" alt="...">
                         </div>
                       </div>
                       <div class="der">
