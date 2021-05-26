@@ -3,8 +3,10 @@
     <div v-if="estado == 'No-publicado'">
       <div class="body">
         <div class="item">
+          <div class="images">
           <div class="image">
             <img :src=imagen>
+          </div>
           </div>
           <div class="inf">
             <h2> {{materia}} </h2> <br>
@@ -14,7 +16,7 @@
             <p> {{categoria}} </p>
           </div>
           <div class="botones">
-              <button class="btn btn-dark1" 
+              <button class="btn btn-dark1"
               type="submit" @click="veritem(id)">
               Ver
               </button>
@@ -24,8 +26,8 @@
               </button>
               <button class="btn btn-dark3" 
               type="submit" @click="deleteproyecto(id)">
-              Rechazar 
-              </button> 
+              Rechazar
+              </button>
           </div>
         </div>
       </div>
@@ -34,22 +36,15 @@
 
 
   <div class="ver" v-if="isModalVisible">
-
-      <div class="modal-backdrop" >
+      <div class="modal-backdrop">
         <div class="modal">  
-
           <div class="carousel-item active">
-            
-
               <div class="itemc">
-
-            
                   <div class="izq" >
                     <div class="imagen">
                         <img :src=item.imagen  alt="...">
                     </div>
                   </div>
-
                   <div class="der">
                     <div class="top">
                     <div class="materia"><p3>{{item.materia}}</p3></div>
@@ -74,21 +69,15 @@
                       <p1>{{item.categoria}}</p1>
                       <p1>{{item.fecha}}</p1>
                       </div>
-                      <button class="btn btn-dark1" 
+                      <button class="btn btn-dark" 
                       type="submit" @click="showModal2()">
-                      editar
+                      <img src="../../assets/Icons/EditIcon.png">
                       </button>
                       </div>
                     </div>
                   </div>
-
-
-
               </div>
-
-
           </div>
-
         </div>
       </div>
   </div>
@@ -97,15 +86,16 @@
   <div class="edit" v-if="isModalVisible2">
     <div class="modal-backdrop" >
       <div class="modal2">  
-
-        <div class="fondo">
-           <button
-                      type="button"
-                      class="btn-close"
-                      @click="closeModal2()"
-        >
+          <div class="cerrar">
+          <button
+            type="button"
+            class="btn-close"
+            @click="closeModal2()"
+          >
          </button>
-        <h1>Envía tu propuesta</h1>
+         </div>
+        <div class="fondo">
+        <h1>Editar Propuesta</h1>
         <div class="formulario" id="myForm">
         <form>
           <div class="parte1">
@@ -113,7 +103,7 @@
               <input id="uploadImage1" type="file" accept="image/*" name="images[1]" class="form-control form-control-lg" onchange="previewImage(1);" @change="onFileSelected"  />
               <br>
 
-              <img v-if="!upimg" :src=item.imagen >
+              <img v-if="!upimg" :src=item.imagen>
               <img v-else id="uploadPreview1" />
 
             </div>
@@ -152,17 +142,16 @@
         </div>
         </form>
         </div>
-        <div class="boton">
+        </div>
+        <div class="boton2">
           <div v-if="xhrRequest" class="spinner-border text-secondary _loader" role="status">
               <span class="sr-only"></span>
           </div>
           <button @click="update()" class="btn btn-primary btn-lg" style="background-color: #5bd3c7; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 15px 30px; link-hover-color:#000">
-              <span v-if="! xhrRequest">Enviar</span>
-              <span v-if="xhrRequest">Enviar</span>
+              <span v-if="! xhrRequest">Guardar</span>
+              <span v-if="xhrRequest">Guardar</span>
           </button>
         </div>
-        </div>
-
       </div>
     </div>
   </div>
@@ -181,9 +170,9 @@
     justify-content: space-between;
     margin: 15px 80px;
     width: 1000px; 
-    border: solid 4px rgba(0, 0, 0,0.2);
     background: rgba(255, 255, 255,0.3);
-    padding: 10px;
+    padding: 20px;
+    border-radius: 30px;
   }
   .inf{
     margin: 0 30px;
@@ -198,6 +187,21 @@
     flex-direction: column;
     justify-content: space-around;
     margin: 20px 20px;
+  }
+  .btn-dark{
+    margin-top: 50px;
+    background-color: #5BD3C7;
+    color: #353755;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px 30px;
+  }
+  .btn-dark:hover{
+    background-color: #4fbbb0;
+  }
+  .btn-dark:active{
+    background-color: #449e95;
   }
   .btn-dark1{
     background-color: #353755;
@@ -261,6 +265,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 10%;
+  background-color: rgba(255, 255, 255, 0.445);
 }
 .image img{
   max-height:200px;
@@ -429,47 +437,6 @@
     background: #5BD3C7;
     border-radius:10px
   }
-  .bottom{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding-bottom: 30px;
-  }
-  .bottom img{
-    width: 100%;
-    height: 100%;
-  }
-  .next{
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90px;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .next:hover{
-    background: rgba(0, 0, 0, 0.1);
-  }
-  .next:active{
-    background: rgba(0, 0, 0, 0.2);
-  }
-  .prev{
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90px;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .prev:hover{
-    background: rgba(0, 0, 0, 0.1);
-  }
-  .prev:active{
-    background: rgba(0, 0, 0, 0.2);
-  }
-
   /* ---------------------------------- EDITAR -------------------------------------------- */
   .salir {
   display: flex;
@@ -488,14 +455,9 @@
   font-size: 20px;
 }
 .fondo {
-  background: white;
   display: flex;
   flex-direction: column;
-  border-radius: 20px;
-  margin: 5% ;
-  padding: 60px;
-  width: 80%;
-  
+  margin: 0 80px;
 }
 .parte1 {
   display: flex;
@@ -512,7 +474,7 @@
   width: 50%;
 }
 .formulario {
-  margin: 8% 0 4% 0;
+  margin: 8% 0 2% 0;
 }
 .parte2 {
   display: flex;
@@ -520,14 +482,13 @@
   align-items: flex-start;
   margin-top: 2%;
 }
-.boton {
+.boton2 {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin: 0 80px;
 }
-.boton button{
-  margin-left: 10px;
-}
+
 .titulo {
   display: flex;
   flex-direction: column;
@@ -544,11 +505,23 @@
     color: #353755;
     font-size: 20px;
 }
+.cerrar{
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.5% 3%;
+}
 .modal2{
+  background: white;
+  margin: 5% 0%;
+  box-shadow: 2px 2px 20px 1px;
+  width: 80%;
+  height: 80%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  border-radius: 60px;
+
 }
+
 </style>
 
 <script>
@@ -591,7 +564,7 @@ export default {
       this.materia = this.item.materia;
       this.fecha = this.item.fecha;
       this.descripcion = this.item.descripcion;
-      
+      this.imagen=this.item.imagen;
       this.isModalVisible = false;
       this.isModalVisible2 = true;
     },
