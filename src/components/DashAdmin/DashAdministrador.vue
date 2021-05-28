@@ -41,7 +41,6 @@
     .todo{
         background:  #d1d2f3;
         min-height: 100vh;
-        width: 100vw;
         margin: 0;
         padding: 0;
         /* display: flex ; */

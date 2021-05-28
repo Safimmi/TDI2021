@@ -28,12 +28,7 @@
               <div class="carousel-inner" >
                     <div class="carousel-item active">       
                       <div class="item">
-                      <div class="izq">
-                        <div class="imagen">
-                          <img src="@/assets/Brand/LogoCubo.png" class="" alt="...">
-                        </div>
-                      </div>
-                      <div class="der">
+                      <div class="der1">
                         <div class="top">
                         <div class="materia"><p3>{{asign}}</p3></div>
                         <div class="boton">
@@ -45,16 +40,12 @@
                         </button>
                         </div>
                         </div>
-                        <div class="main">
+                        <div class="main1">
+                          <h2>Carrusel de Proyectos</h2>
+                          <div class="infomateria">
                           <h2>{{asign}}</h2>
-                          <div class="texto">
-                          <div class="texto1">
-                          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum accusamus odio id eum! Repellendus, quo vel blanditiis sit impedit, fugiat facere labore aspernatur eius laudantium exercitationem quia rerum cupiditate debitis.</p>
-                          </div>
-                          <div class="texto2">
-                          <p1>Semestre: {{matedata.semestre}}</p1>
-                          <p1>Creditos: {{matedata.creditos}}</p1>
-                          </div>
+                          <h3>Semestre: {{matedata.semestre}}</h3>
+                          <h3>Créditos: {{matedata.creditos}}</h3>
                           </div>
                         </div>
                           <div class="bottom">
@@ -165,6 +156,7 @@
     font-size: 43px;
     color: #EEEEEE;
     margin-bottom: 10%;
+    margin-top: 0;
     text-align: start;
     cursor: default;
 }
@@ -210,7 +202,7 @@ li {
 
 
 /* CARRUSEL */
- .modal-backdrop {
+.modal-backdrop {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -283,6 +275,14 @@ li {
     flex-direction: column;
   }
 
+  .der1{
+    background: #353755;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+
   .modal-fade-enter,
   .modal-fade-leave-to {
     opacity: 0;
@@ -311,10 +311,34 @@ li {
     align-items: center;
   }
 
+  .main1{
+    margin: 0px 10%;
+    margin-top: 60px;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 100px;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+  }
   .main h2{
     font-family: 'Righteous';
     color: white;
     font-size: 50px;
+    margin-top: 50px;
+  }
+
+  .infomateria h2{
+    color: #353755;
+    margin-top: 0px;
+  }
+
+  .main h3{
+    font-family: 'Righteous';
+    color: #353755;
+    font-size: 40px;
   }
 
   .main p{
@@ -329,13 +353,19 @@ li {
     font-size: 15px;
   }
 
+  .infomateria{
+    background: white;
+    margin-top: 50px;
+    padding: 40px;
+    border-radius: 20px;
+  }
   .bottom{
     height: 20%;
     display: flex;
     justify-content: space-between;
     padding: 0 10%;
   }
-   .bottom img{ 
+  .bottom img{ 
     height: 35%;
   }
 
@@ -458,52 +488,52 @@ export default {
       });
     },
     cmate(){
-       this.asign='Matemáticas básicas'; 
-       this.clista();
+      this.asign='Matemáticas básicas'; 
+      this.clista();
     },
     cdifer(){
-       this.asign='Cálculo diferencial'; 
-       this.clista();
+      this.asign='Cálculo diferencial'; 
+      this.clista();
     },
     cintegral(){
-       this.asign='Cálculo integral'; 
-       this.clista();
+      this.asign='Cálculo integral'; 
+      this.clista();
     },
     cvectorial(){
-       this.asign='Cálculo vectorial'; 
-       this.clista();
+      this.asign='Cálculo vectorial'; 
+      this.clista();
     },
     cecuaciones(){
-       this.asign='Ecuaciones diferenciales'; 
-       this.clista();
+      this.asign='Ecuaciones diferenciales'; 
+      this.clista();
     },
     calgebra(){
-       this.asign='Álgebra lineal'; 
-       this.clista();
+      this.asign='Álgebra lineal'; 
+      this.clista();
     },
     cprob(){
-       this.asign='Probabilidad y estadística'; 
-       this.clista();
+      this.asign='Probabilidad y estadística'; 
+      this.clista();
     },
     cmetod(){
-       this.asign='Métodos numéricos'; 
-       this.clista();
+      this.asign='Métodos numéricos'; 
+      this.clista();
     },
     cmeca(){
-       this.asign='Física Mecánica'; 
-       this.clista();
+      this.asign='Física Mecánica'; 
+      this.clista();
     },
     celect(){
-       this.asign='Física electricidad y magnetismo'; 
-       this.clista();
+      this.asign='Física electricidad y magnetismo'; 
+      this.clista();
     },
     coptica(){
-       this.asign='Física óptica y acústica'; 
-       this.clista();
+      this.asign='Física óptica y acústica'; 
+      this.clista();
     },
     cquimi(){
-       this.asign='Química'; 
-       this.clista();
+      this.asign='Química'; 
+      this.clista();
     }
   }
 }
