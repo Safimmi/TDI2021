@@ -1,8 +1,10 @@
 <template>
 
     <div class="todo">
-        
+        <div class="menu">
+
             <Menu />
+        </div>
         <div class="contenido">
             <div class="logo">
                 <img alt="Logo" style="width:150px" src="../../assets/Brand/LogoHeader.png"> 
@@ -40,25 +42,35 @@
    
     .todo{
         background:  #d1d2f3;
+        display: flex ;
+        flex-direction: row;
         min-height: 100vh;
-        margin: 0;
-        padding: 0;
-        /* display: flex ; */
-        /* flex-direction: row; */
+    }
+    .menu{
+        width:20%;
     }
     .contenido{
         width:80%;
-        margin-left: 20%;
     }
+    .componentes{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        
+    }
+
     .logo{
         text-align: right;
         padding-top:40px ;
         margin-right: 4%;
     }
-    .List{
+
+    .Lista1{
         display:block;
-    }.Perfil{
+    }
+    .Perfil{
         display:none;
+        width:60%;
     }
 
 </style>

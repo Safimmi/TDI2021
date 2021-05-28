@@ -8,13 +8,13 @@
                 <img alt="Logo" style="width:150px;" src="../../src/assets/Brand/LogoHeader.png"> 
             </div>
             <div class="componentes">
-                <div class="comp1" id="Lista3ID">
+                <div class="List3" id="Lista3ID">
                     <List3/>
                 </div>
-                <div class="comp2" id="formularioMiembroID">
+                <div class="Formulario" id="formularioMiembroID">
                     <Formulario/>
                 </div>
-                <div class="comp3" id="PerfilID">
+                <div class="Perfil" id="PerfilID">
                     <Perfil/>
                 </div>
             </div>
@@ -55,14 +55,9 @@
         display: flex;
         justify-content: center;
         width: 100%;
-   
+        
     }
-    .comp2 {
-         width:100%;
-    }
-    .comp3 {
-         width:60%;
-    }
+
     .logo{
         text-align: right;
         padding-top:40px ;
@@ -70,18 +65,16 @@
     }
 
     .Formulario{
-        /* display: flex;
-        height: 100%;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        padding-left: 100px; */
-        display:block;
+
+        display:none;
+        width:100%;
     }
     .List3{
+        display:block;
+    }
+    .Perfil{
         display:none;
-    }.Perfil{
-        display:none;
+        width:60%;
     }
 
 </style>
