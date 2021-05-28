@@ -11,7 +11,7 @@
           <div class="izq">
             <input id="uploadImage1" type="file" accept="image/*" name="images[1]" class="form-control form-control-lg" onchange="previewImage(1);" @change="onFileSelected" required />
             <br>
-            <img id="uploadPreview1" />
+            <img v-if="slectedFile" id="uploadPreview1" />
           </div>
           <div class="der">
             <div class="titulo">
@@ -31,10 +31,10 @@
                 <option value="Cálculo integral">Cálculo integral</option>
                 <option value="Calculo vectorial">Calculo vectorial</option>
                 <option value="Ecuaciones diferenciales">Ecuaciones diferenciales</option>
-                <option value="Algebra lineal">Algebra lineal</option>
+                <option value="Álgebra lineal">Algebra lineal</option>
                 <option value="Probabilidad y estadística">Probabilidad y estadística</option>
                 <option value="Métodos numéricos">Métodos numéricos</option>
-                <option value="Física Mecánica">Cálculo integral</option>
+                <option value="Física Mecánica">Física mecánica</option>
                 <option value="Física electricidad y magnetismo">Física electricidad y magnetismo</option>
                 <option value="Física óptica y acústica">Física óptica y acústica</option>
                 <option value="Química">Química</option>
@@ -170,20 +170,23 @@ export default {
     return{
         imageData: null,
         picture: null,
-        uploadValue: 0,        
+        uploadValue: 0,  
+        slectedFile: null,      
         materia: null,
         titulo: null,
         fecha: null,
         descripcion: null,
-        estado:"No-publicado",
+        estado:"En espera",
         nombre: "",
         categoria: "",
         usuario:"",
         imagen:null,
         xhrRequest: false,
-        successMessage: ""
+        successMessage: "",
+
     }
   },
+ 
   methods:{
       onFileSelected(event){
         this.slectedFile = event.target.files[0];
@@ -212,7 +215,7 @@ export default {
                     estado: this.estado,
                     imagen: this.picture,
                     nombre: user.displayName,
-                    usuario: user.email,
+                    usuario: user.uid,
                     categoria: user.photoURL
 
                 })
@@ -221,6 +224,11 @@ export default {
                     console.log("Document written with ID: ", docRef.id);
                     v.successMessage = "Propuesta enviada";
                     v.xhrRequest = false;
+                      this.materia= null;
+                      this.titulo= null;
+                      this.fecha= null;
+                      this.descripcion= null;
+                      this.slectedFile = null;
                     document.getElementById("myForm").reset();
                     
                 })

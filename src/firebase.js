@@ -12,6 +12,9 @@ const config = {
   };
 
 const firebaseApp = firebase.initializeApp(config)
+export const auth = firebase.auth()
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+
 
 const db = firebaseApp.firestore()
 const proyectosCollection = db.collection('proyectos')
