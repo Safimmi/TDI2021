@@ -109,47 +109,47 @@ export default {
     methods: {
         signupRequest() {
                 let v = this;
+                
                 if (this.email.includes(this.dominio)) {
-                console.log("dominio correcto")    
-                v.xhrRequest = true;
-                v.errorMessage = "";
-                v.successMessage = "";
-                firebase
-                    .auth()
-                    .createUserWithEmailAndPassword(this.email, this.password)
-                    .then(() => {
-                        const user = firebase.auth().currentUser;
-                        return user.updateProfile({
-                            displayName: this.name,
-                            photoURL: this.categoria
-                        }),
-                        db.collection("usuarios").add({
-                            id: user.uid,
-                            nombre: this.name,
-                            usuario: user.email,
-                            categoria: this.categoria,
-                            ocupacion:'',
-                            foto:'https://firebasestorage.googleapis.com/v0/b/multirush-b945a.appspot.com/o/FotosUsuarios%2Fusuario.png?alt=media&token=882444d0-c8c2-4c7b-99c5-84c74574a3de'
+                    console.log("dominio correcto")    
+                    v.xhrRequest = true;
+                    v.errorMessage = "";
+                    v.successMessage = "";
+                    firebase
+                        .auth()
+                        .createUserWithEmailAndPassword(this.email, this.password)
+                        .then(() => {
+                            const user = firebase.auth().currentUser;
+                            return user.updateProfile({
+                                displayName: this.name,
+                                photoURL: this.categoria
+                            }),
+                            db.collection("usuarios").doc(user.uid).set({
+                                nombre: this.name,
+                                usuario: user.email,
+                                categoria: this.categoria,
+                                ocupacion:'',
+                                foto:'https://firebasestorage.googleapis.com/v0/b/multirush-b945a.appspot.com/o/FotosUsuarios%2Fusuario.png?alt=media&token=882444d0-c8c2-4c7b-99c5-84c74574a3de'
 
+                            })
+                            .then((docRef) => {
+                                console.log("Document written with ID: ", docRef.id);
+                            })
+                            .catch((error) => {
+                                console.error("Error adding document: ", error);
+                            }); 
                         })
-                        .then((docRef) => {
-                            console.log("Document written with ID: ", docRef.id);
-                        })
-                        .catch((error) => {
-                            console.error("Error adding document: ", error);
-                        }); 
-                    })
-                v.successMessage = "Cuenta creada correctamente"; 
-                v.errorMessage = "";
-                v.xhrRequest = false;   
-            }
-            else
-            {
-                console.log("dominio incorrecto")   
-                v.errorMessage = "Ingrese un correo de la Universidad Militar";
-                v.successMessage = "";
-                v.xhrRequest = false;
-            }
+                    v.successMessage = "Cuenta creada correctamente"; 
+                    v.errorMessage = "";
+                    v.xhrRequest = false;   
+                }
+                else
+                {
+                    console.log("dominio incorrecto")   
+                    v.errorMessage = "Ingrese un correo de la Universidad Militar";
+                    v.successMessage = "";
+                    v.xhrRequest = false;
+                }
             
         }
     }

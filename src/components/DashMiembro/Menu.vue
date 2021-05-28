@@ -6,8 +6,9 @@
         </div>
 
         <div class="informacion" >
-            <h3 id="infonombre">{{user.displayName}}</h3>
-            <h4 id="infocategoria">{{user.photoURL}}</h4>
+            <h3 id="infonombre">{{dataUsuario.nombre}}</h3>
+            <h4 id="infocategoria">{{dataUsuario.categoria}}</h4> <br>
+            <h4 id="infocategoria">{{dataUsuario.ocupacion}}</h4>
         </div>
 
         <div class="botones">
@@ -47,7 +48,7 @@
         </div>
 
         <div class="funciones">
-            <div class='mas' v-if="user.displayName!='Marlon Pinto'">
+            <div class='mas' v-if="user.uid !='d4gwmIMUkXOGz11YJi6YLBdGTF12'">
                 <button class="btn-dark4" @click="mostrarformulario()" >
                     <img  alt="Formulario" style="width:70px ; margin-right:3%" src="../../assets/Icons/PlusIcon.png">
                 </button>
@@ -70,6 +71,13 @@ import { db} from '@/firebase'
 export default {
     name: 'DashAdministrador',
     components: {HomeB2},
+    data() {
+        return {
+            usuario:[],
+            user:null,
+            dataUsuario: {}
+        }
+    },
     methods:{
         setup() {
         const usuarios = useLoadusuarios()
@@ -124,26 +132,18 @@ export default {
             z.style.display = "block";
         },
     },
-    data(){
-        return{
-            usuario:[],
-            user:null
-        }
-    },
     created(){
+        
         this.user = firebase.auth().currentUser;
-        console.log(this.user.displayName);
-        console.log(this.user)
-        this.usuario=[]
-        db.collection("usuarios")
-        .get()
-            .then((r) => {
-                r.docs.map((item) => {
-                this.usuario.push({
-                    id: item.id,
-                    data: item.data(),
-                });
-                });
+            var docRef = db.collection("usuarios").doc(this.user.uid);
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    this.dataUsuario = doc.data();                    
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
             });
     },
     
@@ -218,6 +218,10 @@ export default {
         text-align: left;
         padding: 10%;
        
+    }
+    .informacion h4{
+        font-family: 'Montserrat';
+        font-size: 20px;
     }
     .funciones{
         text-align: right;

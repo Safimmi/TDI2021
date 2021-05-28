@@ -1,6 +1,6 @@
 <template>
   <div v-for="{ id, materia, titulo, descripcion, estado, nombre, categoria,imagen} in proyectos" :key="id">
-    <div v-if="estado == 'No-publicado'">
+    <div v-if="estado == 'En espera'">
       <div class="body">
         <div class="item">
           <div class="images">

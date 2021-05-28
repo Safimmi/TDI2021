@@ -1,6 +1,6 @@
 <template>
-  <div v-for="{ id, materia, titulo, descripcion, estado, nombre, categoria,imagen} in proyectos" :key="id">
-    <div v-if="user.displayName==nombre">
+  <div v-for="{ id, materia, titulo, descripcion, estado, nombre, categoria,imagen, usuario} in proyectos" :key="id">
+    <div v-if="user.uid==usuario">
       <div class="body" >
         <div class="item" style="margin-left:30% ; margin-right:30%">
           <div class="image">
@@ -14,11 +14,15 @@
             <p> {{categoria}} </p>
           </div>
           <div class="botones">
-              <button class="btn btn-dark" style="background-color: #353755; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" 
+              <button class="btn btn-dark1" 
               type="submit" >
               ver
               </button>
-              <button class="btn btn-dark" style="background-color: #353755; border: none; border-radius: 30px;font-family: 'Montserrat', sans-serif; padding: 10px 25px; link-hover-color:#000" 
+              <button v-if="estado=='En espera'" class="btn btn-dark"
+              type="submit" >
+              {{estado}}
+              </button> 
+              <button v-else class="btn btn-dark9"
               type="submit" >
               {{estado}}
               </button> 
@@ -26,11 +30,14 @@
         </div>
       </div>
       </div>
+     <div v-else class="mensaje">
+      <p> Aún no has enviado ningun proyecto. </p> 
+      </div> 
   </div>    
 </template>
 
-<style>
-  .body
+<style scoped>
+    .body
   {
     display: flex;
     flex-direction: column;
@@ -40,12 +47,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 80px;
+    margin: 15px 80px;
     width: 1000px; 
-    border: solid 2px #aaa;
-    padding: 10px;
+    background: rgba(255, 255, 255,0.3);
+    padding: 20px;
+    border-radius: 30px;
   }
   .inf{
+    margin: 0 30px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items:flex-start;
@@ -55,6 +65,65 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin: 20px 20px;
+    width: 300px;
+  }
+  .btn-dark{
+    background-color:#4c4f79;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px 30px;
+    cursor: default;
+  }
+  .btn-dark9{
+    background-color:#62e2d5a4;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px 30px;
+    cursor: default;
+  }
+
+  .btn-dark1{
+    background-color: #353755;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px 30px;
+  }
+  .btn-dark1:hover{
+    background-color: #4c4f79;
+    color: white;
+  }
+
+  .btn-dark2{
+    background-color: #353755;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px 30px;
+  }
+  .btn-dark2:hover{
+    background-color: #78ccac;
+    color: white;
+  }
+
+  .btn-dark3{
+    background-color: #353755;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px 30px;
+  }
+  .btn-dark3:hover{
+    background-color: #BA605D;
+    color: white;
   }
   .body h2 {
   font-family: 'Righteous';
@@ -76,10 +145,30 @@
   font-size: 20px;
   text-align: left;
 }
-.image img{
-  height:200px;
-  width:200px ;
+.image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 10%;
+  background-color: rgba(255, 255, 255, 0.445);
 }
+.image img{
+  max-height:200px;
+  max-width:200px ;
+}
+.mensaje{
+    background: #5bd3c744;
+    margin: 1% 10%;
+    padding: 5px 40px;
+    border-radius: 20px;
+
+    font-family: 'Montserrat';
+    color: #202233;
+    font-size: 15px;
+ }
+
 </style>
 <script>
 import firebase from "firebase";
