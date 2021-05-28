@@ -15,6 +15,7 @@
     width: 100%;
     height: 13%;
     justify-content: flex-start;
+    padding-left: 3%;
 }
 
 .header img{

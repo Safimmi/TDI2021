@@ -15,14 +15,14 @@
           </div>
           <div class="botones">
               <button class="btn btn-dark1" 
-              type="submit" >
-              ver
+              type="submit" @click="veritem(id)">
+              Previsualizar
               </button>
-              <button v-if="estado=='En espera'" class="btn btn-dark"
+              <button v-if="estado=='En espera'" class="btn btn-dark1" disabled
               type="submit" >
               {{estado}}
               </button> 
-              <button v-else class="btn btn-dark9"
+              <button v-else class="btn btn-dark1" disabled
               type="submit" >
               {{estado}}
               </button> 
@@ -33,11 +33,53 @@
      <div v-else class="mensaje">
       <p> Aún no has enviado ningun proyecto. </p> 
       </div> 
-  </div>    
+  </div>
+    <div class="ver" v-if="isModalVisible">
+      <div class="modal-backdrop">
+        <div class="modal"> 
+          <div class="carousel-item active">
+              <div class="itemc">
+                  <div class="izq">
+                    <div class="imagen">
+                        <img :src=item.imagen  alt="...">
+                    </div>
+                  </div>
+                  <div class="der">
+                    <div class="top">
+                    <div class="materia"><p3>{{item.materia}}</p3></div>
+                    <div class="boton">
+                    <button
+                      type="button"
+                      class="btn-close"
+                      @click="closeModal()"
+                    >
+                    </button>
+                    </div>
+                    </div>
+                    <div class="main">
+                      <h2>{{item.titulo}}</h2>
+                      <div class="texto">
+                      <div class="texto1">
+                      <p>{{item.descripcion}}</p>
+                      
+                      </div>
+                      <div class="texto2">
+                      <p1>{{item.nombre}}</p1>
+                      <p1>{{item.categoria}}</p1>
+                      <p1>{{item.fecha}}</p1>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>       
 </template>
 
 <style scoped>
-    .body
+  .body
   {
     display: flex;
     flex-direction: column;
@@ -169,6 +211,168 @@
     font-size: 15px;
  }
 
+/* CARRUSEL */
+ .modal-backdrop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal {
+    margin: 5% 10%;
+    box-shadow: 2px 2px 20px 1px;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 60px;
+  }
+
+  .carousel{
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-inner{
+    width: 100%;
+    height: 100%;
+  }
+  .carousel-item{
+    width: 100%;
+    height: 100%;
+  }
+
+  .itemc{
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .izq{
+    background: #D1D2F3;
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .imagen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    height: 85%;
+    border-radius: 10%;
+    /* border: solid 5px yellowgreen; */
+    background-color: rgba(255, 255, 255, 0.445);
+  }
+
+  .imagen img{
+    max-height: 99%;
+    max-width: 99%;
+  }
+
+  .der{
+    background: #353755;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-fade-enter,
+  .modal-fade-leave-to {
+    opacity: 0;
+  }
+
+  .modal-fade-enter-active,
+  .modal-fade-leave-active {
+    transition: opacity .5s ease;
+  }
+
+  .top{
+    margin: 0% 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 15%;
+  }
+
+  .main{
+    margin: 0px 10%;
+    margin-top: 60px;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .main h2{
+    font-family: 'Righteous';
+    color: white;
+    font-size: 50px;
+  }
+
+  .main p{
+    font-family: 'Montserrat';
+    color: white;
+    font-size: 20px;
+  }
+
+  .main p1{
+    font-family: 'Montserrat';
+    color: white;
+    font-size: 15px;
+  }
+
+  .bottom{
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+  }
+   .bottom img{ 
+    height: 35%;
+  }
+
+  .texto{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .texto1{
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .texto2{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .materia{
+    font-size: 20px;
+    color: white;
+    padding: 0 20px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #5BD3C7;
+    border-radius:10px
+  }
 </style>
 <script>
 import firebase from "firebase";
@@ -182,8 +386,21 @@ export default {
   data(){
         return{
             usuario:[],
-            user:null
-        }
+            user:null,
+            isModalVisible: false,
+            isModalVisible2: false,
+            xhrRequest: false,
+            item: {},
+            imageData: null,
+            picture: null,
+            upimg: false,
+            uploadValue: 0, 
+            proyectoid: '',
+            materia: '',
+            titulo: '',
+            fecha: '',
+            descripcion: '',
+            }
     },
     created(){
         this.user = firebase.auth().currentUser;
@@ -199,6 +416,29 @@ export default {
                 });
                 });
             });
+    },
+    methods: {
+      showModal() {
+      this.isModalVisible = true;
+      },
+      closeModal() {
+        this.isModalVisible = false;
+      },
+      veritem(id){
+      var docRef = db.collection("proyectos").doc(id);
+      docRef.get().then((doc) => {
+          if (doc.exists) {
+              console.log("Document data:", doc.data());
+              this.item = doc.data();
+               this.showModal();
+          } else {
+              console.log("No such document!");
+          }
+      }).catch((error) => {
+          console.log("Error getting document:", error);
+      });
+      this.proyectoid=id;
+    }
     }
 }
 </script>
