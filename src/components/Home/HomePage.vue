@@ -62,8 +62,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { TWEEN } from "three/examples/jsm/libs/tween.module.min.js";
 import ControlesIconos from '@/components/3D/ControlesIconos.vue'
 
-let scene, camera, renderer, container, mixer, clock, coords, cambio, cambio2, cambio3, cambio4, cambio5, cambio6, cambio7, controls, modelo, modelo2, modelo3, modelo4, cambiocam;
-
+let scene, camera, renderer, container, mixer, clock, sphere, dode, coords, cambio, cambio2, cambio3, cambio4, cambio5, cambio6, cambio7, controls, modelo, modelo2, modelo3, modelo4, cambiocam, raycaster, mouse;
+let ancho, alto;
 
 export default {
   name: 'Home',
@@ -148,6 +148,12 @@ export default {
         cambio2 = new TWEEN.Tween(modelo2.position)
           .to( {x: modelo2.position.x-0.125, z: modelo2.position.z+0.14} , 2000); 
         cambio2.start();
+        cambio3 = new TWEEN.Tween(sphere.position)
+          .to( {x: sphere.position.x-0.125, z: sphere.position.z+0.14} , 2000); 
+        cambio3.start();
+        cambio4 = new TWEEN.Tween(dode.position)
+          .to( {x: dode.position.x-0.125, z: dode.position.z+0.14} , 2000); 
+        cambio4.start();
         cambio5 = new TWEEN.Tween(modelo3.position)
           .to( {x: modelo3.position.x-0.125, z: modelo3.position.z+0.14} , 2000); 
         cambio5.start();
@@ -207,6 +213,12 @@ export default {
         cambio2 = new TWEEN.Tween(modelo2.position)
           .to( {x: modelo2.position.x+0.125, z: modelo2.position.z-0.14} , 2000); 
         cambio2.start();
+        cambio3 = new TWEEN.Tween(sphere.position)
+          .to( {x: sphere.position.x+0.125, z: sphere.position.z-0.14} , 2000); 
+        cambio3.start();
+        cambio4 = new TWEEN.Tween(dode.position)
+          .to( {x: dode.position.x+0.125, z: dode.position.z-0.14} , 2000); 
+        cambio4.start();
         cambio5 = new TWEEN.Tween(modelo3.position)
           .to( {x: modelo3.position.x+0.125, z: modelo3.position.z-0.14} , 2000); 
         cambio5.start();
@@ -222,6 +234,9 @@ export default {
       },
 
       init: function () {
+
+        ancho = window.innerWidth - (window.innerWidth * 0.3);
+        alto = window.innerHeight + (window.innerHeight * 0.19);
         
         //Scene-Render
         container = document.getElementById("container");
@@ -237,6 +252,16 @@ export default {
         camera.position.z = 0.12;
         camera.position.y = 0.1;
         camera.position.x = 0.12;
+
+        //resize
+        window.addEventListener('resize', function()
+        {
+          var width = window.innerWidth - (window.innerWidth * 0.3);
+          var heigth = window.innerHeight - (window.innerHeight * 0.15);
+          renderer.setSize(width,heigth);
+          camera.aspect = width/heigth;
+          camera.updateProjectionMatrix();
+        });
         
         //Controls
         controls = new OrbitControls(camera, renderer.domElement);
@@ -249,6 +274,23 @@ export default {
         controls.minAzimuthAngle = Math.PI * 0.15;
         controls.maxAzimuthAngle = Math.PI * 0.4;
         controls.panSpeed = 0.1;
+
+        //cubo
+        const geometry = new THREE.BoxGeometry( 0.005, 0.005, 0.005 );
+        const geometry2 = new THREE.TorusKnotGeometry( 0.0017, 0.0006, 100, 16 );
+        const material = new THREE.MeshLambertMaterial( {color: 0xBCBCBC} );
+        const material2 = new THREE.MeshLambertMaterial( {color: 0x00FF00} );
+        sphere = new THREE.Mesh( geometry, material );
+        dode = new THREE.Mesh( geometry2, material2 );
+        sphere.position.x = -0.004;
+        sphere.position.y = 0.005;
+        sphere.position.z = -0.004;
+        dode.position.x = 0.153;
+        dode.position.z = -0.183;
+        sphere.rotateX(0.785398);
+        sphere.rotateY(0.785398);
+        scene.add( sphere );
+        scene.add( dode );
 
         //Lights
         const light = new THREE.PointLight(0x2A2A2A,5);
@@ -269,7 +311,7 @@ export default {
 
         //Loader
         const loader = new GLTFLoader();
-        loader.load( '/Habitaciones/Tunion.glb', function ( gltf ) {
+        loader.load( '/Habitaciones/Tuninonp.glb', function ( gltf ) {
           modelo = gltf.scene;
           mixer = new THREE.AnimationMixer(modelo);
           mixer.clipAction(gltf.animations[0]).play();
@@ -315,6 +357,62 @@ export default {
           console.error( error );
         } );
 
+        // const loader5 = new GLTFLoader();
+        // loader5.load( '/Habitaciones/cubo.glb', function ( gltf5 ) {
+        //   modelo5 = gltf5.scene;
+        //   modelo5.position.x = -0.004;
+        //   modelo5.position.y = -0.012;
+        //   modelo5.position.z = -0.004;
+        //   scene.add( modelo5 );
+        // }, undefined, function ( error ) {
+        //   console.error( error );
+        // } );
+
+        raycaster = new THREE.Raycaster();
+        mouse = new THREE.Vector2();
+
+        function onMouseMove( event ) {
+          event.preventDefault();
+          mouse.x = ( event.clientX / ancho ) * 2 - 1;
+          mouse.y = - ( event.clientY / alto ) * 2 + 1;
+          console.log(mouse);
+          raycaster.setFromCamera(mouse, camera);
+
+          // modelo5 = new THREE.Object3D();
+
+          const objetos = [sphere, dode];
+          const intersects = raycaster.intersectObjects(objetos);
+          
+          for (let i = 0; i < intersects.length; i++) {
+            intersects[ i ].object.rotation.y += 0.15;
+            console.log(1);
+          }
+        }
+
+        
+        renderer.render( scene, camera );
+        renderer.domElement.addEventListener('mousemove', onMouseMove, false);
+
+      },
+
+      raycast: function(){        
+
+        
+
+        // function onClick( event ) {
+        //   mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+        //   mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+        //   raycaster.setFromCamera(mouse, camera);
+        //   const intersects = raycaster.intersectObjects(scene.children, false);
+          
+        //   for (let i = 0; i < intersects.length; i++) {
+        //     intersects[i].object.material.transparent = true;
+        //     intersects[i].object.material.opacity = 0.2;
+        //     console.log(1);
+        //   }
+        // }
+        
+        //renderer.domElement.addEventListener('click', onClick, false);
       },
 
       animate: function () {
@@ -338,6 +436,7 @@ export default {
     mounted() {
       this.init();
       this.animate();
+      this.raycast();
     },
 
 }
