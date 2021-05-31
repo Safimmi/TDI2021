@@ -55,7 +55,7 @@
         <div class="funciones">
             <div class='mas' v-if="user.uid !='d4gwmIMUkXOGz11YJi6YLBdGTF12'">
                 <button class="btn-dark4" @click="mostrarformulario()" >
-                    <img  alt="Formulario" style="width:82px ; margin-right:3%" src="../../assets/Icons/PlusIcon.png">
+                    <img  alt="Formulario" style="width:4rem ; margin-right:3%" src="../../assets/Icons/PlusIcon.png">
                 </button>
             </div>
 
