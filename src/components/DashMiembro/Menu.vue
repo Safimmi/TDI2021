@@ -2,7 +2,12 @@
     <div class="wrapper">
 
         <div class="usuario">
-            <img alt="usuario" style="width:30%; height:10%;" src="../../assets/usuario.png"> 
+            <!-- <img alt="usuario" style="width:30%; height:10%;" src="../../assets/usuario.png">  -->
+            <img style="width:30%; height:10%; border: 20px radius"
+            class="img_perfil"
+            :src="getImageUrl(dataUsuario.imagen)"
+            alt="imagen perfil"
+          />
         </div>
 
         <div class="informacion" >
@@ -75,10 +80,14 @@ export default {
         return {
             usuario:[],
             user:null,
-            dataUsuario: {}
+            dataUsuario: {},
+            avatar: null
         }
     },
     methods:{
+        getImageUrl(imageId) {
+            return `${imageId}`;
+        },
         setup() {
         const usuarios = useLoadusuarios()
         return { usuarios }
