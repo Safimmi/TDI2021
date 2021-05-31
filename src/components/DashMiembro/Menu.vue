@@ -185,7 +185,7 @@ export default {
     }
     .btn-dark2{
         margin-top: 5%;
-        padding: 1em;
+        padding: 0.65em;
         width: 100%;
 
         background-color: #1e1f30;
@@ -203,7 +203,7 @@ export default {
     }
     .btn-dark3{
         margin-top: 10%;
-        padding: 1em;
+        padding: 0.65em;
         width: 100%;
 
         background-color: #1e1f30;
