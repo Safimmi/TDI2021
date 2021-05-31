@@ -1,8 +1,8 @@
 <template>
+    <div v-if="successMessage !== ''" class="mensaje"  >
+        <h4>{{ successMessage }}</h4>
+    </div>
     <div class="cuerpo">
-        <div v-if="successMessage !== ''" class="alert-success"  role="alert">
-            {{ successMessage }}
-        </div>
         <div class="avatar">
             <img alt="usuario" style="width:100px; height:100px;" src="../../assets/usuario.png"> 
         </div>
@@ -99,8 +99,10 @@ export default {
         update(){
             
             let v = this;
+            v.successMessage = ""; 
             this.xhrRequest = true;
             this.user = firebase.auth().currentUser;
+
 
             if(this.nuevaContraseña){
 
@@ -250,6 +252,25 @@ export default {
     font-family: 'Montserrat';
     color: #202233;
     font-size: 15px;
+    }
+     .mensaje{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px 80px;
+    background: rgba(255, 255, 255,0.3);
+    padding: 20px;
+    border-radius: 30px;
+  }
+    .mensaje h4{
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    font-weight: bolder;
+    margin-bottom: 0;
+    font-size: 20px;
+    /* border:2px solid blue; */
+    width: 100%;
+    text-align: center;
     }
 
 </style>

@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
-    <div v-if="successMessage !== ''" class="alert-success"  role="alert">
-        {{ successMessage }}
+    <div v-if="successMessage !== ''" class="mensaje"  >
+        <h4>{{ successMessage }}</h4>
     </div>
   <div class="fondo">
     <h1>Envía tu propuesta</h1>
@@ -31,7 +31,7 @@
                 <option value="Cálculo integral">Cálculo integral</option>
                 <option value="Calculo vectorial">Calculo vectorial</option>
                 <option value="Ecuaciones diferenciales">Ecuaciones diferenciales</option>
-                <option value="Álgebra lineal">Algebra lineal</option>
+                <option value="Álgebra lineal">Álgebra lineal</option>
                 <option value="Probabilidad y estadística">Probabilidad y estadística</option>
                 <option value="Métodos numéricos">Métodos numéricos</option>
                 <option value="Física Mecánica">Física mecánica</option>
@@ -158,6 +158,27 @@
   flex-direction: column;
   align-items: center;
 }
+ .mensaje{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px 80px;
+    width: 1000px; 
+    background: rgba(255, 255, 255,0.3);
+    padding: 20px;
+    border-radius: 30px;
+  }
+.mensaje h4{
+  font-family: 'Montserrat', sans-serif;
+  color: #000;
+  font-weight: bolder;
+  margin-bottom: 0;
+  font-size: 20px;
+  /* border:2px solid blue; */
+  width: 100%;
+  text-align: center;
+}
+
 </style>
 
 <script>
@@ -186,10 +207,10 @@ export default {
 
     }
   },
- 
   methods:{
       onFileSelected(event){
         this.slectedFile = event.target.files[0];
+        this.successMessage = "";
       },
       setUp(){
         let v = this;
