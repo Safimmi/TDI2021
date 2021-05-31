@@ -4,7 +4,17 @@
     </div>
     <div class="cuerpo">
         <div class="avatar">
-            <img alt="usuario" style="width:100px; height:100px;" src="../../assets/usuario.png"> 
+            <!-- <img alt="usuario" style="width:100px; height:100px;" src="../../assets/usuario.png">  -->
+                <div v-for="imagen in avatares" v-bind:key="imagen.id">
+                  <label @click="avatar = imagen.data.imagen">
+                    <input type="radio" name="test" value="small" />
+                    <img style="width:70%; height:50%;"
+                      class="img_perfil_selector"
+                      :src="getImageUrl(imagen.data.imagen)"
+                      alt="imagen perfil"
+                    />
+                  </label>
+                </div>
         </div>
         <div class="texto">
             <div class="formulario">
@@ -72,11 +82,14 @@ export default {
             nuevaCategoria:'',
             userid:'',
             xhrRequest: false,
-            successMessage: ''
+            successMessage: '',
+            avatares:[],
+            avatar:null
 
         }
     },
     created(){
+
 
             this.user = firebase.auth().currentUser;
             var docRef = db.collection("usuarios").doc(this.user.uid);
@@ -94,8 +107,23 @@ export default {
             }).catch((error) => {
                 console.log("Error getting document:", error);
             });
+
+            this.avatares = [];
+            db.collection("avatar")
+            .get()
+            .then((r) => {
+                r.docs.map((imagen) => {
+                this.avatares.push({
+                    id: imagen.id,
+                    data: imagen.data(),
+                });
+                });
+            });
     },
     methods: {
+        getImageUrl(imageId) {
+            return `${imageId}`;
+        },
         update(){
             
             let v = this;
@@ -138,7 +166,8 @@ export default {
                 nombre: this.nuevoNombre,
                 categoria: this.nuevaCategoria,
                 ocupacion: this.nuevaOcupacion,
-                foto: this.dataUsuario.foto
+                foto: this.dataUsuario.foto,
+                imagen: this.avatar
             })
             .then(() => {
                 console.log(this.usuario.uid)
@@ -177,6 +206,26 @@ export default {
 }
 </script>                                                                                                                                                                                                                                                                                                                                                                                                                                             
 <style scoped>
+    [type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+    /* IMAGE STYLES */
+    [type="radio"] + img {
+    cursor: pointer;
+    }
+    /* CHECKED STYLES */
+    [type="radio"]:checked + img {
+    box-shadow: 0 -2px 5px 0 rgba(0, 55, 138, 0.6),
+        0 2px 5px 0 rgba(0, 55, 138, 0.6);
+    }
+    .avatar{
+        display: flex;
+        justify-content: flex-start;
+        margin: 1rem 0;
+    }
     .cuerpo{ 
         background-color: white;
         border-radius: 50px;

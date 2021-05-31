@@ -2,7 +2,12 @@
     <div class="wrapper">
 
         <div class="usuario">
-            <img alt="usuario" style="width:30%; height:10%;" src="../../assets/usuario.png"> 
+            <!-- <img alt="usuario" style="width:30%; height:10%;" src="../../assets/usuario.png">  -->
+            <img style="width:38%; height:auto; border: 20px radius; margin-top:6%"
+            class="img_perfil"
+            :src="getImageUrl(dataUsuario.imagen)"
+            alt="imagen perfil"
+            />
         </div>
 
         <div class="informacion" >
@@ -13,44 +18,44 @@
 
         <div class="botones">
             <div class="boton3" v-if="user.displayName!='Marlon Pinto'">
-                <button class="btn-dark2" 
+                <button class="btn-dark2"
                 type="submit" @click="mostrarlista3()">
                         Mis Proyectos
                 </button>
             </div>
-             <div class="boton3" v-else>
-                <button class="btn-dark2" 
+            <div class="boton3" v-else>
+                <button class="btn-dark2"
                 type="submit" @click="mostrarlista()">
                         Proyectos
                 </button>
             </div>
             <div class="boton1" v-if="user.displayName!='Marlon Pinto'">
-                    <button class="btn-dark2"  
+                    <button class="btn-dark2"
                     type="submit" @click="mostrarperfilm()">
                         Editar Perfil
                     </button>
             </div>
             <div class="boton1" v-else>
-                    <button class="btn-dark2"  
+                    <button class="btn-dark2"
                     type="submit" @click="mostrarperfila()">
                         Editar Perfil
                     </button>
             </div>
 
             <div class="boton2">
-                <button class="btn-dark3" @click="salir()"  
+                <button class="btn-dark3" @click="salir()"
                 type="submit" >
                     Cerrar sesión
                 </button>
             </div>
-            
-            
+
+
         </div>
 
         <div class="funciones">
             <div class='mas' v-if="user.uid !='d4gwmIMUkXOGz11YJi6YLBdGTF12'">
                 <button class="btn-dark4" @click="mostrarformulario()" >
-                    <img  alt="Formulario" style="width:70px ; margin-right:3%" src="../../assets/Icons/PlusIcon.png">
+                    <img  alt="Formulario" style="width:4rem ; margin-right:3%" src="../../assets/Icons/PlusIcon.png">
                 </button>
             </div>
 
@@ -75,10 +80,14 @@ export default {
         return {
             usuario:[],
             user:null,
-            dataUsuario: {}
+            dataUsuario: {},
+            avatar: null
         }
     },
     methods:{
+        getImageUrl(imageId) {
+            return `${imageId}`;
+        },
         setup() {
         const usuarios = useLoadusuarios()
         return { usuarios }
@@ -133,12 +142,12 @@ export default {
         },
     },
     created(){
-        
+
         this.user = firebase.auth().currentUser;
             var docRef = db.collection("usuarios").doc(this.user.uid);
             docRef.get().then((doc) => {
                 if (doc.exists) {
-                    this.dataUsuario = doc.data();                    
+                    this.dataUsuario = doc.data();
                 } else {
                     console.log("No such document!");
                 }
@@ -146,56 +155,74 @@ export default {
                 console.log("Error getting document:", error);
             });
     },
-    
+
 }
 </script>
 
 <style scoped>
     .wrapper{
-        
+
+        /* border: 5px solid red; */
         background:#353755;
         height: 100%;
         width: 20%;
         position: fixed;
         padding: 1%;
+
+        display: flex;
+        flex-direction: column;
     }
     .usuario{
+        /* border: 5px solid blue; */
         margin-top: 4%;
         margin-bottom: 3%;
     }
     .botones{
+        /* border: 5px solid blue; */
         text-align: left;
+        padding-left: 5%;
+        padding-right: 10%;
     }
     .btn-dark2{
-       margin: 1%; 
-       background-color: #1e1f30; 
-       border: none; 
-       border-radius: 30px;
-       font-family: 'Montserrat', sans-serif; 
-       padding: 6%;
-       color: white;
+        margin-top: 5%;
+        padding: 0.65em;
+        width: 100%;
+
+        background-color: #1e1f30;
+        border: none;
+        border-radius: 30px;
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        
     }
     .btn-dark2:hover{
         background-color: #78ccac;
         color: white;
     }
     .btn-dark3{
-       margin: 1%; 
-       background-color: #1e1f30; 
-       border: none; 
-       border-radius: 30px;
-       font-family: 'Montserrat', sans-serif; 
-       padding: 6%;
-       color: white;
+        margin-top: 10%;
+        padding: 0.65em;
+        width: 100%;
+
+        background-color: #1e1f30;
+        border: none;
+        border-radius: 30px;
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+        font-weight: bold;
+        text-align: center;
     }
     .btn-dark3:hover{
         background-color: #BA605D;
         color: white;
     }
     .btn-dark4{
-      background-color: rgba(255, 255, 255, 0) ;
-       border:none;
+        background-color: rgba(255, 255, 255, 0) ;
+        border:none;
         margin-top:10%;
+        padding: 0;
     }
     /* .btn-dark4:hover{
         background-color: #78ccac;
@@ -204,28 +231,33 @@ export default {
     .btn-dark5{
         background-color: rgba(255, 255, 255, 0) ;
         border:none;
-        margin-top:20%;
-        padding-right: 3%;
-      
+        margin-top:8%;
     }
     /* .btn-dark5:hover{
         background-color: #b4b34f;
         color: white;
     } */
     .informacion{
+        /* border: 5px solid blue; */
         font-family: 'Righteous';
         color:white;
         text-align: left;
-        padding: 10%;
-       
+        padding: 10% 8%;
     }
     .informacion h4{
         font-family: 'Montserrat';
         font-size: 20px;
     }
     .funciones{
+        /* border: 5px solid green; */
         text-align: right;
-        margin-top:20%;
+        padding: 10% 5%;
+
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        align-items: flex-end;
+        justify-content: flex-end;
     }
     .mas{
         background-color: rgba(255, 255, 255, 0);

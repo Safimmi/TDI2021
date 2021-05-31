@@ -202,7 +202,7 @@ li {
 
 
 /* CARRUSEL */
- .modal-backdrop {
+.modal-backdrop {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -365,7 +365,7 @@ li {
     justify-content: space-between;
     padding: 0 10%;
   }
-   .bottom img{ 
+  .bottom img{ 
     height: 35%;
   }
 
@@ -488,52 +488,52 @@ export default {
       });
     },
     cmate(){
-       this.asign='Matemáticas básicas'; 
-       this.clista();
+      this.asign='Matemáticas básicas'; 
+      this.clista();
     },
     cdifer(){
-       this.asign='Cálculo diferencial'; 
-       this.clista();
+      this.asign='Cálculo diferencial'; 
+      this.clista();
     },
     cintegral(){
-       this.asign='Cálculo integral'; 
-       this.clista();
+      this.asign='Cálculo integral'; 
+      this.clista();
     },
     cvectorial(){
-       this.asign='Cálculo vectorial'; 
-       this.clista();
+      this.asign='Cálculo vectorial'; 
+      this.clista();
     },
     cecuaciones(){
-       this.asign='Ecuaciones diferenciales'; 
-       this.clista();
+      this.asign='Ecuaciones diferenciales'; 
+      this.clista();
     },
     calgebra(){
-       this.asign='Álgebra lineal'; 
-       this.clista();
+      this.asign='Álgebra lineal'; 
+      this.clista();
     },
     cprob(){
-       this.asign='Probabilidad y estadística'; 
-       this.clista();
+      this.asign='Probabilidad y estadística'; 
+      this.clista();
     },
     cmetod(){
-       this.asign='Métodos numéricos'; 
-       this.clista();
+      this.asign='Métodos numéricos'; 
+      this.clista();
     },
     cmeca(){
-       this.asign='Física Mecánica'; 
-       this.clista();
+      this.asign='Física Mecánica'; 
+      this.clista();
     },
     celect(){
-       this.asign='Física electricidad y magnetismo'; 
-       this.clista();
+      this.asign='Física electricidad y magnetismo'; 
+      this.clista();
     },
     coptica(){
-       this.asign='Física óptica y acústica'; 
-       this.clista();
+      this.asign='Física óptica y acústica'; 
+      this.clista();
     },
     cquimi(){
-       this.asign='Química'; 
-       this.clista();
+      this.asign='Química'; 
+      this.clista();
     }
   }
 }

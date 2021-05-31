@@ -87,6 +87,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
   .item{
     display: flex;
@@ -97,6 +98,7 @@
     background: rgba(255, 255, 255,0.3);
     padding: 20px;
     border-radius: 30px;
+    border: 5px solid #AFAFC6;
   }
   .inf{
     margin: 0 30px;
@@ -209,6 +211,7 @@
   height: 200px;
   border-radius: 10%;
   background-color: rgba(255, 255, 255, 0.445);
+  
 }
 .image img{
   max-height:200px;
