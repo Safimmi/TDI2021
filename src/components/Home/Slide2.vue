@@ -24,12 +24,7 @@
               <div class="carousel-inner" >
                     <div class="carousel-item active">       
                       <div class="item">
-                      <div class="izq">
-                        <div class="imagen">
-                          <img src="@/assets/Brand/LogoCubo.png" class="" alt="...">
-                        </div>
-                      </div>
-                      <div class="der">
+                      <div class="der1">
                         <div class="top">
                         <div class="materia"><p3>{{asign}}</p3></div>
                         <div class="boton">
@@ -41,17 +36,12 @@
                         </button>
                         </div>
                         </div>
-                        <div class="main">
-                          <h2>Render de la casa</h2>
-                          <div class="texto">
-                          <div class="texto1">
-                          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum accusamus odio id eum! Repellendus, quo vel blanditiis sit impedit, fugiat facere labore aspernatur eius laudantium exercitationem quia rerum cupiditate debitis.</p>
-                          </div>
-                          <div class="texto2">
-                          <p1>Juan Pablo</p1>
-                          <p1>Estudiante</p1>
-                          <p1>2021</p1>
-                          </div>
+                        <div class="main1">
+                          <h2>Carrusel de Proyectos</h2>
+                          <div class="infomateria">
+                          <h2>{{asign}}</h2>
+                          <h3>Semestre: {{matedata.semestre}}</h3>
+                          <h3>Créditos: {{matedata.creditos}}</h3>
                           </div>
                         </div>
                           <div class="bottom">
@@ -280,6 +270,14 @@ li {
     flex-direction: column;
   }
 
+  .der1{
+    background: #353755;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+
   .modal-fade-enter,
   .modal-fade-leave-to {
     opacity: 0;
@@ -308,10 +306,27 @@ li {
     align-items: center;
   }
 
+  .main1{
+    margin: 0px 10%;
+    margin-top: 60px;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 100px;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+  }
+
   .main h2{
     font-family: 'Righteous';
     color: white;
     font-size: 50px;
+  }
+
+  .main1 h2{
+    margin-top: 50px;
   }
 
   .main p{
@@ -325,6 +340,25 @@ li {
     color: white;
     font-size: 15px;
   }
+
+  .infomateria{
+    background: white;
+    margin-top: 50px;
+    padding: 40px;
+    border-radius: 20px;
+  }
+
+  .infomateria h2{
+    color: #353755;
+    margin-top: 0px;
+  }
+
+  .main h3{
+    font-family: 'Righteous';
+    color: #353755;
+    font-size: 40px;
+  }
+
 
   .bottom{
     height: 20%;
