@@ -17,7 +17,12 @@
           <LogInB/>
         </div>
         <div v-else>
-          <miembroB/>
+          <!-- <miembroB/> -->
+          <img style="width:10%; height:10%; border: 20px radius; margin-top:1%; float:right"
+            class="img_perfil"
+            :src="getImageUrl(dataUsuario.imagen)"
+            alt="imagen perfil"
+            />
         </div>
       </div>
     
@@ -49,7 +54,7 @@
 
 <script >
 import LogInB from '@/components/Home/LogInB.vue'
-import miembroB from '@/components/Home/miembroB'
+//import miembroB from '@/components/Home/miembroB'
 import Slide from '@/components/Home/Slide.vue'
 import Slide2 from '@/components/Home/Slide2.vue'
 import Slide3 from '@/components/Home/Slide3.vue'
@@ -62,6 +67,10 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { TWEEN } from "three/examples/jsm/libs/tween.module.min.js";
 import ControlesIconos from '@/components/3D/ControlesIconos.vue'
 
+import { db} from '@/firebase'
+
+
+
 let scene, camera, renderer, container, mixer, clock, sphere, dode, coords, cambio, cambio2, cambio3, cambio4, cambio5, cambio6, cambio7, controls, modelo, modelo2, modelo3, modelo4, cambiocam, raycaster, mouse;
 let ancho, alto;
 
@@ -69,7 +78,7 @@ export default {
   name: 'Home',
   components: {
     LogInB,
-    miembroB,
+    //miembroB,
     Slide3,
     Slide2,
     Slide,
@@ -80,14 +89,26 @@ export default {
   data() {
     return {
       usuario: false,
-      cont:0
+      cont:0,
+      user:null,
+      dataUsuario: {},
+      avatar: null
     };
   },
   created() {
-    var user = firebase.auth().currentUser;
-
-    if (user) {
+    this.user = firebase.auth().currentUser; 
+    if (this.user) {
       this.usuario = true;
+      var docRef = db.collection("usuarios").doc(this.user.uid);
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    this.dataUsuario = doc.data();
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
     }
     else{
       this.usuario = false;
@@ -96,6 +117,9 @@ export default {
   
   
   methods: {
+        getImageUrl(imageId) {
+            return `${imageId}`;
+        },
       mostrarinformacion(){
         var x = document.getElementById("informacionID");
         x.style.display="block";

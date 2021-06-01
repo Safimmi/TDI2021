@@ -58,7 +58,7 @@
 
 
         </div>
-
+        
         <div class="funciones">
             <div class='mas' v-if="user.uid !='d4gwmIMUkXOGz11YJi6YLBdGTF12'">
                 <button class="btn-dark4" @click="mostrarformulario()" >
@@ -70,9 +70,8 @@
                 <HomeB2/>
             </div>
         </div>
-
     </div>
-
+    
 </template>
 
 <script>
@@ -192,6 +191,10 @@ export default {
         display: flex;
         flex-direction: column;
     }
+    .ondas{
+        padding:0%;
+        z-index: 1;
+    }
     .usuario{
         /* border: 5px solid blue; */
         margin-top: 4%;
@@ -215,6 +218,7 @@ export default {
         color: white;
         font-weight: bold;
         text-align: center;
+        
         
     }
     .btn-dark2:hover{

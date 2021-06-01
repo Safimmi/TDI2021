@@ -2,12 +2,12 @@
 <div class="modal-backdrop">
     <div class="todo">
         <header class="header">
-            <div class="logos">
-                    <img alt="Logo" style="width:150px" src="../../assets/Brand/LogoHeader.png"> 
-                <a href="https://www.umng.edu.co/programas/pregrados/ingenieria-multimedia">
-                    <img alt="Logo" style="width:150px" src="../../assets/Brand/Logo20.png"> 
-                </a>
+            <div class="logos" >
+                    <img alt="Logo" style="width:150px;display:block" src="../../assets/Brand/LogoHeader.png"> 
             </div>
+            <a href="https://www.umng.edu.co/programas/pregrados/ingenieria-multimedia" target="_blank">
+                    <img alt="Logo" style="width:150px;display:block;margin-left:4%" src="../../assets/Brand/Logo20.png"> 
+                </a>
             <div class="cerrar">
                 <button type="button" class="btn-close" @click="cerrarinformacion()">
                 </button>
@@ -46,10 +46,10 @@
                     {{info.egresado}}
                 </p>
             </h6>
-            <a style = "text-decoration: None" href="https://www.umng.edu.co/documents/20127/463311/Plan+de+Estudios+-IngMultimedia+2021-01_firmado.pdf/a53d53bf-6c81-b540-829a-9948a83d050d?t=1622135616710">
+            <a style = "text-decoration: None" target="_blank" href="https://www.umng.edu.co/documents/20127/463311/Plan+de+Estudios+-IngMultimedia+2021-01_firmado.pdf/a53d53bf-6c81-b540-829a-9948a83d050d?t=1622135616710">
                 <button class="btn-dark2"  style="display:block"
                     type="submit" >
-                    Pensum
+                    Pénsum
                 </button>
             </a>
             
@@ -174,7 +174,7 @@ export default {
         color:#353755;
     }
     .logos{
-        margin-left: 15%;
+        margin-left: 20%;
     }
     h6{
         margin-bottom: 7%;
