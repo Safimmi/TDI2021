@@ -129,7 +129,7 @@ export default {
                                 usuario: user.email,
                                 categoria: this.categoria,
                                 ocupacion:'',
-                                foto:'https://firebasestorage.googleapis.com/v0/b/multirush-b945a.appspot.com/o/FotosUsuarios%2Fusuario.png?alt=media&token=882444d0-c8c2-4c7b-99c5-84c74574a3de'
+                                imagen:'https://firebasestorage.googleapis.com/v0/b/multirush-b945a.appspot.com/o/FotosUsuarios%2Fusuario.png?alt=media&token=882444d0-c8c2-4c7b-99c5-84c74574a3de'
 
                             })
                             .then((docRef) => {

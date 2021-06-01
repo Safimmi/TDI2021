@@ -37,13 +37,13 @@
             <h5>Perfil del aspirante</h5>
             <h6>
                 <p>
-                    Debe tener pensamiento lógico y crítico, y fuerte inclinación por la tecnología, con habilidad para las matemáticas, la física, la informática, la comunicación y la expresión gráfica. Además, debe tener capacidad de análisis, aprendizaje autónomo, creatividad, responsabilidad, compromiso y liderazgo, que le permitan asumir nuevos retos en su formación profesional.
+                   {{info.aspirante}}
                 </p>
             </h6>
             <h5>Perfil del egresado</h5>
             <h6>
                 <p>
-                    El ingeniero en multimedia de la Universidad Militar Nueva Ganada está en capacidad de utilizar los estándares de ingeniería computacionales y de multimedia, para desarrollar productos innovadores en términos de diseño, interactividad, uso, realismo e inteligencia, como cualidades de la calidad de la experiencia para el usuario final. Además, cuenta con la idoneidad para analizar, evaluar e investigar situaciones reales de su campo profesional, de manera crítica y reflexiva, y con compromiso social y ético, con el fin de establecer oportunidades de avance tecnológico y científico en la ingeniería en multimedia, así como con habilidades administrativas y gerenciales, que le posibilitan su integración en el entorno laboral y la creación de empresa.           
+                    {{info.egresado}}
                 </p>
             </h6>
             <a style = "text-decoration: None" href="https://www.umng.edu.co/documents/20127/463311/Plan+de+Estudios+-IngMultimedia+2021-01_firmado.pdf/a53d53bf-6c81-b540-829a-9948a83d050d?t=1622135616710">
@@ -71,7 +71,32 @@
 </template>
 
 <script>
+import { db } from '@/firebase'
+
 export default {
+    data() {
+        return {
+            info: {}
+        }
+    },
+     created(){
+      
+      var docRef = db.collection("informacion").doc("info");
+
+      docRef.get().then((doc) => {
+          if (doc.exists) {
+              console.log("Document data:", doc.data());
+              this.info = doc.data();
+              this.aspirante = this.info.aspirante;
+              this.egresado = this.info.egresado;
+          } else {
+              console.log("No such document!");
+          }
+      }).catch((error) => {
+          console.log("Error getting document:", error);
+      });
+
+    },
     methods:{
         cerrarinformacion(){
         var x = document.getElementById("informacionID");

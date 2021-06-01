@@ -17,6 +17,9 @@
                 <div class="Perfil" id="PerfilID">
                     <Perfil/>
                 </div>
+                <div class="Infoedit" id="InfoeditID">
+                    <EditarInfo/>
+                </div>
             </div>
         </div>
 
@@ -27,13 +30,15 @@
     import List from '@/components/DashAdmin/List.vue'
     import Menu from '@/components/DashMiembro/Menu.vue'
     import Perfil from '@/components/DashAdmin/Perfil.vue'
+    import EditarInfo from '@/components/DashAdmin/Infoedit.vue'
 
     export default {
     name: 'DashAdministrador',
     components: { 
         List,
         Menu,
-        Perfil
+        Perfil,
+        EditarInfo
         }
     }
 </script>
@@ -69,6 +74,10 @@
         display:block;
     }
     .Perfil{
+        display:none;
+        width:60%;
+    }
+    .Infoedit{
         display:none;
         width:60%;
     }

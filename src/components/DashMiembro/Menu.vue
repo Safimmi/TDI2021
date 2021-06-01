@@ -42,6 +42,13 @@
                     </button>
             </div>
 
+            <div class="boton1" v-if="user.displayName=='Marlon Pinto'">
+                    <button class="btn-dark2"
+                    type="submit" @click="mostrareditarinfo()">
+                        Editar Información
+                    </button>
+            </div>
+
             <div class="boton2">
                 <button class="btn-dark3" @click="salir()"
                 type="submit" >
@@ -102,8 +109,10 @@ export default {
         mostrarlista:function() {
 
             var x = document.getElementById("ListaID");
+            var y = document.getElementById("InfoeditID");
             var z = document.getElementById("PerfilID");
             x.style.display = "block";
+            y.style.display = "none";
             z.style.display = "none";
         },
         mostrarlista3:function() {
@@ -129,17 +138,28 @@ export default {
             var x = document.getElementById("Lista3ID");
             var y = document.getElementById("formularioMiembroID");
             var z = document.getElementById("PerfilID");
-            y.style.display = "none";
             x.style.display = "none";
+            y.style.display = "none";
             z.style.display = "block";
         },
         mostrarperfila:function() {
 
             var x = document.getElementById("ListaID");
+            var y = document.getElementById("InfoeditID");
             var z = document.getElementById("PerfilID");
             x.style.display = "none";
+            y.style.display = "none";
             z.style.display = "block";
         },
+        mostrareditarinfo:function(){
+
+            var x = document.getElementById("ListaID");
+            var y = document.getElementById("InfoeditID");
+            var z = document.getElementById("PerfilID");
+            x.style.display = "none";
+            y.style.display = "block";
+            z.style.display = "none";
+        }
     },
     created(){
 

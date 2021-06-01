@@ -3,12 +3,14 @@
         <h4>{{ successMessage }}</h4>
     </div>
     <div class="cuerpo">
-        <div class="avatar">
+       
+        <div class="texto">
+             <div class="avatar">
             <!-- <img alt="usuario" style="width:100px; height:100px;" src="../../assets/usuario.png">  -->
                 <div v-for="imagen in avatares" v-bind:key="imagen.id">
                   <label @click="avatar = imagen.data.imagen">
                     <input type="radio" name="test" value="small" />
-                    <img style="width:70%; height:50%;"
+                    <img style="width:80%; height:50%;"
                       class="img_perfil_selector"
                       :src="getImageUrl(imagen.data.imagen)"
                       alt="imagen perfil"
@@ -16,7 +18,6 @@
                   </label>
                 </div>
         </div>
-        <div class="texto">
             <div class="formulario">
                 <p>Nombre:</p>
                 <input v-model="nuevoNombre" class="form-control form-control-lg"   id="nombre">   
