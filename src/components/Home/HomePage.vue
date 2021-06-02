@@ -17,12 +17,20 @@
           <LogInB/>
         </div>
         <div v-else>
-          <!-- <miembroB/> -->
-          <img style="width:10%; height:10%; border: 20px radius; margin-top:1%; float:right"
-            class="img_perfil"
-            :src="getImageUrl(dataUsuario.imagen)"
-            alt="imagen perfil"
-            />
+          <router-link v-if="admin==true" to="/dashboard"> 
+            <img style="width:10%; height:10%; border: 20px radius; margin-top:1%; float:right"
+              class="img_perfil"
+              :src="getImageUrl(dataUsuario.imagen)"
+              alt="imagen perfil"
+              />
+          </router-link>
+          <router-link v-else to="/dashboardM">
+            <img style="width:10%; height:10%; border: 20px radius; margin-top:1%; float:right"
+              class="img_perfil"
+              :src="getImageUrl(dataUsuario.imagen)"
+              alt="imagen perfil"
+              />
+          </router-link>
         </div>
       </div>
     
